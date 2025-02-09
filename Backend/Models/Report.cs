@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Backend.Models;
 
@@ -15,7 +16,9 @@ public partial class Report
 
     public DateTime? CreatedAt { get; set; }
 
+    [JsonIgnore]
     public virtual User? FkGeneratedByNavigation { get; set; }
 
+    [JsonIgnore]
     public virtual ReportType? FkReportType { get; set; }
 }

@@ -46,21 +46,21 @@ namespace Backend.Controllers
             }
         }
 
-        //[HttpPut]
-        //[Route("updateUser/{id}")]
-        //[Authorize(Roles = "ADMIN")]
-        //public async Task<IActionResult> updateUser(int id, [FromBody] RegisterDto registerDto)
-        //{
-        //    try
-        //    {
-        //        var result = _userService.UpdateUser(id, registerDto);
-        //        return Ok(result);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+        [HttpPut]
+        [Route("updateUser/{id}")]
+        [Authorize(Roles = "ADMIN")]
+        public async Task<IActionResult> updateUser(int id, [FromBody] RegisterDto registerDto)
+        {
+            try
+            {
+                var result = await _userService.UpdateUser(id, registerDto);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpDelete("deleteUser/{id}")]
         [Authorize(Roles = "ADMIN")]

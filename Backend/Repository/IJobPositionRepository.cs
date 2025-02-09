@@ -6,7 +6,7 @@ namespace Backend.Repository
     {
         Task<List<JobPosition>> GetAllJobPositionsAsync();
 
-        Task<JobPosition?> GetJobPositionByIdAsync(int id);
+        Task<JobPosition?> GetJobPositionByIdAsync(int? id);
 
         Task<JobPosition> AddJobPositionAsync(JobPosition jobPosition);
         Task<JobPosition> UpdateJobPositionAsync(JobPosition jobPosition);

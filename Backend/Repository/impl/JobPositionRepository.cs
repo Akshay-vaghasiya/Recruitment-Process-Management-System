@@ -18,15 +18,17 @@ namespace Backend.Repository.impl
             .Include(j => j.FkStatus)
             .Include(j => j.JobSkills)
             .ThenInclude(js => js.FkSkill)
+            .Include(j => j.ResumeReviews)
             .ToListAsync();
         }
 
-        public async Task<JobPosition?> GetJobPositionByIdAsync(int id)
+        public async Task<JobPosition?> GetJobPositionByIdAsync(int? id)
         {
             return await _context.JobPositions
             .Include(j => j.FkStatus)
             .Include(j => j.JobSkills)
             .ThenInclude(js => js.FkSkill)
+            .Include(j => j.ResumeReviews)
             .FirstOrDefaultAsync(j => j.PkJobPositionId == id);
         }
 

@@ -46,7 +46,9 @@ namespace Backend.Repository.impl
 
         public async Task<List<User>> GetUsersAsync()
         {
-            var users = await _context.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.FkRole).ToListAsync();
+            var users = await _context.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.FkRole)
+                .Include(u => u.Notifications)
+                .ToListAsync();
             return users;
         }
     }

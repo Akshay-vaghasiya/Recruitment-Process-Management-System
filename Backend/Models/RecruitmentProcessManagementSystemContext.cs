@@ -62,8 +62,7 @@ public partial class RecruitmentProcessManagementSystemContext : DbContext
     public virtual DbSet<UserRole> UserRoles { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=L10-VAGHAAKS-1\\SQLEXPRESS;Initial Catalog=Recruitment_Process_Management_System; Trusted_Connection=True; TrustServerCertificate=True");
+       => optionsBuilder.UseSqlServer("Data Source=L10-VAGHAAKS-1\\SQLEXPRESS;Initial Catalog=Recruitment_Process_Management_System; Trusted_Connection=True; TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -97,6 +96,10 @@ public partial class RecruitmentProcessManagementSystemContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("email");
+            entity.Property(e => e.Password)
+            .HasMaxLength (255)
+            .IsUnicode (false) 
+            .HasColumnName("password");
             entity.Property(e => e.FullName)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -308,6 +311,7 @@ public partial class RecruitmentProcessManagementSystemContext : DbContext
             entity.Property(e => e.FkCandidateId).HasColumnName("fk_candidate_id");
             entity.Property(e => e.FkJobPositionId).HasColumnName("fk_job_position_id");
             entity.Property(e => e.FkStatusId).HasColumnName("fk_status_id");
+            entity.Property(e => e.CreatedAt).HasColumnName("created_at");
 
             entity.HasOne(d => d.FkCandidate).WithMany(p => p.JobApplications)
                 .HasForeignKey(d => d.FkCandidateId)

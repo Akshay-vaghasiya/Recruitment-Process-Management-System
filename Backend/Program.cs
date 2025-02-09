@@ -62,6 +62,24 @@ builder.Services.AddScoped<IJobPositionRepository, JobPositionRepository>();
 builder.Services.AddScoped<IJobSkillRepository, JobSkillRepository>();
 builder.Services.AddScoped<IJobStatusRepository, JobStatusRepository>();
 builder.Services.AddScoped<ISkillRepository, SkillRepository>();
+builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
+builder.Services.AddScoped<ICandidateSkillRepository, CandidateSkillRepository>();
+builder.Services.AddScoped<IDocumentTypeRepository, DocumentTypeRepository>();
+builder.Services.AddScoped<IDocumentStatusRepository, DocumentStatusRepository>();
+builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
+builder.Services.AddScoped<IApplicationStatusRepository, ApplicationStatusRepository>();
+builder.Services.AddScoped<IJobApplicationRepository, JobApplicationRepository>();
+builder.Services.AddScoped<IResumeReviewRepository, ResumeReviewRepository>();
+builder.Services.AddScoped<IInterviewStatusRepository, InterviewStatusRepository>();
+builder.Services.AddScoped<IInterviewRoundRepository, InterviewRoundRepository>();
+builder.Services.AddScoped<IInterviewRepository, InterviewRepository>();
+builder.Services.AddScoped<IInterviewPanelRepository, InterviewPanelRepository>();
+builder.Services.AddScoped<IReportTypeRepository, ReportTypeRepository>();
+builder.Services.AddScoped<IReportRepository, ReportRepository>();
+builder.Services.AddScoped<IInterviewFeedbackRepository, InterviewFeedbackRepository>();
+builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+
+
 
 
 builder.Services.AddScoped<IUserRoleService, UserRoleService>();
@@ -71,6 +89,22 @@ builder.Services.AddScoped<IJobPositionService, JobPositionService>();
 builder.Services.AddScoped<IJobStatusService, JobStatusService>();
 builder.Services.AddScoped<IJobSkillService, JobSkillService>();
 builder.Services.AddScoped<ISkillService, SkillService>();
+builder.Services.AddScoped<ICandidateService, CandidateService>();
+builder.Services.AddScoped<IDocumentTypeService, DocumentTypeService>();
+builder.Services.AddScoped<IDocumentStatusService, DocumentStatusService>();
+builder.Services.AddScoped<IDocumentService, DocumentService>();
+builder.Services.AddScoped<IApplicationStatusService, ApplicationStatusService>();
+builder.Services.AddScoped<IJobApplicationService,  JobApplicationService>();
+builder.Services.AddScoped<IResumeReviewService, ResumeReviewService>();
+builder.Services.AddScoped<IInterviewStatusService, InterviewStatusService>();
+builder.Services.AddScoped<IInterviewRoundService, InterviewRoundService>();
+builder.Services.AddScoped<IInterviewService, InterviewService>();
+builder.Services.AddScoped<IInterviewPanelService, InterviewPanelService>();
+builder.Services.AddScoped<IReportTypeService, ReportTypeService>();
+builder.Services.AddScoped<IReportService, ReportService>();
+builder.Services.AddScoped<IInterviewFeedbackService, InterviewFeedbackService>();
+builder.Services.AddScoped<INotificationService, NotificationService>();    
+
 
 
 var app = builder.Build();

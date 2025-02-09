@@ -70,6 +70,9 @@ namespace Backend.Migrations
                         .HasColumnType("varchar(255)")
                         .HasColumnName("full_name");
 
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Phone")
                         .HasMaxLength(255)
                         .IsUnicode(false)
@@ -749,6 +752,9 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PkUserRoleId"));
 
+                    b.Property<int?>("FkCandidateId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("FkRoleId")
                         .HasColumnType("int")
                         .HasColumnName("fk_role_id");
@@ -759,6 +765,8 @@ namespace Backend.Migrations
 
                     b.HasKey("PkUserRoleId")
                         .HasName("PK__user_rol__4BA152D8B279EAD4");
+
+                    b.HasIndex("FkCandidateId");
 
                     b.HasIndex("FkRoleId");
 
@@ -970,6 +978,10 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.UserRole", b =>
                 {
+                    b.HasOne("Backend.Models.Candidate", "FkCandidate")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("FkCandidateId");
+
                     b.HasOne("Backend.Models.Role", "FkRole")
                         .WithMany("UserRoles")
                         .HasForeignKey("FkRoleId")
@@ -979,6 +991,8 @@ namespace Backend.Migrations
                         .WithMany("UserRoles")
                         .HasForeignKey("FkUserId")
                         .HasConstraintName("FK__user_role__fk_us__60A75C0F");
+
+                    b.Navigation("FkCandidate");
 
                     b.Navigation("FkRole");
 
@@ -1001,6 +1015,8 @@ namespace Backend.Migrations
                     b.Navigation("JobApplications");
 
                     b.Navigation("ResumeReviews");
+
+                    b.Navigation("UserRoles");
                 });
 
             modelBuilder.Entity("Backend.Models.DocumentStatus", b =>

@@ -72,79 +72,79 @@ namespace Backend.Services.impl
             return await GenerateJwtToken(user);
         }
 
-        //public async Task<User> UpdateUser(int id, RegisterDto registerDto)
-        //{
+        public async Task<UserDto> UpdateUser(int id, RegisterDto registerDto)
+        {
 
-        //    Console.Write(registerDto);
-        //    var existingUser = await _userRepository.GetUserById(id);
-        //    if (existingUser == null)
-        //    {
-        //        throw new Exception("User does not exist!");
-        //    }
+            Console.Write(registerDto);
+            var existingUser = await _userRepository.GetUserById(id);
+            if (existingUser == null)
+            {
+                throw new Exception("User does not exist!");
+            }
 
-        //    if (!string.IsNullOrEmpty(registerDto.Password))
-        //    {
-        //        existingUser.Password = BCrypt.Net.BCrypt.HashPassword(registerDto.Password);
-        //    }
+            if (!string.IsNullOrEmpty(registerDto.Password))
+            {
+                existingUser.Password = BCrypt.Net.BCrypt.HashPassword(registerDto.Password);
+            }
 
-        //    if (!string.IsNullOrEmpty(registerDto.Email))
-        //    {
-        //        existingUser.Email = registerDto.Email;
-        //    }
+            if (!string.IsNullOrEmpty(registerDto.Email))
+            {
+                existingUser.Email = registerDto.Email;
+            }
 
-        //    if (!string.IsNullOrEmpty(registerDto.FullName))
-        //    {
-        //        existingUser.FullName = registerDto.FullName;
-        //    }
+            if (!string.IsNullOrEmpty(registerDto.FullName))
+            {
+                existingUser.FullName = registerDto.FullName;
+            }
 
-        //    if (!string.IsNullOrEmpty(registerDto.Phone))
-        //    {
-        //        existingUser.Phone = registerDto.Phone;
-        //    }
+            if (!string.IsNullOrEmpty(registerDto.Phone))
+            {
+                existingUser.Phone = registerDto.Phone;
+            }
 
-        //    if (registerDto.JoiningDate != default)
-        //    {
-        //        existingUser.JoiningDate = registerDto.JoiningDate;
-        //    }
+            if (registerDto.JoiningDate != default)
+            {
+                existingUser.JoiningDate = registerDto.JoiningDate;
+            }
 
-        //    Console.Write("Hello");
+            Console.Write("Hello");
 
-        //    if (registerDto.Roles != null && registerDto.Roles.Any())
-        //    {
-        //        foreach (var roleName in registerDto.Roles)
-        //        {
-        //            Role? role = await _roleRepository.GetRoleByName(roleName);
-        //            if (role == null)
-        //            {
-        //                throw new Exception($"Role '{roleName}' does not exist.");
-        //            }
+            if (registerDto.Roles != null && registerDto.Roles.Any())
+            {
+                foreach (var roleName in registerDto.Roles)
+                {
+                    Role? role = await _roleRepository.GetRoleByName(roleName);
+                    if (role == null)
+                    {
+                        throw new Exception($"Role '{roleName}' does not exist.");
+                    }
 
-        //            bool roleExists = existingUser.UserRoles.Any(ur => ur.FkRoleId == role.PkRoleId);
-        //            if (!roleExists)
-        //            {
-        //                UserRole newUserRole = new UserRole
-        //                {
-        //                    FkUser = existingUser,
-        //                    FkRole = role
-        //                };
-        //                await _userRoleRepository.AddUserRole(newUserRole);
-        //            }
-        //        }
-        //    }
+                    bool roleExists = existingUser.UserRoles.Any(ur => ur.FkRoleId == role.PkRoleId);
+                    if (!roleExists)
+                    {
+                        UserRole newUserRole = new UserRole
+                        {
+                            FkUser = existingUser,
+                            FkRole = role
+                        };
+                        await _userRoleRepository.AddUserRole(newUserRole);
+                    }
+                }
+            }
 
-        //    var updatedUser = await _userRepository.UpdateUser(existingUser);
+            var updatedUser = await _userRepository.UpdateUser(existingUser);
 
-        //    var userDto = new UserDto
-        //    {
-        //        PkUserId = updatedUser.PkUserId,
-        //        FullName = updatedUser.FullName,
-        //        Email = updatedUser.Email,
-        //        Phone = updatedUser.Phone,
-        //        JoiningDate = updatedUser.JoiningDate
-        //    };
+            var userDto = new UserDto
+            {
+                PkUserId = updatedUser.PkUserId,
+                FullName = updatedUser.FullName,
+                Email = updatedUser.Email,
+                Phone = updatedUser.Phone,
+                JoiningDate = updatedUser.JoiningDate
+            };
 
-        //    return updatedUser;
-        //}
+            return userDto;
+        }
 
         public async Task DeleteUser(int id)
         {

@@ -5,6 +5,131 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/ApplicationStatus": {
+      "get": {
+        "tags": [
+          "ApplicationStatus"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ApplicationStatus"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationStatus"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationStatus"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationStatus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ApplicationStatus/{id}": {
+      "get": {
+        "tags": [
+          "ApplicationStatus"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "ApplicationStatus"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationStatus"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationStatus"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApplicationStatus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ApplicationStatus"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Authentication/register": {
       "post": {
         "tags": [
@@ -67,6 +192,48 @@
         }
       }
     },
+    "/api/Authentication/updateUser/{id}": {
+      "put": {
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Authentication/deleteUser/{id}": {
       "delete": {
         "tags": [
@@ -94,6 +261,1222 @@
       "get": {
         "tags": [
           "Authentication"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Candidate": {
+      "post": {
+        "tags": [
+          "Candidate"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "FullName": {
+                    "type": "string"
+                  },
+                  "Password": {
+                    "type": "string"
+                  },
+                  "Email": {
+                    "type": "string"
+                  },
+                  "Phone": {
+                    "type": "string"
+                  },
+                  "Resume": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "YearsOfExperience": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              },
+              "encoding": {
+                "FullName": {
+                  "style": "form"
+                },
+                "Password": {
+                  "style": "form"
+                },
+                "Email": {
+                  "style": "form"
+                },
+                "Phone": {
+                  "style": "form"
+                },
+                "Resume": {
+                  "style": "form"
+                },
+                "YearsOfExperience": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Candidate"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Candidate/{id}": {
+      "put": {
+        "tags": [
+          "Candidate"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "FullName": {
+                    "type": "string"
+                  },
+                  "Password": {
+                    "type": "string"
+                  },
+                  "Email": {
+                    "type": "string"
+                  },
+                  "Phone": {
+                    "type": "string"
+                  },
+                  "Resume": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "YearsOfExperience": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              },
+              "encoding": {
+                "FullName": {
+                  "style": "form"
+                },
+                "Password": {
+                  "style": "form"
+                },
+                "Email": {
+                  "style": "form"
+                },
+                "Phone": {
+                  "style": "form"
+                },
+                "Resume": {
+                  "style": "form"
+                },
+                "YearsOfExperience": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Candidate/addCandidateSkill/{candidateId}/{skillId}/{yearOfExp}": {
+      "post": {
+        "tags": [
+          "Candidate"
+        ],
+        "parameters": [
+          {
+            "name": "candidateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "skillId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "yearOfExp",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Candidate/deleteCandidateSkill/{candidateSkillId}": {
+      "delete": {
+        "tags": [
+          "Candidate"
+        ],
+        "parameters": [
+          {
+            "name": "candidateSkillId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Document/{candidateId}/{documentTypeId}": {
+      "post": {
+        "tags": [
+          "Document"
+        ],
+        "parameters": [
+          {
+            "name": "candidateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "documentTypeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "document": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "document": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Document/{documentId}": {
+      "put": {
+        "tags": [
+          "Document"
+        ],
+        "parameters": [
+          {
+            "name": "documentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "document": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "document": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Document"
+        ],
+        "parameters": [
+          {
+            "name": "documentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Document/{documentId}/{documentStatusId}": {
+      "put": {
+        "tags": [
+          "Document"
+        ],
+        "parameters": [
+          {
+            "name": "documentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "documentStatusId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Document": {
+      "get": {
+        "tags": [
+          "Document"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DocumentStatus": {
+      "get": {
+        "tags": [
+          "DocumentStatus"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "DocumentStatus"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentStatus"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentStatus"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentStatus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DocumentStatus/{id}": {
+      "get": {
+        "tags": [
+          "DocumentStatus"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "DocumentStatus"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentStatus"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentStatus"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentStatus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "DocumentStatus"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DocumentType": {
+      "get": {
+        "tags": [
+          "DocumentType"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "DocumentType"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentType"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentType"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentType"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/DocumentType/{id}": {
+      "put": {
+        "tags": [
+          "DocumentType"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentType"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentType"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentType"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "DocumentType"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Interview": {
+      "post": {
+        "tags": [
+          "Interview"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Interview"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Interview/updatestatus/{interviewId}/{interviewStatusId}": {
+      "put": {
+        "tags": [
+          "Interview"
+        ],
+        "parameters": [
+          {
+            "name": "interviewId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "interviewStatusId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Interview/{id}": {
+      "delete": {
+        "tags": [
+          "Interview"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/InterviewFeedback": {
+      "post": {
+        "tags": [
+          "InterviewFeedback"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewFeedback"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewFeedback"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewFeedback"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "InterviewFeedback"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/InterviewFeedback/{interviewFeedbackId}": {
+      "put": {
+        "tags": [
+          "InterviewFeedback"
+        ],
+        "parameters": [
+          {
+            "name": "interviewFeedbackId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewFeedback"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewFeedback"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewFeedback"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "InterviewFeedback"
+        ],
+        "parameters": [
+          {
+            "name": "interviewFeedbackId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/InterviewPanel/{userId}/{interviewId}": {
+      "post": {
+        "tags": [
+          "InterviewPanel"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "interviewId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/InterviewPanel": {
+      "get": {
+        "tags": [
+          "InterviewPanel"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/InterviewPanel/{interviewPanelId}": {
+      "delete": {
+        "tags": [
+          "InterviewPanel"
+        ],
+        "parameters": [
+          {
+            "name": "interviewPanelId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/InterviewRound": {
+      "get": {
+        "tags": [
+          "InterviewRound"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "InterviewRound"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewRound"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewRound"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewRound"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/InterviewRound/{id}": {
+      "get": {
+        "tags": [
+          "InterviewRound"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "InterviewRound"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewRound"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewRound"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewRound"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "InterviewRound"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/InterviewStatus": {
+      "get": {
+        "tags": [
+          "InterviewStatus"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "InterviewStatus"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewStatus"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewStatus"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewStatus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/InterviewStatus/{id}": {
+      "get": {
+        "tags": [
+          "InterviewStatus"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "InterviewStatus"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewStatus"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewStatus"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewStatus"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "InterviewStatus"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/JobApplication/{candidateId}/{jobPositionId}": {
+      "post": {
+        "tags": [
+          "JobApplication"
+        ],
+        "parameters": [
+          {
+            "name": "candidateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "jobPositionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/JobApplication": {
+      "get": {
+        "tags": [
+          "JobApplication"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/JobApplication/{jobApplicationId}/{applicationStatusId}": {
+      "put": {
+        "tags": [
+          "JobApplication"
+        ],
+        "parameters": [
+          {
+            "name": "applicationStatusId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "jobApplicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/JobApplication/{JobApplicationId}": {
+      "delete": {
+        "tags": [
+          "JobApplication"
+        ],
+        "parameters": [
+          {
+            "name": "JobApplicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -416,6 +1799,446 @@
         }
       }
     },
+    "/api/Notification": {
+      "post": {
+        "tags": [
+          "Notification"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Notification"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Notification"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Notification"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Notification"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Notification/{notificationId}": {
+      "put": {
+        "tags": [
+          "Notification"
+        ],
+        "parameters": [
+          {
+            "name": "notificationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Notification"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Notification"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Notification"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Notification"
+        ],
+        "parameters": [
+          {
+            "name": "notificationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Report": {
+      "post": {
+        "tags": [
+          "Report"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Report"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Report"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Report"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Report"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Report/{reportId}": {
+      "put": {
+        "tags": [
+          "Report"
+        ],
+        "parameters": [
+          {
+            "name": "reportId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Report"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Report"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Report"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Report"
+        ],
+        "parameters": [
+          {
+            "name": "reportId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ReportType": {
+      "get": {
+        "tags": [
+          "ReportType"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "ReportType"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportType"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportType"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportType"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ReportType/{id}": {
+      "put": {
+        "tags": [
+          "ReportType"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportType"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportType"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportType"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "ReportType"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ResumeReview/{userId}": {
+      "post": {
+        "tags": [
+          "ResumeReview"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResumeReview"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResumeReview"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResumeReview"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ResumeReview": {
+      "get": {
+        "tags": [
+          "ResumeReview"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ResumeReview/{userId}/{resumeReviewId}": {
+      "put": {
+        "tags": [
+          "ResumeReview"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "resumeReviewId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResumeReview"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResumeReview"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResumeReview"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/ResumeReview/{resumeReviewId}": {
+      "delete": {
+        "tags": [
+          "ResumeReview"
+        ],
+        "parameters": [
+          {
+            "name": "resumeReviewId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Role": {
       "post": {
         "tags": [
@@ -587,6 +2410,512 @@
   },
   "components": {
     "schemas": {
+      "ApplicationStatus": {
+        "type": "object",
+        "properties": {
+          "PkApplicationStatusId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Candidate": {
+        "type": "object",
+        "properties": {
+          "PkCandidateId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "Password": {
+            "type": "string",
+            "nullable": true
+          },
+          "Email": {
+            "type": "string",
+            "nullable": true
+          },
+          "Phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "ResumeUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "YearsOfExperience": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "CreatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "UpdatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "CandidateSkills": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CandidateSkill"
+            },
+            "nullable": true
+          },
+          "Documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Document"
+            },
+            "nullable": true
+          },
+          "Interviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Interview"
+            },
+            "nullable": true
+          },
+          "JobApplications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobApplication"
+            },
+            "nullable": true
+          },
+          "ResumeReviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResumeReview"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CandidateSkill": {
+        "type": "object",
+        "properties": {
+          "PkCandidateSkillId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FkCandidateId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkSkillId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "YearsOfExperience": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkSkill": {
+            "$ref": "#/components/schemas/Skill"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Document": {
+        "type": "object",
+        "properties": {
+          "PkDocumentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FkCandidateId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkDocumentTypeId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "DocumentUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "FkStatusId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkCandidate": {
+            "$ref": "#/components/schemas/Candidate"
+          },
+          "FkDocumentType": {
+            "$ref": "#/components/schemas/DocumentType"
+          },
+          "FkStatus": {
+            "$ref": "#/components/schemas/DocumentStatus"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentStatus": {
+        "type": "object",
+        "properties": {
+          "PkDocumentStatusId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DocumentType": {
+        "type": "object",
+        "properties": {
+          "PkDocumentTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Interview": {
+        "type": "object",
+        "properties": {
+          "PkInterviewId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FkCandidateId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkJobPositionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkInterviewRoundId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "RoundNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ScheduledTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "FkStatusId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "CreatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "FkCandidate": {
+            "$ref": "#/components/schemas/Candidate"
+          },
+          "FkInterviewRound": {
+            "$ref": "#/components/schemas/InterviewRound"
+          },
+          "FkJobPosition": {
+            "$ref": "#/components/schemas/JobPosition"
+          },
+          "FkStatus": {
+            "$ref": "#/components/schemas/InterviewStatus"
+          },
+          "InterviewFeedbacks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InterviewFeedback"
+            },
+            "nullable": true
+          },
+          "InterviewPanels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InterviewPanel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InterviewDto": {
+        "type": "object",
+        "properties": {
+          "FkCandidateId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkJobPositionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkInterviewRoundId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "RoundNumber": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ScheduledTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "FkStatusId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InterviewFeedback": {
+        "type": "object",
+        "properties": {
+          "PkInterviewFeedbackId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FkInterviewId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkInterviewerId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Rating": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Comments": {
+            "type": "string",
+            "nullable": true
+          },
+          "CreatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "FkInterview": {
+            "$ref": "#/components/schemas/Interview"
+          },
+          "FkInterviewer": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InterviewPanel": {
+        "type": "object",
+        "properties": {
+          "PkInterviewPanelId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FkInterviewId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkInterviewerId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkInterview": {
+            "$ref": "#/components/schemas/Interview"
+          },
+          "FkInterviewer": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false
+      },
+      "InterviewRound": {
+        "type": "object",
+        "properties": {
+          "PkInterviewRoundId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InterviewStatus": {
+        "type": "object",
+        "properties": {
+          "PkInterviewStatusId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobApplication": {
+        "type": "object",
+        "properties": {
+          "PkJobApplicationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FkJobPositionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkCandidateId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkStatusId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "CreatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "FkCandidate": {
+            "$ref": "#/components/schemas/Candidate"
+          },
+          "FkJobPosition": {
+            "$ref": "#/components/schemas/JobPosition"
+          },
+          "FkStatus": {
+            "$ref": "#/components/schemas/ApplicationStatus"
+          }
+        },
+        "additionalProperties": false
+      },
+      "JobPosition": {
+        "type": "object",
+        "properties": {
+          "PkJobPositionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Title": {
+            "type": "string",
+            "nullable": true
+          },
+          "Description": {
+            "type": "string",
+            "nullable": true
+          },
+          "FkStatusId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ClosureReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "FkSelectedCandidateId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkReviewerId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "CreatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "UpdatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "FkStatus": {
+            "$ref": "#/components/schemas/JobStatus"
+          },
+          "Interviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Interview"
+            },
+            "nullable": true
+          },
+          "JobApplications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobApplication"
+            },
+            "nullable": true
+          },
+          "JobSkills": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobSkill"
+            },
+            "nullable": true
+          },
+          "ResumeReviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResumeReview"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "JobPositionDto": {
         "type": "object",
         "properties": {
@@ -636,6 +2965,33 @@
         },
         "additionalProperties": false
       },
+      "JobSkill": {
+        "type": "object",
+        "properties": {
+          "PkJobSkillId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FkJobPositionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkSkillId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "IsRequired": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "FkSkill": {
+            "$ref": "#/components/schemas/Skill"
+          }
+        },
+        "additionalProperties": false
+      },
       "JobStatus": {
         "type": "object",
         "properties": {
@@ -660,6 +3016,37 @@
           "Password": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Notification": {
+        "type": "object",
+        "properties": {
+          "PkNotificationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FkUserId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Message": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsRead": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "CreatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "FkUser": {
+            "$ref": "#/components/schemas/User"
           }
         },
         "additionalProperties": false
@@ -698,6 +3085,78 @@
         },
         "additionalProperties": false
       },
+      "Report": {
+        "type": "object",
+        "properties": {
+          "PkReportId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FkReportTypeId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkGeneratedBy": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "ReportData": {
+            "type": "string",
+            "nullable": true
+          },
+          "CreatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReportType": {
+        "type": "object",
+        "properties": {
+          "PkReportTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResumeReview": {
+        "type": "object",
+        "properties": {
+          "PkResumeReviewId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FkCandidateId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkJobPositionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Comments": {
+            "type": "string",
+            "nullable": true
+          },
+          "CreatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Role": {
         "type": "object",
         "properties": {
@@ -722,6 +3181,105 @@
           "Name": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "PkUserId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "Email": {
+            "type": "string",
+            "nullable": true
+          },
+          "Phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "Password": {
+            "type": "string",
+            "nullable": true
+          },
+          "JoiningDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "LeavingDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "CreatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "InterviewFeedbacks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InterviewFeedback"
+            },
+            "nullable": true
+          },
+          "InterviewPanels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InterviewPanel"
+            },
+            "nullable": true
+          },
+          "Notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            },
+            "nullable": true
+          },
+          "Reports": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Report"
+            },
+            "nullable": true
+          },
+          "UserRoles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserRole"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserRole": {
+        "type": "object",
+        "properties": {
+          "PkUserRoleId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FkUserId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkRoleId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkRole": {
+            "$ref": "#/components/schemas/Role"
           }
         },
         "additionalProperties": false

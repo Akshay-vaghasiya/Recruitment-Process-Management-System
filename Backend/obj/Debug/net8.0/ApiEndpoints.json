@@ -1,5 +1,84 @@
 [
   {
+    "ContainingType": "Backend.Controller.ApplicationStatusController",
+    "Method": "GetAllApplicationStatuses",
+    "RelativePath": "api/ApplicationStatus",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.ApplicationStatusController",
+    "Method": "AddApplicationStatus",
+    "RelativePath": "api/ApplicationStatus",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ApplicationStatus",
+        "Type": "Backend.Models.ApplicationStatus",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.ApplicationStatusController",
+    "Method": "GetApplicationStatusById",
+    "RelativePath": "api/ApplicationStatus/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.ApplicationStatusController",
+    "Method": "UpdateApplicationStatus",
+    "RelativePath": "api/ApplicationStatus/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "ApplicationStatus",
+        "Type": "Backend.Models.ApplicationStatus",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.ApplicationStatusController",
+    "Method": "DeleteApplicationStatus",
+    "RelativePath": "api/ApplicationStatus/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Backend.Controllers.AuthenticationController",
     "Method": "deleteUser",
     "RelativePath": "api/Authentication/deleteUser/{id}",
@@ -52,6 +131,801 @@
       {
         "Name": "registerDto",
         "Type": "Backend.Dtos.RegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controllers.AuthenticationController",
+    "Method": "updateUser",
+    "RelativePath": "api/Authentication/updateUser/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "registerDto",
+        "Type": "Backend.Dtos.RegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.CandidateController",
+    "Method": "AddCandidate",
+    "RelativePath": "api/Candidate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "FullName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Password",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Phone",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Resume",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "YearsOfExperience",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.CandidateController",
+    "Method": "GetCandidates",
+    "RelativePath": "api/Candidate",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.CandidateController",
+    "Method": "UpdateCandidate",
+    "RelativePath": "api/Candidate/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "FullName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Password",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Phone",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Resume",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "YearsOfExperience",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.CandidateController",
+    "Method": "AddCandidateSkill",
+    "RelativePath": "api/Candidate/addCandidateSkill/{candidateId}/{skillId}/{yearOfExp}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "candidateId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "skillId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "yearOfExp",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.CandidateController",
+    "Method": "DeleteCandidateSkill",
+    "RelativePath": "api/Candidate/deleteCandidateSkill/{candidateSkillId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "candidateSkillId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.DocumentController",
+    "Method": "GetDocuments",
+    "RelativePath": "api/Document",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.DocumentController",
+    "Method": "AddDocument",
+    "RelativePath": "api/Document/{candidateId}/{documentTypeId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "candidateId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "documentTypeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "document",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.DocumentController",
+    "Method": "UpdateDocument",
+    "RelativePath": "api/Document/{documentId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "documentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "document",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.DocumentController",
+    "Method": "DeleteDocument",
+    "RelativePath": "api/Document/{documentId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "documentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.DocumentController",
+    "Method": "UpdateDocumentStatus",
+    "RelativePath": "api/Document/{documentId}/{documentStatusId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "documentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "documentStatusId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.DocumentStatusController",
+    "Method": "GetAllDocumentStatuses",
+    "RelativePath": "api/DocumentStatus",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.DocumentStatusController",
+    "Method": "AddDocumentStatus",
+    "RelativePath": "api/DocumentStatus",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "DocumentStatus",
+        "Type": "Backend.Models.DocumentStatus",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.DocumentStatusController",
+    "Method": "GetDocumentStatusById",
+    "RelativePath": "api/DocumentStatus/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.DocumentStatusController",
+    "Method": "UpdateDocumentStatus",
+    "RelativePath": "api/DocumentStatus/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "DocumentStatus",
+        "Type": "Backend.Models.DocumentStatus",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.DocumentStatusController",
+    "Method": "DeleteDocumentStatus",
+    "RelativePath": "api/DocumentStatus/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.DocumentTypeController",
+    "Method": "GetDocumentTypes",
+    "RelativePath": "api/DocumentType",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.DocumentTypeController",
+    "Method": "AddDocumentType",
+    "RelativePath": "api/DocumentType",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "documentType",
+        "Type": "Backend.Models.DocumentType",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.DocumentTypeController",
+    "Method": "UpdateDocumetType",
+    "RelativePath": "api/DocumentType/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "documentType",
+        "Type": "Backend.Models.DocumentType",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.DocumentTypeController",
+    "Method": "DeleteDocumentType",
+    "RelativePath": "api/DocumentType/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewController",
+    "Method": "AddInterview",
+    "RelativePath": "api/Interview",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "interviewDto",
+        "Type": "Backend.Dtos.InterviewDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewController",
+    "Method": "GetInterviews",
+    "RelativePath": "api/Interview",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewController",
+    "Method": "DeleteInteview",
+    "RelativePath": "api/Interview/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewController",
+    "Method": "UpdateStatus",
+    "RelativePath": "api/Interview/updatestatus/{interviewId}/{interviewStatusId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "interviewId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "interviewStatusId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewFeedbackController",
+    "Method": "AddInterviewFeedback",
+    "RelativePath": "api/InterviewFeedback",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "interviewFeedback",
+        "Type": "Backend.Models.InterviewFeedback",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewFeedbackController",
+    "Method": "GetInterviewFeedbacks",
+    "RelativePath": "api/InterviewFeedback",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewFeedbackController",
+    "Method": "UpdateInterviewFeedback",
+    "RelativePath": "api/InterviewFeedback/{interviewFeedbackId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "interviewFeedbackId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "interviewFeedback",
+        "Type": "Backend.Models.InterviewFeedback",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewFeedbackController",
+    "Method": "DeleteInterviewFeedback",
+    "RelativePath": "api/InterviewFeedback/{interviewFeedbackId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "interviewFeedbackId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewPanelController",
+    "Method": "GetInterviewPanels",
+    "RelativePath": "api/InterviewPanel",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewPanelController",
+    "Method": "DeleteInterviewPanel",
+    "RelativePath": "api/InterviewPanel/{interviewPanelId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "interviewPanelId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewPanelController",
+    "Method": "AddInterviewPanel",
+    "RelativePath": "api/InterviewPanel/{userId}/{interviewId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "interviewId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewRoundController",
+    "Method": "GetAllInterviewRoundes",
+    "RelativePath": "api/InterviewRound",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewRoundController",
+    "Method": "AddInterviewRound",
+    "RelativePath": "api/InterviewRound",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "InterviewRound",
+        "Type": "Backend.Models.InterviewRound",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewRoundController",
+    "Method": "GetInterviewRoundById",
+    "RelativePath": "api/InterviewRound/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewRoundController",
+    "Method": "UpdateInterviewRound",
+    "RelativePath": "api/InterviewRound/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "InterviewRound",
+        "Type": "Backend.Models.InterviewRound",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewRoundController",
+    "Method": "DeleteInterviewRound",
+    "RelativePath": "api/InterviewRound/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewStatusController",
+    "Method": "GetAllInterviewStatuses",
+    "RelativePath": "api/InterviewStatus",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewStatusController",
+    "Method": "AddInterviewStatus",
+    "RelativePath": "api/InterviewStatus",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "InterviewStatus",
+        "Type": "Backend.Models.InterviewStatus",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewStatusController",
+    "Method": "GetInterviewStatusById",
+    "RelativePath": "api/InterviewStatus/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewStatusController",
+    "Method": "UpdateInterviewStatus",
+    "RelativePath": "api/InterviewStatus/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "InterviewStatus",
+        "Type": "Backend.Models.InterviewStatus",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewStatusController",
+    "Method": "DeleteInterviewStatus",
+    "RelativePath": "api/InterviewStatus/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.JobApplicationController",
+    "Method": "GetJobApplications",
+    "RelativePath": "api/JobApplication",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.JobApplicationController",
+    "Method": "AddJobApplication",
+    "RelativePath": "api/JobApplication/{candidateId}/{jobPositionId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "candidateId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "jobPositionId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.JobApplicationController",
+    "Method": "DeleteJobApplication",
+    "RelativePath": "api/JobApplication/{JobApplicationId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "JobApplicationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.JobApplicationController",
+    "Method": "UpdateJobApplicationStatus",
+    "RelativePath": "api/JobApplication/{jobApplicationId}/{applicationStatusId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "applicationStatusId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "jobApplicationId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -252,6 +1126,268 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.NotificationController",
+    "Method": "AddNotification",
+    "RelativePath": "api/Notification",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notification",
+        "Type": "Backend.Models.Notification",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.NotificationController",
+    "Method": "GetNotifications",
+    "RelativePath": "api/Notification",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.NotificationController",
+    "Method": "UpdateNotification",
+    "RelativePath": "api/Notification/{notificationId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notificationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "notification",
+        "Type": "Backend.Models.Notification",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.NotificationController",
+    "Method": "DeleteNotification",
+    "RelativePath": "api/Notification/{notificationId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "notificationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.ReportController",
+    "Method": "AddReport",
+    "RelativePath": "api/Report",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "report",
+        "Type": "Backend.Models.Report",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.ReportController",
+    "Method": "GetReports",
+    "RelativePath": "api/Report",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.ReportController",
+    "Method": "UpdateReport",
+    "RelativePath": "api/Report/{reportId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reportId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "report",
+        "Type": "Backend.Models.Report",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.ReportController",
+    "Method": "DeleteReport",
+    "RelativePath": "api/Report/{reportId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reportId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.ReportTypeController",
+    "Method": "GetReportTypes",
+    "RelativePath": "api/ReportType",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.ReportTypeController",
+    "Method": "AddReportType",
+    "RelativePath": "api/ReportType",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ReportType",
+        "Type": "Backend.Models.ReportType",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.ReportTypeController",
+    "Method": "UpdateDocumetType",
+    "RelativePath": "api/ReportType/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "ReportType",
+        "Type": "Backend.Models.ReportType",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.ReportTypeController",
+    "Method": "DeleteReportType",
+    "RelativePath": "api/ReportType/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.ResumeReviewController",
+    "Method": "GetResumeReviews",
+    "RelativePath": "api/ResumeReview",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.ResumeReviewController",
+    "Method": "DeleteResumeReview",
+    "RelativePath": "api/ResumeReview/{resumeReviewId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "resumeReviewId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.ResumeReviewController",
+    "Method": "AddResumeReview",
+    "RelativePath": "api/ResumeReview/{userId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "resumeReview",
+        "Type": "Backend.Models.ResumeReview",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.ResumeReviewController",
+    "Method": "UpdateResumeReview",
+    "RelativePath": "api/ResumeReview/{userId}/{resumeReviewId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "resumeReviewId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "resumeReview",
+        "Type": "Backend.Models.ResumeReview",
         "IsRequired": true
       }
     ],

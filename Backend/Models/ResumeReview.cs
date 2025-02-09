@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Backend.Models;
 
@@ -15,7 +16,9 @@ public partial class ResumeReview
 
     public DateTime? CreatedAt { get; set; }
 
+    [JsonIgnore]
     public virtual Candidate? FkCandidate { get; set; }
 
+    [JsonIgnore]
     public virtual JobPosition? FkJobPosition { get; set; }
 }

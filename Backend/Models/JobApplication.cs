@@ -13,6 +13,8 @@ public partial class JobApplication
 
     public int? FkStatusId { get; set; }
 
+    public DateTime? CreatedAt { get; set; }
+
     public virtual Candidate? FkCandidate { get; set; }
 
     public virtual JobPosition? FkJobPosition { get; set; }
