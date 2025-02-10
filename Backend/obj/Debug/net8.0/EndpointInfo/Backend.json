@@ -480,6 +480,110 @@
         }
       }
     },
+    "/api/CandidateNotification": {
+      "post": {
+        "tags": [
+          "CandidateNotification"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CandidateNotification"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CandidateNotification"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CandidateNotification"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "CandidateNotification"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/CandidateNotification/{CandidateNotificationId}": {
+      "put": {
+        "tags": [
+          "CandidateNotification"
+        ],
+        "parameters": [
+          {
+            "name": "CandidateNotificationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CandidateNotification"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CandidateNotification"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CandidateNotification"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "CandidateNotification"
+        ],
+        "parameters": [
+          {
+            "name": "CandidateNotificationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Document/{candidateId}/{documentTypeId}": {
       "post": {
         "tags": [
@@ -2500,6 +2604,44 @@
               "$ref": "#/components/schemas/ResumeReview"
             },
             "nullable": true
+          },
+          "CandidateNotifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CandidateNotification"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CandidateNotification": {
+        "type": "object",
+        "properties": {
+          "PkNotificationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FkCandidateId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Message": {
+            "type": "string",
+            "nullable": true
+          },
+          "IsRead": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "CreatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "FkCandidate": {
+            "$ref": "#/components/schemas/Candidate"
           }
         },
         "additionalProperties": false

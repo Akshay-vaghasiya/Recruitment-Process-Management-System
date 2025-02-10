@@ -61,6 +61,8 @@ public partial class RecruitmentProcessManagementSystemContext : DbContext
 
     public virtual DbSet<UserRole> UserRoles { get; set; }
 
+    public virtual DbSet<CandidateNotification> CandidateNotifications { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
        => optionsBuilder.UseSqlServer("Data Source=L10-VAGHAAKS-1\\SQLEXPRESS;Initial Catalog=Recruitment_Process_Management_System; Trusted_Connection=True; TrustServerCertificate=True");
 
@@ -117,6 +119,27 @@ public partial class RecruitmentProcessManagementSystemContext : DbContext
                 .HasColumnName("updated_at");
             entity.Property(e => e.YearsOfExperience).HasColumnName("years_of_experience");
 
+        });
+
+        modelBuilder.Entity<CandidateNotification>(entity =>
+        {
+            entity.HasKey(e => e.PkNotificationId);
+
+            entity.ToTable("candidate_notification");
+
+            entity.Property(e => e.PkNotificationId).HasColumnName("pk_notification_id");
+            entity.Property(e => e.CreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
+                .HasColumnName("created_at");
+            entity.Property(e => e.FkCandidateId).HasColumnName("fk_candidate_id");
+            entity.Property(e => e.IsRead).HasColumnName("is_read");
+            entity.Property(e => e.Message)
+                .HasColumnType("text")
+                .HasColumnName("message");
+
+            entity.HasOne(d => d.FkCandidate).WithMany(p => p.CandidateNotifications)
+                .HasForeignKey(d => d.FkCandidateId);
         });
 
         modelBuilder.Entity<CandidateSkill>(entity =>

@@ -78,6 +78,7 @@ builder.Services.AddScoped<IReportTypeRepository, ReportTypeRepository>();
 builder.Services.AddScoped<IReportRepository, ReportRepository>();
 builder.Services.AddScoped<IInterviewFeedbackRepository, InterviewFeedbackRepository>();
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+builder.Services.AddScoped<ICandidateNotificationRepository, CandidateNotificationRepository>();
 
 
 
@@ -104,6 +105,7 @@ builder.Services.AddScoped<IReportTypeService, ReportTypeService>();
 builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddScoped<IInterviewFeedbackService, InterviewFeedbackService>();
 builder.Services.AddScoped<INotificationService, NotificationService>();    
+builder.Services.AddScoped<ICandidateNotificationService, CandidateNotificationService>();
 
 
 

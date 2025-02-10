@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.Xml;
 
 namespace Backend.Models;
 
@@ -32,4 +33,6 @@ public partial class Candidate
     public virtual ICollection<JobApplication> JobApplications { get; set; } = new List<JobApplication>();
 
     public virtual ICollection<ResumeReview> ResumeReviews { get; set; } = new List<ResumeReview>();
+
+    public virtual ICollection<CandidateNotification> CandidateNotifications { get; set; } = new List<CandidateNotification>();
 }

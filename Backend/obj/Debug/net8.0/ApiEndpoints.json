@@ -297,6 +297,69 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Backend.Controller.CandidateNotificationController",
+    "Method": "AddCandidateNotification",
+    "RelativePath": "api/CandidateNotification",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CandidateNotification",
+        "Type": "Backend.Models.CandidateNotification",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.CandidateNotificationController",
+    "Method": "GetCandidateNotifications",
+    "RelativePath": "api/CandidateNotification",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.CandidateNotificationController",
+    "Method": "UpdateCandidateNotification",
+    "RelativePath": "api/CandidateNotification/{CandidateNotificationId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CandidateNotificationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "CandidateNotification",
+        "Type": "Backend.Models.CandidateNotification",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.CandidateNotificationController",
+    "Method": "DeleteCandidateNotification",
+    "RelativePath": "api/CandidateNotification/{CandidateNotificationId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CandidateNotificationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Backend.Controller.DocumentController",
     "Method": "GetDocuments",
     "RelativePath": "api/Document",
