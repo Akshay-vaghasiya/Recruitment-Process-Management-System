@@ -416,6 +416,29 @@
         }
       }
     },
+    "/api/Candidate/{candidateId}": {
+      "delete": {
+        "tags": [
+          "Candidate"
+        ],
+        "parameters": [
+          {
+            "name": "candidateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Candidate/addCandidateSkill/{candidateId}/{skillId}/{yearOfExp}": {
       "post": {
         "tags": [

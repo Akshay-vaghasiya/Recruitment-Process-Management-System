@@ -12,5 +12,6 @@ namespace Backend.Repository
         Task<Candidate?> UpdateCandidate(Candidate candidate);
 
         Task<Candidate?> GetCandidateById(int? id);
+        Task DeleteCandidate(int id);
     }
 }

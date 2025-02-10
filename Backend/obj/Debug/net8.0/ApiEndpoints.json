@@ -210,6 +210,22 @@
   },
   {
     "ContainingType": "Backend.Controller.CandidateController",
+    "Method": "DeleteCandidate",
+    "RelativePath": "api/Candidate/{candidateId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "candidateId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.CandidateController",
     "Method": "UpdateCandidate",
     "RelativePath": "api/Candidate/{id}",
     "HttpMethod": "PUT",

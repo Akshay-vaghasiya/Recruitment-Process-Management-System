@@ -47,5 +47,15 @@ namespace Backend.Repository.impl
             return await _context.Candidates.Include(c => c.CandidateSkills).ThenInclude(cs => cs.FkSkill).Include(c => c.Documents).ToListAsync();
         }
 
+        public async Task DeleteCandidate(int id)
+        {
+            Candidate? candidate = await _context.Candidates.FindAsync(id);
+            if(candidate != null)
+            {
+                _context.Candidates.Remove(candidate);
+                await _context.SaveChangesAsync();
+            }
+        }
+
     }
 }

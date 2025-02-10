@@ -71,6 +71,21 @@ namespace Backend.Controller
             }
         }
 
+        [HttpDelete("{candidateId}")]
+        [Authorize(Roles = "ADMIN")]
+        public async Task<IActionResult> DeleteCandidate(int candidateId)
+        {
+            try
+            {
+                await _service.DeleteCandidate(candidateId);
+                return Ok("Successfully deleted candidate");
+            } catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
         [HttpPost("addCandidateSkill/{candidateId}/{skillId}/{yearOfExp}")]
         [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> AddCandidateSkill(int candidateId, int skillId, int yearOfExp)

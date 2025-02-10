@@ -37,9 +37,9 @@ namespace Backend.Controllers
         {
             try
             {
-                var token = await _userService.AuthenticateUser(loginDto);
-                if (token == null) return Unauthorized("Invalid credentials");
-                return Ok(new { Token = token });
+                var object1 = await _userService.AuthenticateUser(loginDto);
+                if (object1 == null) return Unauthorized("Invalid credentials");
+                return Ok(object1);
             }
             catch (Exception ex) { 
                 return Unauthorized(ex.Message);

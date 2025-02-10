@@ -63,16 +63,16 @@ namespace Backend.Services.impl
             return user1;
         }
 
-        public async Task<string> AuthenticateUser(LoginDto loginDto)
+        public async Task<Object> AuthenticateUser(LoginDto loginDto)
         {
-            var user = await _userRepository.GetUserByEmail(loginDto.Email);
-            if (user == null || !BCrypt.Net.BCrypt.Verify(loginDto.Password, user.Password))
+            var user1 = await _userRepository.GetUserByEmail(loginDto.Email);
+            if (user1 == null || !BCrypt.Net.BCrypt.Verify(loginDto.Password, user1.Password))
                 return null;
-            Console.Write(user.UserRoles.Count());
-            return await GenerateJwtToken(user);
+            Console.Write(user1.UserRoles.Count());
+            return new { token = await GenerateJwtToken(user1), user = user1 };
         }
 
-        public async Task<UserDto> UpdateUser(int id, RegisterDto registerDto)
+        public async Task<User> UpdateUser(int id, RegisterDto registerDto)
         {
 
             Console.Write(registerDto);
@@ -134,16 +134,7 @@ namespace Backend.Services.impl
 
             var updatedUser = await _userRepository.UpdateUser(existingUser);
 
-            var userDto = new UserDto
-            {
-                PkUserId = updatedUser.PkUserId,
-                FullName = updatedUser.FullName,
-                Email = updatedUser.Email,
-                Phone = updatedUser.Phone,
-                JoiningDate = updatedUser.JoiningDate
-            };
-
-            return userDto;
+            return updatedUser;
         }
 
         public async Task DeleteUser(int id)
@@ -177,8 +168,6 @@ namespace Backend.Services.impl
             {
             new Claim(ClaimTypes.Name, user.Email),
             };
-
-            Console.Write(user.UserRoles.Count);
 
             foreach (var userRole in user.UserRoles)
             {

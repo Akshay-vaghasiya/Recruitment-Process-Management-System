@@ -14,5 +14,6 @@ namespace Backend.Services
         Task<CandidateSkill> AddCandidateSkill(int candidateId, int skillId, int yearOfExp);
 
         Task DeleteCandidateSkill(int candidateSkillId);
+        Task DeleteCandidate(int candidateId);
     }
 }

@@ -7,9 +7,9 @@ namespace Backend.Services
     {
         Task<User> RegisterUser(RegisterDto registerDto);
 
-        Task<string> AuthenticateUser(LoginDto loginDto);
+        Task<Object> AuthenticateUser(LoginDto loginDto);
 
-        Task<UserDto> UpdateUser(int id, RegisterDto registerDto);
+        Task<User> UpdateUser(int id, RegisterDto registerDto);
 
         Task DeleteUser(int id);
 

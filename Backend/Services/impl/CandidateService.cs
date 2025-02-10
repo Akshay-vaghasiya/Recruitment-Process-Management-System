@@ -113,6 +113,13 @@ namespace Backend.Services.impl
             return result;
         }
 
+        public async Task DeleteCandidate(int candidateId)
+        {
+            Candidate? candidate = await _repository.GetCandidateById(candidateId);
+            if (candidate == null) throw new Exception("candidate not exist with given id");
+
+            await _repository.DeleteCandidate(candidateId);
+        }
 
         public async Task<CandidateSkill> AddCandidateSkill(int candidateId, int skillId, int yearOfExp)
         {
