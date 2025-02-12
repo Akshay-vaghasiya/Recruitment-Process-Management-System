@@ -67,7 +67,7 @@ namespace Backend.Services.impl
         {
             var user1 = await _userRepository.GetUserByEmail(loginDto.Email);
             if (user1 == null || !BCrypt.Net.BCrypt.Verify(loginDto.Password, user1.Password))
-                return null;
+                throw new Exception("Please enter valid credential");
             Console.Write(user1.UserRoles.Count());
             return new { token = await GenerateJwtToken(user1), user = user1 };
         }

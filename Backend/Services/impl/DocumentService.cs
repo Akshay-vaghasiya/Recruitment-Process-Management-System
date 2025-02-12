@@ -31,7 +31,7 @@ namespace Backend.Services.impl
 
             DocumentStatus? documentStatus = await _documentStatusRepository.GetDocumentStatusByNameAsync("PENDING");
 
-            string uploadsFolder = Path.Combine("C:", "Document", candidate.Email);
+            string uploadsFolder = Directory.GetCurrentDirectory().Replace("Backend", "Frontend") + "\\public\\Document\\" + candidate?.Email;
 
             if (!Directory.Exists(uploadsFolder))
             {
@@ -42,7 +42,7 @@ namespace Backend.Services.impl
 
             string fileExtention = Path.GetExtension(fileName);
 
-            if (fileExtention != ".pdf" && fileExtention != ".docx")
+            if (fileExtention != ".pdf")
             {
                 throw new Exception("file extention is not valid.");
             }
@@ -59,7 +59,7 @@ namespace Backend.Services.impl
             document1.FkStatus = documentStatus;
             document1.FkCandidateId = candidateId;
             document1.FkDocumentTypeId = documentTypeId;
-            document1.DocumentUrl = filePath;
+            document1.DocumentUrl = "../../public/Document/" + candidate?.Email + "/" + fileName;
 
             return await _repository.AddDocumentAsync(document1);
 
@@ -88,15 +88,14 @@ namespace Backend.Services.impl
             Document? document = await _repository.GetDocumentByIdAsync(documentId);
             if (document == null) throw new Exception("document not exist in system");
 
-
             if (formFile != null)
             {
-                if (document.DocumentUrl != null || document.DocumentUrl.Equals(""))
-                {
-                    File.Delete(document.DocumentUrl);
-                }
+                string uploadsFolder = Directory.GetCurrentDirectory().Replace("Backend", "Frontend") + "\\public\\Document\\" + document?.FkCandidate?.Email;
 
-                string uploadsFolder = Path.Combine("C:", "Document", document.FkCandidate.Email);
+                if (document?.DocumentUrl != null || !document.DocumentUrl.Equals(""))
+                {
+                    File.Delete(uploadsFolder + "\\" + document?.DocumentUrl?.Substring(document.DocumentUrl.LastIndexOf("/") + 1));
+                }
 
                 if (!Directory.Exists(uploadsFolder))
                 {
@@ -107,7 +106,7 @@ namespace Backend.Services.impl
 
                 string fileExtention = Path.GetExtension(fileName);
 
-                if (fileExtention != ".pdf" && fileExtention != ".docx")
+                if (fileExtention != ".pdf")
                 {
                     throw new Exception("file extention is not valid.");
                 }
@@ -119,6 +118,7 @@ namespace Backend.Services.impl
                     await formFile.CopyToAsync(stream);
                 }
 
+                document.DocumentUrl = "../../public/Document/" + document?.FkCandidate?.Email + "/" + fileName;
             }
 
             DocumentStatus? documentStatus = await _documentStatusRepository.GetDocumentStatusByNameAsync("PENDING");
@@ -130,6 +130,8 @@ namespace Backend.Services.impl
         {
             Document? document = await _repository.GetDocumentByIdAsync(id);
             if (document == null) throw new Exception("document not exist in system");
+
+            Directory.Delete(Directory.GetCurrentDirectory().Replace("Backend", "Frontend") + "\\public\\Document\\" + document?.FkCandidate?.Email, true);
 
             await _repository.DeleteDocumentAsync(id);
         }

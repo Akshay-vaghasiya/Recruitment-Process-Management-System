@@ -3,12 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\services\\impl\\documentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:services\\impl\\documentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\services\\impl\\candidateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:services\\impl\\candidateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\services\\impl\\documentstatusservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:services\\impl\\documentstatusservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\repository\\impl\\documentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:repository\\impl\\documentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\repository\\impl\\candidaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:repository\\impl\\candidaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\controller\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:controller\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\services\\impl\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:services\\impl\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\services\\impl\\resumereviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:services\\impl\\resumereviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\controller\\resumereviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:controller\\resumereviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\controller\\candidatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:controller\\candidatecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\dtos\\documentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:dtos\\documentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\models\\candidate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,14 +53,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\services\\icandidateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:services\\icandidateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\controller\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:controller\\authenticationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\dtos\\documentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:dtos\\documentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\models\\candidatenotification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -37,14 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\repository\\icandidaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:repository\\icandidaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\repository\\impl\\candidaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:repository\\impl\\candidaterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\services\\impl\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:services\\impl\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -126,89 +146,137 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AuthenticationController.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\AuthenticationController.cs",
-              "RelativeDocumentMoniker": "Controller\\AuthenticationController.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\AuthenticationController.cs",
-              "RelativeToolTip": "Controller\\AuthenticationController.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAYwC4AAAAJAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "DocumentStatusService.cs",
+              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\DocumentStatusService.cs",
+              "RelativeDocumentMoniker": "Services\\impl\\DocumentStatusService.cs",
+              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\DocumentStatusService.cs",
+              "RelativeToolTip": "Services\\impl\\DocumentStatusService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T06:10:51.226Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CandidateController.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\CandidateController.cs",
-              "RelativeDocumentMoniker": "Controller\\CandidateController.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\CandidateController.cs",
-              "RelativeToolTip": "Controller\\CandidateController.cs",
-              "ViewState": "AgIAAIMAAAAAAAAAAAAIwIsAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T16:09:12.027Z",
+              "WhenOpened": "2025-02-12T14:22:30.489Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ICandidateService.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\ICandidateService.cs",
-              "RelativeDocumentMoniker": "Services\\ICandidateService.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\ICandidateService.cs",
-              "RelativeToolTip": "Services\\ICandidateService.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAzwA8AAAA4AAAAAAAAAA==",
+              "Title": "DocumentRepository.cs",
+              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Repository\\impl\\DocumentRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\impl\\DocumentRepository.cs",
+              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Repository\\impl\\DocumentRepository.cs",
+              "RelativeToolTip": "Repository\\impl\\DocumentRepository.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T16:15:15.223Z",
+              "WhenOpened": "2025-02-12T14:22:13.548Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "DocumentService.cs",
+              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\DocumentService.cs",
+              "RelativeDocumentMoniker": "Services\\impl\\DocumentService.cs",
+              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\DocumentService.cs",
+              "RelativeToolTip": "Services\\impl\\DocumentService.cs",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAowIUAAACOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T14:13:11.462Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "CandidateService.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\CandidateService.cs",
               "RelativeDocumentMoniker": "Services\\impl\\CandidateService.cs",
               "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\CandidateService.cs",
               "RelativeToolTip": "Services\\impl\\CandidateService.cs",
-              "ViewState": "AgIAANcAAAAAAAAAAAAAAOAAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAkwIQAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-10T15:33:48.406Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Candidate.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Models\\Candidate.cs",
-              "RelativeDocumentMoniker": "Models\\Candidate.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Models\\Candidate.cs",
-              "RelativeToolTip": "Models\\Candidate.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAgwBQAAAAhAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\UserService.cs",
+              "RelativeDocumentMoniker": "Services\\impl\\UserService.cs",
+              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\UserService.cs",
+              "RelativeToolTip": "Services\\impl\\UserService.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAYwEUAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T17:15:22.322Z",
+              "WhenOpened": "2025-02-10T06:11:25.956Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CandidateRepository.cs",
+              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Repository\\impl\\CandidateRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\impl\\CandidateRepository.cs",
+              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Repository\\impl\\CandidateRepository.cs",
+              "RelativeToolTip": "Repository\\impl\\CandidateRepository.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAjwCoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T16:12:10.206Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "CandidateNotificationController.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\CandidateNotificationController.cs",
-              "RelativeDocumentMoniker": "Controller\\CandidateNotificationController.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\CandidateNotificationController.cs",
-              "RelativeToolTip": "Controller\\CandidateNotificationController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Title": "ResumeReviewService.cs",
+              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\ResumeReviewService.cs",
+              "RelativeDocumentMoniker": "Services\\impl\\ResumeReviewService.cs",
+              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\ResumeReviewService.cs",
+              "RelativeToolTip": "Services\\impl\\ResumeReviewService.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAQwFAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T04:59:11.086Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-12T05:49:39.207Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "AuthenticationController.cs",
+              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\AuthenticationController.cs",
+              "RelativeDocumentMoniker": "Controller\\AuthenticationController.cs",
+              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\AuthenticationController.cs",
+              "RelativeToolTip": "Controller\\AuthenticationController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T06:10:51.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CandidateController.cs",
+              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\CandidateController.cs",
+              "RelativeDocumentMoniker": "Controller\\CandidateController.cs",
+              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\CandidateController.cs",
+              "RelativeToolTip": "Controller\\CandidateController.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAArwEgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T16:09:12.027Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ResumeReviewController.cs",
+              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\ResumeReviewController.cs",
+              "RelativeDocumentMoniker": "Controller\\ResumeReviewController.cs",
+              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\ResumeReviewController.cs",
+              "RelativeToolTip": "Controller\\ResumeReviewController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T05:47:34.738Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "DocumentDto.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Dtos\\DocumentDto.cs",
               "RelativeDocumentMoniker": "Dtos\\DocumentDto.cs",
@@ -216,12 +284,47 @@
               "RelativeToolTip": "Dtos\\DocumentDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T17:40:18.498Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-11T17:40:18.498Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 12,
+              "Title": "ICandidateService.cs",
+              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\ICandidateService.cs",
+              "RelativeDocumentMoniker": "Services\\ICandidateService.cs",
+              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\ICandidateService.cs",
+              "RelativeToolTip": "Services\\ICandidateService.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAzwA8AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T16:15:15.223Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Candidate.cs",
+              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Models\\Candidate.cs",
+              "RelativeDocumentMoniker": "Models\\Candidate.cs",
+              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Models\\Candidate.cs",
+              "RelativeToolTip": "Models\\Candidate.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAgwBQAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T17:15:22.322Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CandidateNotificationController.cs",
+              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\CandidateNotificationController.cs",
+              "RelativeDocumentMoniker": "Controller\\CandidateNotificationController.cs",
+              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\CandidateNotificationController.cs",
+              "RelativeToolTip": "Controller\\CandidateNotificationController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T04:59:11.086Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "CandidateNotification.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Models\\CandidateNotification.cs",
               "RelativeDocumentMoniker": "Models\\CandidateNotification.cs",
@@ -229,12 +332,11 @@
               "RelativeToolTip": "Models\\CandidateNotification.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T17:35:48.658Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-11T17:35:48.658Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 15,
               "Title": "ICandidateRepository.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Repository\\ICandidateRepository.cs",
               "RelativeDocumentMoniker": "Repository\\ICandidateRepository.cs",
@@ -242,38 +344,11 @@
               "RelativeToolTip": "Repository\\ICandidateRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T16:14:44.906Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-10T16:14:44.906Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "CandidateRepository.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Repository\\impl\\CandidateRepository.cs",
-              "RelativeDocumentMoniker": "Repository\\impl\\CandidateRepository.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Repository\\impl\\CandidateRepository.cs",
-              "RelativeToolTip": "Repository\\impl\\CandidateRepository.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAswDsAAABLAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T16:12:10.206Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\UserService.cs",
-              "RelativeDocumentMoniker": "Services\\impl\\UserService.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\UserService.cs",
-              "RelativeToolTip": "Services\\impl\\UserService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T06:11:25.956Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "IUserService.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\IUserService.cs",
               "RelativeDocumentMoniker": "Services\\IUserService.cs",
@@ -281,12 +356,11 @@
               "RelativeToolTip": "Services\\IUserService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T06:17:00.697Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-10T06:17:00.697Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 17,
               "Title": "JobApplicationController.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\JobApplicationController.cs",
               "RelativeDocumentMoniker": "Controller\\JobApplicationController.cs",
@@ -294,12 +368,11 @@
               "RelativeToolTip": "Controller\\JobApplicationController.cs",
               "ViewState": "AgIAABsAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T10:32:43.195Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-11T10:32:43.195Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 21,
               "Title": "JobPositionController.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\JobPositionController.cs",
               "RelativeDocumentMoniker": "Controller\\JobPositionController.cs",
@@ -311,7 +384,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 20,
               "Title": "JobPositionDto.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Dtos\\JobPositionDto.cs",
               "RelativeDocumentMoniker": "Dtos\\JobPositionDto.cs",
@@ -323,7 +396,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 18,
               "Title": "JobPositionRepository.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Repository\\impl\\JobPositionRepository.cs",
               "RelativeDocumentMoniker": "Repository\\impl\\JobPositionRepository.cs",
@@ -331,12 +404,11 @@
               "RelativeToolTip": "Repository\\impl\\JobPositionRepository.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAQwBgAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-11T11:05:41.903Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-11T11:05:41.903Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 22,
               "Title": "JobPosition.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Models\\JobPosition.cs",
               "RelativeDocumentMoniker": "Models\\JobPosition.cs",
@@ -348,7 +420,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 19,
               "Title": "JobPositionService.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\JobPositionService.cs",
               "RelativeDocumentMoniker": "Services\\impl\\JobPositionService.cs",
@@ -360,7 +432,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 25,
               "Title": "IUserRoleRepository.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Repository\\IUserRoleRepository.cs",
               "RelativeDocumentMoniker": "Repository\\IUserRoleRepository.cs",
@@ -372,7 +444,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 24,
               "Title": "UserRoleRepository.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Repository\\impl\\UserRoleRepository.cs",
               "RelativeDocumentMoniker": "Repository\\impl\\UserRoleRepository.cs",
@@ -384,7 +456,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 23,
               "Title": "UserRoleService.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\UserRoleService.cs",
               "RelativeDocumentMoniker": "Services\\impl\\UserRoleService.cs",
@@ -396,7 +468,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 27,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Models\\User.cs",
               "RelativeDocumentMoniker": "Models\\User.cs",
@@ -408,7 +480,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 26,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Repository\\impl\\UserRepository.cs",
               "RelativeDocumentMoniker": "Repository\\impl\\UserRepository.cs",
@@ -420,7 +492,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 28,
               "Title": "RegisterDto.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Dtos\\RegisterDto.cs",
               "RelativeDocumentMoniker": "Dtos\\RegisterDto.cs",
@@ -432,7 +504,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 29,
               "Title": "UserDto.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Dtos\\UserDto.cs",
               "RelativeDocumentMoniker": "Dtos\\UserDto.cs",
@@ -444,7 +516,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 30,
               "Title": "NotificationController.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\NotificationController.cs",
               "RelativeDocumentMoniker": "Controller\\NotificationController.cs",
@@ -456,7 +528,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 31,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -468,7 +540,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 32,
               "Title": "ICandidateNotificationService.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\ICandidateNotificationService.cs",
               "RelativeDocumentMoniker": "Services\\ICandidateNotificationService.cs",
@@ -480,7 +552,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 33,
               "Title": "CandidateNotificationService.cs",
               "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\CandidateNotificationService.cs",
               "RelativeDocumentMoniker": "Services\\impl\\CandidateNotificationService.cs",

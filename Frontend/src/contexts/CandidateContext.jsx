@@ -65,7 +65,10 @@ export const CandidateProvider = ({ children }) => {
             
             let bodyFormData = new FormData();
             bodyFormData.append("FullName", data1.FullName);
-            bodyFormData.append("Password", data1.Password);
+
+            if(data1.Password !== null && data1.Password !== ""){
+                bodyFormData.append("Password", data1.Password)
+            }
             bodyFormData.append("Email", data1.Email);
             bodyFormData.append("Phone", data1.Phone);
             bodyFormData.append("YearsOfExperience", data1.YearsOfExperience);

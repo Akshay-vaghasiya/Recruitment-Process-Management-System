@@ -42,7 +42,7 @@ namespace Backend.Controllers
                 return Ok(object1);
             }
             catch (Exception ex) { 
-                return Unauthorized(ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
 

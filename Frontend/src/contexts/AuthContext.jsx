@@ -30,6 +30,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const data = await loginUser1(data1);
       localStorage.setItem("token", data?.token)
+      localStorage.setItem("user", JSON.stringify(data?.user))
       setIsAuthenticated(true);
       fireToast("Sucessfully login", "success");
       dispatch({ type: "USER_LOGIN", payload: data });
@@ -40,9 +41,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
-
     dispatch({ type: "LOGOUT" })
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
 
     setIsAuthenticated(false);
   };

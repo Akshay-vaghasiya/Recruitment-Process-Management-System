@@ -21,12 +21,8 @@ const CandidateManagement = () => {
     const [file, setFile] = useState(null);
 
     useEffect(() => {
-
-        if (!candidates.length) {
-            getAllCandidates(navigate);
-        }
-
-    }, [candidates]);
+            getAllCandidates(navigate);        
+    }, []);
 
 
     const handleAdd = () => {

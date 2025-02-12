@@ -31,7 +31,7 @@ namespace Backend.Services.impl
             Candidate? candidate1 = await _repository.GetCandidateByEmail(candidateDto?.Email);
             if (candidate1 != null) throw new Exception("candidate already exist");
 
-            string uploadsFolder = Path.Combine("C:", "Resumes");
+            string uploadsFolder = Directory.GetCurrentDirectory().Replace("Backend", "Frontend") + "\\public\\Resume\\" + candidateDto?.Email;
 
             if (!Directory.Exists(uploadsFolder))
             {
@@ -41,7 +41,7 @@ namespace Backend.Services.impl
             string fileName = $"{candidateDto?.Resume?.FileName}";
             string fileExtention = Path.GetExtension(fileName);
 
-            if(fileExtention != ".pdf" && fileExtention != ".docx")
+            if(fileExtention != ".pdf")
             {
                 throw new Exception("file extention is not valid.");
             }
@@ -59,7 +59,7 @@ namespace Backend.Services.impl
             candidate.Phone = candidateDto.Phone;
             candidate.Email = candidateDto.Email;
             candidate.Password = hashedPassword;
-            candidate.ResumeUrl = filePath;
+            candidate.ResumeUrl = "../../public/Resume/" + candidate?.Email + "/" + fileName;
             candidate.YearsOfExperience = candidateDto.YearsOfExperience;
 
             var result = await _repository.AddCandidate(candidate);
@@ -83,12 +83,12 @@ namespace Backend.Services.impl
 
             if(candidateDto.Resume != null)
             {
-                if(candidate.ResumeUrl != null && !candidate.ResumeUrl.Equals(""))
-                {
-                    File.Delete(candidate.ResumeUrl);
-                }
+                string uploadsFolder = Directory.GetCurrentDirectory().Replace("Backend", "Frontend") + "\\public\\Resume\\" + candidate?.Email;
 
-                string uploadsFolder = Path.Combine("C:", "Resumes");
+                if (candidate?.ResumeUrl != null && !candidate.ResumeUrl.Equals(""))
+                {
+                    File.Delete(uploadsFolder + "\\" + candidate?.ResumeUrl?.Substring(candidate.ResumeUrl.LastIndexOf("/") + 1));
+                }
 
                 if (!Directory.Exists(uploadsFolder))
                 {
@@ -98,7 +98,7 @@ namespace Backend.Services.impl
                 string fileName = $"{candidateDto?.Resume?.FileName}";
                 string fileExtention = Path.GetExtension(fileName);
 
-                if (fileExtention != ".pdf" && fileExtention != ".docx")
+                if (fileExtention != ".pdf")
                 {
                     throw new Exception("file extention is not valid.");
                 }
@@ -110,11 +110,14 @@ namespace Backend.Services.impl
                     await candidateDto?.Resume?.CopyToAsync(stream);
                 }
 
-                candidate.ResumeUrl = filePath;
+                candidate.ResumeUrl = "../../public/Resume/" + candidate?.Email + "/" + fileName;
             }
 
-            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(candidateDto.Password);
-            candidate.Password = hashedPassword ?? candidate.Password;
+            if(candidateDto?.Password != null)
+            {
+                var hashedPassword = BCrypt.Net.BCrypt.HashPassword(candidateDto?.Password);
+                candidate.Password = hashedPassword ?? candidate.Password;
+            }
             candidate.UpdatedAt = DateTime.Now;
 
             var result = await _repository.UpdateCandidate(candidate);
@@ -126,6 +129,8 @@ namespace Backend.Services.impl
         {
             Candidate? candidate = await _repository.GetCandidateById(candidateId);
             if (candidate == null) throw new Exception("candidate not exist with given id");
+
+            Directory.Delete(Directory.GetCurrentDirectory().Replace("Backend", "Frontend") + "\\public\\Resume\\" + candidate?.Email, true);
 
             await _repository.DeleteCandidate(candidateId);
         }

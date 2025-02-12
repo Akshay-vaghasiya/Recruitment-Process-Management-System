@@ -7,7 +7,7 @@ namespace Backend.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "REVIEWER")]
+    [Authorize(Roles = "REVIEWER,ADMIN")]
     public class ResumeReviewController : ControllerBase
     {
         private readonly IResumeReviewService _service;
