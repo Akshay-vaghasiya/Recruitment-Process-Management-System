@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import authService from '../services/authService';
 import CandidateReducer from '../reducers/CandidateReducer';
 import { useAuth } from './AuthContext';
 import AuthHeader from '../helper/AuthHeader';
@@ -106,9 +105,10 @@ export const CandidateProvider = ({ children }) => {
             logout();
             fireToast("Unauthorized access", "error");
             navigate("/");
+        } else {
+            fireToast(error?.response?.data, "error");
         }
 
-        fireToast(error.message, "error");
     };
 
     return (

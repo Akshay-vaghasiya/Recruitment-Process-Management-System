@@ -19,6 +19,10 @@ namespace Backend.Repository.impl
             .Include(j => j.JobSkills)
             .ThenInclude(js => js.FkSkill)
             .Include(j => j.ResumeReviews)
+            .Include(j => j.JobApplications)
+            .ThenInclude(ja => ja.FkStatus)
+            .Include(j => j.JobApplications)
+            .ThenInclude(ja => ja.FkCandidate)
             .ToListAsync();
         }
 

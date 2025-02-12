@@ -24,7 +24,6 @@ const LoginPage = () => {
 
     if(loginAs === "USER") {
       await loginUser({ Email: email, Password: password }, navigate)
-      fireToast("Sucessfully login", "success");
       navigate('/user/candidate-management')
     }
 

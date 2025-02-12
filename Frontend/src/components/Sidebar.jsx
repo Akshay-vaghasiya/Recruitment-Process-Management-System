@@ -12,6 +12,8 @@ import { Description, PeopleAlt, PersonAdd, Quiz, School } from '@mui/icons-mate
 import { Link, useLocation } from 'react-router-dom';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import PsychologyIcon from '@mui/icons-material/Psychology';
+import WorkIcon from '@mui/icons-material/Work';
 
 const drawerWidth = 240;
 
@@ -59,8 +61,10 @@ const Sidebar = ({ isOpen, onClose, selectedIndex, onItemClick }) => {
   const location = useLocation();
 
   const menuItems = [
-    { text: 'Candidate Register', icon: <PersonAdd />, link: '/user/candidate-management' },
-    { text: 'User Register', icon: <PersonAdd />, link: '/user/user-management' },
+    { text: 'Candidate Management', icon: <PersonAdd />, link: '/user/candidate-management' },
+    { text: 'User Management', icon: <PersonAdd />, link: '/user/user-management' },
+    { text: 'Skill Management', icon: <PsychologyIcon />, link: '/user/skill-management' },
+    { text: 'Job Position Management', icon: <WorkIcon />, link: '/user/job-management' },
   ];
 
   useEffect(() => {

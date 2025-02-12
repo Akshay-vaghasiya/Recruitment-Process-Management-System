@@ -57,5 +57,11 @@ namespace Backend.Repository.impl
             }
         }
 
+        public async Task BulkAddCandidateAsync(List<Candidate> candidates)
+        {
+            await _context.Candidates.AddRangeAsync(candidates);
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

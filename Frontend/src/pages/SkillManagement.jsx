@@ -7,84 +7,70 @@ import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
-import { useCandidateContext } from "../contexts/CandidateContext";
+import { useSkillContext } from "../contexts/SkillContext";
 
-const CandidateManagement = () => {
+const SkillManagement = () => {
 
-    const { searchTerm, isLoading, isError, candidates, filteredCandidates, getAllCandidates, addCandidate, searchCandidate, editCandidate, removeCandidate } = useCandidateContext();
+    const { searchTerm, isLoading, isError, skills, filteredSkills, addSkill1, getAllSkills, searchSkill, editSkill, removeSkill } = useSkillContext();
 
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
-    const [selectedCandidate, setSelectedCandidate] = useState(null);
+    const [selectedSkill, setSelectedSkill] = useState(null);
     const [formData, setFormData] = useState({});
     const navigate = useNavigate();
-    const [file, setFile] = useState(null);
 
     useEffect(() => {
 
-        if (!candidates.length) {
-            getAllCandidates(navigate);
+        if (!skills.length) {
+            getAllSkills(navigate);
         }
 
-    }, [candidates]);
+    }, [skills]);
 
 
     const handleAdd = () => {
         setFormData({
-            FullName: "",
-            Email: "",
-            Phone: "",
-            Password: "",
-            YearsOfExperience: 0
+            Name : ""
         });
-        setSelectedCandidate(null);
+        setSelectedSkill(null);
         setIsFormOpen(true);
     };
 
-    const handleEdit = (Candidate) => {
-        Candidate.Password = "";
-        setFormData(Candidate);
-        setSelectedCandidate(Candidate);
+    const handleEdit = (skill) => {
+        setFormData(skill);
+        setSelectedSkill(skill);
         setIsFormOpen(true);
     };
 
-    const handleDelete = (Candidate) => {
-        setSelectedCandidate(Candidate);
+    const handleDelete = (skill) => {
+        setSelectedSkill(skill);
         setIsConfirmOpen(true);
     };
 
     const handleSubmit = () => {
-        if (selectedCandidate) {
-            editCandidate(selectedCandidate.PkCandidateId, formData, file, navigate);
+        if (selectedSkill) {
+            editSkill(selectedSkill.PkSkillId, formData, navigate);
         } else {
-            addCandidate(formData, file, navigate);
+            addSkill1(formData, navigate);
         }
         setIsFormOpen(false);
     };
 
     const handleConfirmDelete = () => {
-        removeCandidate(selectedCandidate.PkCandidateId, navigate);
+        removeSkill(selectedSkill.PkSkillId, navigate);
         setIsConfirmOpen(false);
     };
 
     const handleSearch = (event) => {
-        searchCandidate(event.target.value);
+        searchSkill(event.target.value);
     };
 
-    const handleFileChange = (e) => {
-        setFile(e.target.files[0]);
-    };
-
-    const columns = ["ID", "FullName", "Email", "Phone", "ResumeUrl", "YearsOfExperience", "CreatedAt"];
-    const datacolumns = ["PkCandidateId","FullName", "Email", "Phone", "ResumeUrl", "YearsOfExperience", "CreatedAt"];
+    const columns = ["PkSkillId","Name"];
+    const datacolumns = ["PkSkillId","Name"];
 
 
     const formFields = [
-        { label: "FullName", name: "FullName", type: "text", required: true },
-        { label: "Email", name: "Email", type: "text", required: true },
-        { label: "Phone", name: "Phone", type: "text", required: true },
-        { label: "Password", name: "Password", type: "text", required: true },
-        { label: "Year Of Experience", name: "YearsOfExperience", type: "number", required: true },
+        { label: "Name", name: "Name", type: "text", required: true }
     ];
 
     const actions = [
@@ -109,7 +95,7 @@ const CandidateManagement = () => {
     if (isError) {
         return (
             <Typography color="error">
-                Error loading Candidates. Please try again later.
+                Error loading Skills. Please try again later.
             </Typography>
         );
     }
@@ -117,7 +103,7 @@ const CandidateManagement = () => {
     return (
         <Box>
             <Typography variant="h4" align="center" gutterBottom>
-                Candidate Management
+                Skill Management
             </Typography>
 
             <Box sx={{ display: "flex", justifyContent: "flex-start", marginBottom: "1rem", gap: "1.5rem", marginTop: "1.5rem" }}>
@@ -135,13 +121,13 @@ const CandidateManagement = () => {
                     startIcon={<AddIcon />}
                     onClick={handleAdd}
                 >
-                    Add Candidate
+                    Add Skill
                 </Button>
             </Box>
 
             <TableComponent
                 columns={columns}
-                data={filteredCandidates}
+                data={filteredSkills}
                 datacolumns={datacolumns}
                 actions={actions}
             />
@@ -152,30 +138,20 @@ const CandidateManagement = () => {
                 formData={formData}
                 setFormData={setFormData}
                 onSubmit={handleSubmit}
-                title={selectedCandidate ? "Edit Candidate" : "Add Candidate"}
-                submitButtonText={selectedCandidate ? "Update" : "Create"}
+                title={selectedSkill ? "Edit Skill" : "Add Skill"}
+                submitButtonText={selectedSkill ? "Update" : "Create"}
                 fields={formFields}
             >
-                <Typography variant="h6" gutterBottom>
-                    Upload Resume
-                </Typography>
-                <Input
-                    type="file"
-                    accept=".docx, .pdf"
-                    onChange={handleFileChange}
-                    sx={{ mb: 2 }}
-                />
-
             </CustomDialogForm>
 
             <ConfirmationDialog
                 open={isConfirmOpen}
                 title="Confirm Delete"
-                message={`Are you sure you want to delete the Candidate: ${selectedCandidate?.FullName}?`}
+                message={`Are you sure you want to delete the Skill: ${selectedSkill?.Name}?`}
                 onConfirm={handleConfirmDelete}
                 onCancel={setIsConfirmOpen}
             />
         </Box>
     );
 };
-export default CandidateManagement;
+export default SkillManagement;

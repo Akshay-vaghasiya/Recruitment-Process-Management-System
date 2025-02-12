@@ -1,6 +1,13 @@
-﻿using Backend.Dtos;
+﻿using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Backend.Dtos;
 using Backend.Models;
 using Backend.Repository;
+using Backend.Repository.impl;
+using ExcelDataReader;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Backend.Services.impl
 {
@@ -9,12 +16,14 @@ namespace Backend.Services.impl
         private readonly ICandidateRepository _repository;
         private readonly ICandidateSkillRepository _candidateskillRepository;
         private readonly ISkillRepository _skillRepository;
+        private readonly IConfiguration _configuration;
 
-        public CandidateService(ICandidateRepository repository, ICandidateSkillRepository skillRepository, ISkillRepository skillRepository1)
+        public CandidateService(ICandidateRepository repository, ICandidateSkillRepository skillRepository, ISkillRepository skillRepository1, IConfiguration configuration)
         {
             _repository = repository;
             _candidateskillRepository = skillRepository;
             _skillRepository = skillRepository1;
+            _configuration = configuration;
         }
 
         public async Task<Candidate> AddCandidate(CandidateDto candidateDto)
@@ -159,6 +168,70 @@ namespace Backend.Services.impl
             if (candidateSkill == null) throw new Exception("candidate skill not exist");
 
             await _candidateskillRepository.DeleteCandidateSkill(candidateSkill);
+        }
+
+        public async Task<Object> AuthenticateCandidate(LoginDto loginDto)
+        {
+            var candidate1 = await _repository.GetCandidateByEmail(loginDto.Email);
+            if (candidate1 == null || !BCrypt.Net.BCrypt.Verify(loginDto.Password, candidate1.Password))
+                return null;
+
+            return new { token = await GenerateJwtToken(candidate1), candidate = candidate1 };
+        }
+
+        private async Task<string> GenerateJwtToken(Candidate candidate)
+        {
+            var claims = new List<Claim>
+            {
+            new Claim(ClaimTypes.Name, candidate.Email),
+            new Claim(ClaimTypes.Role, "CANDIDATE")
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+            issuer: null,
+            audience: null,
+            claims,
+            expires: DateTime.Now.AddHours(2),
+            signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public async Task BulkAddCandidate(IFormFile file)
+        {
+            var candidates = new List<Candidate>();
+
+            using (var stream = file.OpenReadStream())
+            {
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                {
+                    bool isFirstRow = true;
+                    while (reader.Read())
+                    {
+                        if (isFirstRow)
+                        {
+                            isFirstRow = false;
+                            continue;
+                        }
+
+                        var hashedPassword = BCrypt.Net.BCrypt.HashPassword(reader.GetString(1));
+                        candidates.Add(new Candidate
+                        {
+                            FullName = reader.GetString(0),
+                            Password = hashedPassword,
+                            Email = reader.GetString(2),
+                            Phone = Convert.ToString(reader.GetValue(3)),
+                            YearsOfExperience = Convert.ToInt16(reader.GetValue(4).ToString())
+                        });
+                    }
+                }
+            }
+
+            await _repository.BulkAddCandidateAsync(candidates);
         }
     }
 }

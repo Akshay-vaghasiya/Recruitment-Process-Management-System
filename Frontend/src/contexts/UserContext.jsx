@@ -38,29 +38,29 @@ export const UserProvider = ({ children }) => {
     };
 
     const getAllUsers = async (navigate) => {
-        dispatch({type : "SET_LOADING"});
+        dispatch({ type: "SET_LOADING" });
         try {
             const data = await getUsers(headers);
-            dispatch({ type: "GET_USERS", payload: data});
+            dispatch({ type: "GET_USERS", payload: data });
         } catch (error) {
             handleAuthError(error, navigate);
             dispatch({ type: "SET_ERROR" });
         }
     }
 
-    const editUser = async (id, data1, navigate) => {     
+    const editUser = async (id, data1, navigate) => {
         try {
             let obj = {
-                FullName : data1.FullName,
-                Email : data1.Email,
-                Phone : data1.Phone,
-                Password : data1.Password,
-                JoiningDate : data1.JoiningDate,
-                Roles : data1.Roles
+                FullName: data1.FullName,
+                Email: data1.Email,
+                Phone: data1.Phone,
+                Password: data1.Password,
+                JoiningDate: data1.JoiningDate,
+                Roles: data1.Roles
             }
 
             const data = await updateUser(id, obj, headers);
-            if(data != undefined && data != null) {
+            if (data != undefined && data != null) {
                 getAllUsers(navigate);
                 fireToast("Update user successfully", "success");
             }
@@ -70,11 +70,11 @@ export const UserProvider = ({ children }) => {
     }
 
     const removeUser = async (id, navigate) => {
-        dispatch({type : "SET_LOADING"});
+        dispatch({ type: "SET_LOADING" });
         try {
             const data = await deleteUser(id, headers);
-            dispatch({ type: "DELETE_USER", payload: id});
-            
+            dispatch({ type: "DELETE_USER", payload: id });
+
         } catch (error) {
             handleAuthError(error, navigate);
             dispatch({ type: "SET_ERROR" });
@@ -90,9 +90,9 @@ export const UserProvider = ({ children }) => {
             logout();
             fireToast("Unauthorized access", "error");
             navigate("/");
+        } else {
+            fireToast(error?.response?.data, "error");
         }
-
-        fireToast(error.message, "error");
     };
 
     return (

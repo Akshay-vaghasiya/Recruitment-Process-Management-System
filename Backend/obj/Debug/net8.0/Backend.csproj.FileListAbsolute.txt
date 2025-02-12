@@ -185,3 +185,5 @@ C:\Users\vaghaaks\Recruitement_process_management\Recruitment-Process-Management
 C:\Users\vaghaaks\Recruitement_process_management\Recruitment-Process-Management-System\Backend\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\vaghaaks\Recruitement_process_management\Recruitment-Process-Management-System\Backend\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
 C:\Users\vaghaaks\Recruitement_process_management\Recruitment-Process-Management-System\Backend\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\vaghaaks\Recruitement_process_management\Recruitment-Process-Management-System\Backend\bin\Debug\net8.0\ExcelDataReader.dll
+C:\Users\vaghaaks\Recruitement_process_management\Recruitment-Process-Management-System\Backend\bin\Debug\net8.0\ExcelDataReader.DataSet.dll

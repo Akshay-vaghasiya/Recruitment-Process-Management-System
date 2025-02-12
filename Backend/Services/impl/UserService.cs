@@ -107,10 +107,19 @@ namespace Backend.Services.impl
                 existingUser.JoiningDate = registerDto.JoiningDate;
             }
 
-            Console.Write("Hello");
-
+    
             if (registerDto.Roles != null && registerDto.Roles.Any())
             {
+                foreach (var userRole in existingUser.UserRoles)
+                {
+                    bool roleExists = registerDto.Roles.Any(r => r.Equals(userRole?.FkRole?.Name));
+
+                    if(!roleExists)
+                    {
+                        await _userRoleRepository.deleteUserRole(userRole);
+                    }
+                }
+
                 foreach (var roleName in registerDto.Roles)
                 {
                     Role? role = await _roleRepository.GetRoleByName(roleName);
@@ -124,16 +133,17 @@ namespace Backend.Services.impl
                     {
                         UserRole newUserRole = new UserRole
                         {
-                            FkUser = existingUser,
-                            FkRole = role
+                            FkRoleId = role.PkRoleId,
+                            FkUserId = existingUser.PkUserId
                         };
                         await _userRoleRepository.AddUserRole(newUserRole);
                     }
                 }
+
             }
 
             var updatedUser = await _userRepository.UpdateUser(existingUser);
-
+ 
             return updatedUser;
         }
 

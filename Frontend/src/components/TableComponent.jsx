@@ -22,10 +22,10 @@ const TableComponent = ({ columns, data, actions, datacolumns }) => (
              
                 {data.length > 0 ? (
                  
-                    data.map((row, index) => (
+                    data?.map((row, index) => (
                         <TableRow key={index}>
                            
-                            {datacolumns.map((col) => (
+                            {datacolumns?.map((col) => (
                                 <TableCell key={col}>{row[col]}</TableCell>
                             ))}
                            

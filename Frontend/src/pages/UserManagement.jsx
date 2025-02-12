@@ -62,6 +62,7 @@ const UserManagement = () => {
     const handleSubmit = () => {
         if (selectedUser) {
             editUser(selectedUser.PkUserId, formData, navigate);
+            getAllUsers(navigate);
         } else {
             addUser(formData, navigate);
         }
@@ -78,8 +79,8 @@ const UserManagement = () => {
     };
 
 
-    const columns = ["FullName", "Email", "Phone", "JoiningDate", "CreatedAt", "Roles"];
-    const datacolumns = ["FullName", "Email", "Phone", "JoiningDate", "CreatedAt", "roles"];
+    const columns = ["ID","FullName", "Email", "Phone", "JoiningDate", "CreatedAt", "Roles"];
+    const datacolumns = ["PkUserId","FullName", "Email", "Phone", "JoiningDate", "CreatedAt", "roles"];
 
 
     const formFields = [
@@ -146,7 +147,7 @@ const UserManagement = () => {
                     startIcon={<AddIcon />}
                     onClick={handleAdd}
                 >
-                    Add Exam
+                    Add User
                 </Button>
             </Box>
 

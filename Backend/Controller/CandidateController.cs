@@ -1,5 +1,6 @@
 ﻿using Backend.Dtos;
 using Backend.Services;
+using Backend.Services.impl;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -111,6 +112,41 @@ namespace Backend.Controller
                 return StatusCode(200, "candidate skill deleted sucessfully");
             }
             catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost("login")]
+        [AllowAnonymous]
+        public async Task<ActionResult> Login(LoginDto loginDto)
+        {
+            try
+            {
+                var object1 = await _service.AuthenticateCandidate(loginDto);
+                if (object1 == null) return Unauthorized("Invalid credentials");
+                return Ok(object1);
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+        }
+
+        [HttpPost("upload")]
+        [Authorize(Roles = "ADMIN")]
+        public async Task<IActionResult> ExcelUploadCandidates([FromForm] DocumentDto documentDto)
+        {
+            if (documentDto.document == null || documentDto.document.Length == 0)
+            {
+                return BadRequest("File is empty.");
+            }
+
+            try
+            {
+                await _service.BulkAddCandidate(documentDto.document);
+                return Ok("candidates imported successfully!");
+            } catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }

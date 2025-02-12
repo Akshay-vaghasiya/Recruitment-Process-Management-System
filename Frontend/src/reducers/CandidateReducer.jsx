@@ -1,4 +1,4 @@
-const UserReducer = (state, action) => {
+const CandidateReducer = (state, action) => {
 
     switch (action.type) {
 
@@ -59,4 +59,4 @@ const UserReducer = (state, action) => {
     }
 }
 
-export default UserReducer;
+export default CandidateReducer;

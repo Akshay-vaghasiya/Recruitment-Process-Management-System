@@ -313,6 +313,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Backend.Controller.CandidateController",
+    "Method": "Login",
+    "RelativePath": "api/Candidate/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDto",
+        "Type": "Backend.Dtos.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.CandidateController",
+    "Method": "ExcelUploadCandidates",
+    "RelativePath": "api/Candidate/upload",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "document",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Backend.Controller.CandidateNotificationController",
     "Method": "AddCandidateNotification",
     "RelativePath": "api/CandidateNotification",

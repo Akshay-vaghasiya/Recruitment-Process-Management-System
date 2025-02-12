@@ -13,5 +13,6 @@ namespace Backend.Repository
 
         Task<Candidate?> GetCandidateById(int? id);
         Task DeleteCandidate(int id);
+        Task BulkAddCandidateAsync(List<Candidate> candidates);
     }
 }

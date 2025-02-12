@@ -15,5 +15,7 @@ namespace Backend.Services
 
         Task DeleteCandidateSkill(int candidateSkillId);
         Task DeleteCandidate(int candidateId);
+        Task<Object> AuthenticateCandidate(LoginDto loginDto);
+        Task BulkAddCandidate(IFormFile file);
     }
 }

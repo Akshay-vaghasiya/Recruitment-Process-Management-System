@@ -2,15 +2,16 @@ import React, { createContext, useContext, useReducer, useState } from 'react';
 import AuthReducer from '../reducers/AuthReducer';
 import authService from '../services/authService';
 import { data } from 'react-router-dom';
+import { fireToast } from '../components/fireToast';
 
 const AuthContext = createContext();
 
 const initialState = {
   isLoading: false,
   isError: false,
-  user : null,
-  token : null,
-  roles : []
+  user: null,
+  token: null,
+  roles: []
 };
 export const useAuth = () => useContext(AuthContext);
 
@@ -30,6 +31,7 @@ export const AuthProvider = ({ children }) => {
       const data = await loginUser1(data1);
       localStorage.setItem("token", data?.token)
       setIsAuthenticated(true);
+      fireToast("Sucessfully login", "success");
       dispatch({ type: "USER_LOGIN", payload: data });
     } catch (error) {
       handleAuthError(error, navigate);
@@ -38,9 +40,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem('token'); 
+    localStorage.removeItem('token');
 
-    dispatch({type : "LOGOUT"})
+    dispatch({ type: "LOGOUT" })
 
     setIsAuthenticated(false);
   };
@@ -50,11 +52,13 @@ export const AuthProvider = ({ children }) => {
       logout();
       navigate("/");
       fireToast("Unauthorized access", "error");
+    } else {
+      fireToast(error?.response?.data, "error");
     }
   };
 
   return (
-    <AuthContext.Provider value={{...state, isAuthenticated, loginUser, logout }}>
+    <AuthContext.Provider value={{ ...state, isAuthenticated, loginUser, logout }}>
       {children}
     </AuthContext.Provider>
   );

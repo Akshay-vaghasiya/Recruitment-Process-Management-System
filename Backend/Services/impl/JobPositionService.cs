@@ -37,7 +37,7 @@ namespace Backend.Services.impl
             jobPosition.Description = jobPositionDto.Description;
             jobPosition.Title = jobPositionDto.Title;
 
-            JobStatus? jobStatus = await _jobStatusRepository.GetJobStatusByIdAsync(jobPositionDto.FkStatusId);
+            JobStatus? jobStatus = await _jobStatusRepository.GetJobStatusByNameAsync("OPEN");
             if (jobStatus == null) throw new Exception("job status with "+ jobPositionDto.FkStatusId +" id not exist");
 
             jobPosition.FkStatus = jobStatus;
@@ -108,6 +108,30 @@ namespace Backend.Services.impl
             jobPosition.FkReviewerId = jobPositionDto?.FkReviewerId ?? jobPosition.FkReviewerId;
             jobPosition.ClosureReason = jobPositionDto?.ClosureReason ?? jobPosition.ClosureReason;
             jobPosition.FkSelectedCandidateId = jobPositionDto?.FkSelectedCandidateId ?? jobPosition.FkSelectedCandidateId;
+
+            if(jobPositionDto?.RequireSkills != null && jobPositionDto.Skills != null)
+            {
+                foreach (var skill in jobPosition.JobSkills) { 
+                    
+                    bool inrequier = jobPositionDto.RequireSkills.Any(rs => rs == skill.FkSkillId);
+                    bool notrequier = jobPositionDto.Skills.Any(rs => rs == skill.FkSkillId);
+
+                    if(inrequier==false && notrequier==false)
+                    {
+                        await DeleteJobSkill(skill.PkJobSkillId);
+                    }
+                }
+
+                foreach (var skillId in jobPositionDto.RequireSkills)
+                {
+                    await AddJobSkill(jobPosition.PkJobPositionId, skillId, 1);
+                }
+
+                foreach (var skillId in jobPositionDto.Skills)
+                {
+                    await AddJobSkill(jobPosition.PkJobPositionId, skillId, 0);
+                }
+            }
             
             var result = await _repository.UpdateJobPositionAsync(jobPosition);
             
