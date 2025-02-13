@@ -25,6 +25,7 @@ namespace Backend.Repository.impl
             return await _context.JobApplications
                 .Include(ja => ja.FkCandidate)
                 .Include(ja => ja.FkJobPosition)
+                .Include(ja => ja.FkStatus)
                 .FirstOrDefaultAsync(ja =>  ja.FkCandidateId == candidateId && ja.FkJobPositionId == jobId);
         }
 

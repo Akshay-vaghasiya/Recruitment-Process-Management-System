@@ -1100,6 +1100,38 @@
         }
       }
     },
+    "/api/Interview/{candidateId}/{positionId}": {
+      "get": {
+        "tags": [
+          "Interview"
+        ],
+        "parameters": [
+          {
+            "name": "candidateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "positionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Interview/updatestatus/{interviewId}/{interviewStatusId}": {
       "put": {
         "tags": [
@@ -1196,6 +1228,38 @@
         }
       }
     },
+    "/api/InterviewFeedback/{userId}/{interviewId}": {
+      "get": {
+        "tags": [
+          "InterviewFeedback"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "interviewId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/InterviewFeedback/{interviewFeedbackId}": {
       "put": {
         "tags": [
@@ -1274,6 +1338,29 @@
               "format": "int32"
             }
           },
+          {
+            "name": "interviewId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/InterviewPanel/{interviewId}": {
+      "get": {
+        "tags": [
+          "InterviewPanel"
+        ],
+        "parameters": [
           {
             "name": "interviewId",
             "in": "path",

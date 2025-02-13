@@ -130,7 +130,10 @@ namespace Backend.Services.impl
             Candidate? candidate = await _repository.GetCandidateById(candidateId);
             if (candidate == null) throw new Exception("candidate not exist with given id");
 
-            Directory.Delete(Directory.GetCurrentDirectory().Replace("Backend", "Frontend") + "\\public\\Resume\\" + candidate?.Email, true);
+            if(candidate.ResumeUrl != null && candidate.ResumeUrl != "")
+            {
+                Directory.Delete(Directory.GetCurrentDirectory().Replace("Backend", "Frontend") + "\\public\\Resume\\" + candidate?.Email, true);
+            }
 
             await _repository.DeleteCandidate(candidateId);
         }

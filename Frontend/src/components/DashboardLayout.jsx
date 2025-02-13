@@ -26,7 +26,7 @@ const DashboardLayout = ({ children }) => {
         onItemClick={(index) => setSelectedIndex(index)} 
       />
       
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1 }}>
         <div style={{ minHeight: '64px' }} />
         <Outlet />
       </Box>

@@ -6,12 +6,16 @@ import { fireToast } from '../components/fireToast';
 
 const AuthContext = createContext();
 
+const user1 = localStorage.getItem("user")
+const token1 = localStorage.getItem("token")
+const roles1 = localStorage.getItem("roles")
+
 const initialState = {
   isLoading: false,
   isError: false,
-  user: null,
-  token: null,
-  roles: []
+  user: user1 ? JSON.parse(user1) : null,
+  token: token1 ? token1 : null,
+  roles: roles1 ? JSON.parse(roles1) : []
 };
 export const useAuth = () => useContext(AuthContext);
 
@@ -29,8 +33,16 @@ export const AuthProvider = ({ children }) => {
     dispatch({ type: "SET_LOADING" });
     try {
       const data = await loginUser1(data1);
-      localStorage.setItem("token", data?.token)
-      localStorage.setItem("user", JSON.stringify(data?.user))
+
+      let roles = [];
+
+      roles = data?.user?.UserRoles?.map((role) => {
+        return role?.FkRole?.Name;
+      })
+
+      localStorage.setItem("roles", JSON.stringify(roles));
+      localStorage.setItem("token", data?.token);
+      localStorage.setItem("user", JSON.stringify(data?.user));
       setIsAuthenticated(true);
       fireToast("Sucessfully login", "success");
       dispatch({ type: "USER_LOGIN", payload: data });
@@ -42,9 +54,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     dispatch({ type: "LOGOUT" })
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-
+    localStorage.clear();
     setIsAuthenticated(false);
   };
 

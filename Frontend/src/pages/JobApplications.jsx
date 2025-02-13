@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useJobPositionContext } from "../contexts/JobPositionContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TableComponent from "../components/TableComponent";
 import EditIcon from "@mui/icons-material/Edit";
 import CustomDialogForm from "../components/CustomDialogForm";
@@ -10,15 +10,17 @@ import { fireToast } from "../components/fireToast";
 import { useAuth } from "../contexts/AuthContext";
 import PreviewIcon from '@mui/icons-material/Preview';
 import resumeReviewService from "../services/resumeReviewService";
+import InterpreterModeIcon from '@mui/icons-material/InterpreterMode';
+import Interview from "./Interview";
 
-const JobApplications = () => {
+const JobApplications = ({jobPositionId}) => {
     
     const { jobPositions, getAllJob } = useJobPositionContext();
     const [applications, setApplications] = useState();
-    const { jobPositionId } = useParams()
     const navigate = useNavigate();
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [isFormOpen1, setIsFormOpen1] = useState(false);
+    const [isFormOpen2, setIsFormOpen2] = useState(false);
     const [formData, setFormData] = useState({
         FkStatusId: ""
     });
@@ -98,6 +100,11 @@ const JobApplications = () => {
         }));
         setIsFormOpen1(true);
     }
+
+    const handleInterview = (application) => {
+        setFormData(application);
+        setIsFormOpen2(true);
+    }
     
     const handleSubmit1 = async () => {
 
@@ -107,8 +114,7 @@ const JobApplications = () => {
                 FkJobPositionId : formData.FkJobPositionId,
                 Comments : formData1.Comments
             }
-            console.log(user);
-            
+
             if(isUpdate) {
                 const response = await updateReview(user?.PkUserId, formData.ResumeReviewId, obj, headers);
                 if (response !== null) {
@@ -152,6 +158,12 @@ const JobApplications = () => {
             color: "secondary",
             handler: handleResumeScreen,
             icon: <PreviewIcon />,
+        },
+        {
+            label: "Interviews",
+            color: "secondary",
+            handler: handleInterview,
+            icon: <InterpreterModeIcon />,
         }
     ];
 
@@ -206,6 +218,22 @@ const JobApplications = () => {
                 fields={formFields1}
             >
                 <a href={formData?.FkCandidate?.ResumeUrl} target="_blank">click here to show CV</a>
+            </CustomDialogForm>
+
+            <CustomDialogForm
+                open={isFormOpen2}
+                onClose={setIsFormOpen2}
+                formData={null}
+                setFormData={null}
+                onSubmit={handleSubmit}
+                title={"Candidate Interview"}
+                submitButtonText={""}
+                fields={[]}
+                size="lg"
+            >
+                <Interview 
+                    application = {formData}
+                />
             </CustomDialogForm>
 
         </>

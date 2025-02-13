@@ -22,6 +22,7 @@ const CustomDialogForm = ({
   submitButtonText = "Submit",
   fields = [],
   children,
+  size = "sm"
 }) => {
   
   const handleChange = (field) => (event) => {
@@ -39,7 +40,7 @@ const CustomDialogForm = ({
   };
 
   return (
-    <Dialog open={open} onClose={() => onClose(false)} maxWidth="sm" fullWidth>
+    <Dialog open={open} onClose={() => onClose(false)} maxWidth={size} fullWidth>
       <DialogTitle align="center">{title}</DialogTitle>
       <DialogContent>
         

@@ -10,5 +10,6 @@ namespace Backend.Repository
         Task<Interview> UpdateInterview(Interview interview);
         Task DeleteInterview(int id);
         Task<Interview?> GetInterviewByCandidateAndPositionAndRound(int? candidateId, int? positionId, int? roundId);
+        Task<List<Interview>> GetInterviewByCandidateAndPosistion(int? candidateId, int? positionId);
     }
 }

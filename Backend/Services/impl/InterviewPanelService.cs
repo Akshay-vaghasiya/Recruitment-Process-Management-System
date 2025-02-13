@@ -18,27 +18,38 @@ namespace Backend.Services.impl
 
         public async Task<InterviewPanel> AddInterviewPanel(int userId, int interviewId)
         {
-            User? user = await _userRepository.GetUserById(interviewId);
+            User? user = await _userRepository.GetUserById(userId);
             if (user == null) throw new Exception("user not exist with given id");
+
+            Interview? interview = await _interviewRepository.GetInterviewById(interviewId);
+            if (interview == null) throw new Exception("interview not exist with given id");
+
+            string round = interview.FkInterviewRound.Name;
 
             int flag = 0;
             foreach (var role in user.UserRoles)
             {
-                if(role.FkRole.Name == "INTERVIEWER")
+                if(round == "HR")
                 {
-                    flag = 1;
-                    break;
-                }
+                    if (role.FkRole.Name == "HR")
+                    {
+                        flag = 1;
+                        break;
+                    }
+                } else
+                {
+                    if (role.FkRole.Name == "INTERVIEWER")
+                    {
+                        flag = 1;
+                        break;
+                    }
+                }       
             }
             
             if(flag == 0)
             {
-                throw new Exception("user not have interviewer role");
+                throw new Exception("user not have sufficient role");
             }
-
-
-            Interview? interview = await _interviewRepository.GetInterviewById(interviewId);
-            if (interview == null) throw new Exception("interview not exist with given id");
 
             InterviewPanel? interviewPanel = await _repository.GetInterviewPanelByUserAndInterview(userId, interviewId);
             if (interviewPanel != null) throw new Exception("interview panel already exist with given interview id");
@@ -61,6 +72,15 @@ namespace Backend.Services.impl
             if (interviewPanel == null) throw new Exception("interview panel not exist in system");
 
             await _repository.DeleteInterviewPanel(interviewPanel);
+        }
+
+        public async Task<List<InterviewPanel>> GetPanelByInterview(int interviewId)
+        {
+            Interview? interview = await _interviewRepository.GetInterviewById(interviewId);
+            if (interview == null) throw new Exception("interview not exist with given id");
+
+            return await _repository.GetInterviewPanelByInterview(interviewId);
+
         }
     }
 }

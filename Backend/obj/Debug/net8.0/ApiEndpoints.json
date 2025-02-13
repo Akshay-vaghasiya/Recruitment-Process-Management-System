@@ -671,6 +671,27 @@
   },
   {
     "ContainingType": "Backend.Controller.InterviewController",
+    "Method": "GetInterviewsByCandidateAndPosition",
+    "RelativePath": "api/Interview/{candidateId}/{positionId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "candidateId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "positionId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewController",
     "Method": "DeleteInteview",
     "RelativePath": "api/Interview/{id}",
     "HttpMethod": "DELETE",
@@ -770,6 +791,27 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Backend.Controller.InterviewFeedbackController",
+    "Method": "GetInterviewFeedbackByuserAndInterview",
+    "RelativePath": "api/InterviewFeedback/{userId}/{interviewId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "interviewId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Backend.Controller.InterviewPanelController",
     "Method": "GetInterviewPanels",
     "RelativePath": "api/InterviewPanel",
@@ -777,6 +819,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.InterviewPanelController",
+    "Method": "GetInterviewPanalByInterview",
+    "RelativePath": "api/InterviewPanel/{interviewId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "interviewId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

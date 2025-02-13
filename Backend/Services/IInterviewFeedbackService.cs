@@ -8,5 +8,6 @@ namespace Backend.Services
         Task<List<InterviewFeedback>> GetInterviewFeedbacksAsync();
         Task<InterviewFeedback> UpdateInterviewFeedback(int? id, InterviewFeedback interviewFeedback);
         Task DeleteInterviewFeedback(int id);
+        Task<InterviewFeedback?> GetInterviewFeedbackByUserAndInterview(int userId, int interviewId);
     }
 }

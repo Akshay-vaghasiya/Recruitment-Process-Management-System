@@ -17,11 +17,28 @@ const CandidateReducer = (state, action) => {
             };
 
         case "GET_CANDIDATES":
+
+            const candidates1 = action.payload?.map((candidate) => {
+                let skills = "";
+
+                candidate?.CandidateSkills?.map((skill) => {
+                    let strings1 = "";
+                    strings1 += skill.FkSkill.Name + " ";
+                    strings1 += "(" + String(skill.YearsOfExperience) + " year),";
+                    skills += strings1;
+                })
+
+                skills = skills.substring(0, skills.length-1);
+                candidate.skills = skills;
+
+                return candidate;
+            })           
+
             return {
                 ...state,
                 isLoading: false,
-                candidates: action.payload,
-                filteredCandidates: action.payload
+                candidates: candidates1,
+                filteredCandidates: candidates1
             };
 
 

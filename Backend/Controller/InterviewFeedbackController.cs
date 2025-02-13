@@ -53,6 +53,20 @@ namespace Backend.Controller
             }
         }
 
+        [HttpGet("{userId}/{interviewId}")]
+        public async Task<IActionResult> GetInterviewFeedbackByuserAndInterview(int userId, int interviewId)
+        {
+            try
+            {
+                return Ok(await _service.GetInterviewFeedbackByUserAndInterview(userId, interviewId));
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpPut("{interviewFeedbackId}")]
         public async Task<IActionResult> UpdateInterviewFeedback(int interviewFeedbackId, [FromBody] InterviewFeedback interviewFeedback)
         {

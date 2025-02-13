@@ -44,7 +44,14 @@ namespace Backend.Repository.impl
 
         public async Task<List<Candidate>> GetCandidatesAsync()
         {
-            return await _context.Candidates.Include(c => c.CandidateSkills).ThenInclude(cs => cs.FkSkill).Include(c => c.Documents).ToListAsync();
+            return await _context.Candidates
+                .Include(c => c.CandidateSkills)
+                .ThenInclude(cs => cs.FkSkill)
+                .Include(c => c.Documents)
+                .ThenInclude(d => d.FkStatus)
+                .Include(c => c.Documents)
+                .ThenInclude(d => d.FkDocumentType)
+                .ToListAsync();
         }
 
         public async Task DeleteCandidate(int id)

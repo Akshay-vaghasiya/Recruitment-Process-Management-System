@@ -92,7 +92,8 @@ export const CandidateProvider = ({ children }) => {
         try {
             const data = await deleteCandidate(id, headers);
             dispatch({ type: "DELETE_CANDIDATE", payload: id});
-            
+            fireToast("candidate successfully deleted", "success");
+            await getAllCandidates(navigate);
         } catch (error) {
             handleAuthError(error, navigate);
             dispatch({ type: "SET_ERROR" });

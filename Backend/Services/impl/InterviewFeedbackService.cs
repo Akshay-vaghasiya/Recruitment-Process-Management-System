@@ -58,6 +58,17 @@ namespace Backend.Services.impl
             return await _repository.UpdateInterviewFeedback(interviewFeedback1);
         }
 
+        public async Task<InterviewFeedback?> GetInterviewFeedbackByUserAndInterview(int userId, int interviewId)
+        {
+            User? user = await _userRepository.GetUserById(userId);
+            if (user == null) throw new Exception("interviewer not found in system with given id");
+
+            Interview? interview = await _interviewRepository.GetInterviewById(interviewId);
+            if (interview == null) throw new Exception("interview not found with given id");
+
+            return await _repository.GetInterviewFeedbackByUserAndInterview(userId, interviewId);
+        }
+
         public async Task DeleteInterviewFeedback(int id)
         {
             InterviewFeedback? interviewFeedback = await _repository.GetInterviewFeedbackById(id);

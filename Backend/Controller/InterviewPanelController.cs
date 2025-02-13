@@ -30,6 +30,19 @@ namespace Backend.Controller
             }
         }
 
+        [HttpGet("{interviewId}")]
+        public async Task<IActionResult> GetInterviewPanalByInterview(int interviewId)
+        {
+            try
+            {
+                return Ok(await _service.GetPanelByInterview(interviewId));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetInterviewPanels()
         {

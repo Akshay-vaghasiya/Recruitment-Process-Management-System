@@ -29,9 +29,26 @@ namespace Backend.Repository.impl
                                         i.FkInterviewRoundId == roundId);
         }
 
+        public async Task<List<Interview>> GetInterviewByCandidateAndPosistion(int? candidateId, int? positionId)
+        {
+            return await _context.Interviews
+                .Where(i => i.FkCandidateId == candidateId && i.FkJobPositionId == positionId)
+                .Include(i => i.FkStatus)
+                .Include(i => i.FkInterviewRound)
+                .Include(i => i.InterviewPanels)
+                .ThenInclude(p => p.FkInterviewer)
+                .ToListAsync();
+        }
+
         public async Task<Interview?> GetInterviewById(int? id)
         {
-            return await _context.Interviews.FirstOrDefaultAsync(i => i.PkInterviewId == id);
+            return await _context.Interviews
+                .Include(i => i.FkInterviewRound)
+                .Include(i => i.FkStatus)
+                .Include(i => i.FkJobPosition)
+                .Include(i => i.InterviewPanels)
+                .ThenInclude(p => p.FkInterviewer)
+                .FirstOrDefaultAsync(i => i.PkInterviewId == id);
         }
 
         public async Task<List<Interview>> GetInterviewsAsync()
@@ -39,7 +56,10 @@ namespace Backend.Repository.impl
             return await _context.Interviews
                 .Include(i => i.FkInterviewRound)
                 .Include(i => i.FkStatus)
-                .Include(i => i.FkJobPosition).ToListAsync();
+                .Include(i => i.FkJobPosition)
+                .Include(i => i.InterviewPanels)
+                .ThenInclude(p => p.FkInterviewer)
+                .ToListAsync();
         }
 
         public async Task<Interview> UpdateInterview(Interview interview)

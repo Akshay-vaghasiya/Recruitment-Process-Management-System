@@ -9,5 +9,6 @@ namespace Backend.Repository
         Task DeleteInterviewPanel(InterviewPanel interviewPanel);
         Task<InterviewPanel?> GetInterviewPanelById(int interviewPanelId);
         Task<InterviewPanel?> GetInterviewPanelByUserAndInterview(int userId, int interviewId);
+        Task<List<InterviewPanel>> GetInterviewPanelByInterview(int interviewId);
     }
 }

@@ -25,6 +25,10 @@ namespace Backend.Repository.impl
             return await _context.InterviewFeedbacks.Include(f => f.FkInterview).FirstOrDefaultAsync(f => f.PkInterviewFeedbackId == id);
         }
 
+        public async Task<InterviewFeedback?> GetInterviewFeedbackByUserAndInterview(int ? userId, int? interviewId) {
+            return await _context.InterviewFeedbacks.FirstOrDefaultAsync(f => f.FkInterviewId == interviewId && f.FkInterviewerId == userId);
+        }
+
         public async Task<List<InterviewFeedback>> GetInterviewFeedbacksAsync()
         {
             return await _context.InterviewFeedbacks.Include(f => f.FkInterview).ToListAsync();

@@ -8,6 +8,7 @@ import CandidateManagement from './pages/CandidateManagement'
 import SkillManagement from './pages/SkillManagement'
 import JobPositionManagement from './pages/JobPositionManagement'
 import JobApplications from './pages/JobApplications'
+import Unauthorized from './pages/Unauthorized'
 
 function App() {
 
@@ -16,14 +17,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<LoginPage />} />
+          <Route path='/unauthorized' element={<Unauthorized />} />
 
-          <Route element={<ProtectedRoute />}>
+          <Route element={<ProtectedRoute allowedRoles={["ADMIN"]} />}>
             <Route path='/user' element={<DashboardLayout />}>
               <Route path='user-management' element={<UserManagement />} />
               <Route path='candidate-management' element={<CandidateManagement />} />
               <Route path='skill-management' element={<SkillManagement />} />
               <Route path='job-management' element={<JobPositionManagement />} />
-              <Route path='job-applictions/:jobPositionId' element={<JobApplications />} />
             </Route>
           </Route>
         </Routes>

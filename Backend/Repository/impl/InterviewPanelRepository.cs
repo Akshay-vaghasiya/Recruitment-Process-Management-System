@@ -29,7 +29,16 @@ namespace Backend.Repository.impl
 
         public async Task<List<InterviewPanel>> GetInterviewPanelsAsync()
         {
-            return await _context.InterviewPanels.ToListAsync();
+            return await _context.InterviewPanels
+                .Include(ip => ip.FkInterviewer)
+                .ToListAsync();
+        }
+
+        public async Task<List<InterviewPanel>> GetInterviewPanelByInterview(int interviewId)
+        {
+            return await _context.InterviewPanels
+                .Include(ip => ip.FkInterviewer)
+                .Where(ip => ip.FkInterviewId == interviewId).ToListAsync();
         }
 
         public async Task DeleteInterviewPanel(InterviewPanel interviewPanel)

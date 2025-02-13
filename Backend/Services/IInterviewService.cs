@@ -10,5 +10,6 @@ namespace Backend.Services
         Task DeleteInterview(int interviewId);
 
         Task<Interview> UpdateInterviewStatus(int interviewId, int interviewStatusId);
+        Task<List<Interview>> GetInterviewsByCandidateAndPosition(int candidateId, int positionId);
     }
 }

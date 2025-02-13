@@ -39,21 +39,25 @@ namespace Backend.Services.impl
             InterviewRound? interviewRound = await _interviewRoundRepository.GetInterviewRoundByIdAsync(interviewDto?.FkInterviewRoundId);
             if (interviewRound == null) throw new Exception("interview round not exist with given id");
 
-
-
-            // Here we have a error
             Interview? interview1 = await _repository.GetInterviewByCandidateAndPositionAndRound(interviewDto?.FkCandidateId, interviewDto?.FkJobPositionId, interviewDto?.FkInterviewRoundId);
             if (interview1 != null) throw new Exception("This interview round already exist for candidate for job position");
 
+            JobApplication? jobApplication = await _jobApplicationRepository.GetJobApplicationByJobAndCandidate(interviewDto?.FkJobPositionId, interviewDto?.FkCandidateId);
 
-
-
-            JobApplication? jobApplication = await _jobApplicationRepository.GetJobApplicationByJobAndCandidate(interviewDto?.FkJobPositionId, interviewDto.FkCandidateId);
+            List<Interview> interviews = await _repository.GetInterviewByCandidateAndPosistion(interviewDto.FkCandidateId, interviewDto.FkJobPositionId);
+            foreach (var i in interviews)
+            {
+                if(i.RoundNumber == interviewDto.RoundNumber)
+                {
+                    throw new Exception("please change interview round number");
+                }
+            }
 
             if (jobApplication == null) throw new Exception("Job application not exist");
 
-
-
+            Console.WriteLine("hello");
+            Console.WriteLine(jobApplication?.FkStatus?.Name);
+            Console.WriteLine();
             if (jobApplication?.FkStatus?.Name != "SHORTLISTED")
             {
                 throw new Exception("This candidate not shortlisted so you can not schedule interview round.");
@@ -82,6 +86,11 @@ namespace Backend.Services.impl
         public async Task<List<Interview>> GetInterviewsAsync()
         {
             return await _repository.GetInterviewsAsync();
+        }
+
+        public async Task<List<Interview>> GetInterviewsByCandidateAndPosition(int candidateId, int positionId)
+        {
+            return await _repository.GetInterviewByCandidateAndPosistion(candidateId, positionId);
         }
 
         public async Task DeleteInterview(int interviewId)

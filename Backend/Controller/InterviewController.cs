@@ -44,6 +44,19 @@ namespace Backend.Controller
             }
         }
 
+        [HttpGet("{candidateId}/{positionId}")]
+        public async Task<IActionResult> GetInterviewsByCandidateAndPosition(int candidateId, int positionId)
+        {
+            try
+            {
+                return Ok(await _service.GetInterviewsByCandidateAndPosition(candidateId, positionId));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpPut("updatestatus/{interviewId}/{interviewStatusId}")]
         public async Task<IActionResult> UpdateStatus(int interviewId, int interviewStatusId)
         {

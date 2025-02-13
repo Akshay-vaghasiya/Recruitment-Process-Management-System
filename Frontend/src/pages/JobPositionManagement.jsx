@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useJobPositionContext } from "../contexts/JobPositionContext";
 import { useSkillContext } from "../contexts/SkillContext";
 import { useUserContext } from "../contexts/UserContext";
+import JobApplications from "./JobApplications";
 
 const JobPositionManagement = () => {
 
@@ -20,6 +21,7 @@ const JobPositionManagement = () => {
     const { users, getAllUsers} = useUserContext();
 
     const [isFormOpen, setIsFormOpen] = useState(false);
+    const [isFormOpen1, setIsFormOpen1] = useState(false);
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
     const [selectedJobPosition, setSelectedJobPosition] = useState(null);
     const [formData, setFormData] = useState({});
@@ -133,7 +135,8 @@ const JobPositionManagement = () => {
     };
 
     const handleApplication = (job) => {
-        navigate(`/user/job-applictions/${job.PkJobPositionId}`)
+        setSelectedJobPosition(job);
+        setIsFormOpen1(true);
     }
 
     const columns = ["ID", "Title", "Description", "requiredSkill", "preferredSkill", "Status", "CreatedAt"];
@@ -240,6 +243,22 @@ const JobPositionManagement = () => {
                 submitButtonText={selectedJobPosition ? "Update" : "Create"}
                 fields={formFields}
             >
+            </CustomDialogForm>
+
+            <CustomDialogForm
+                open={isFormOpen1}
+                onClose={setIsFormOpen1}
+                formData={null}
+                setFormData={null}
+                onSubmit={null}
+                title={"Job Applications"}
+                submitButtonText={""}
+                fields={[]}
+                size="lg"
+            >
+                <JobApplications 
+                jobPositionId = {selectedJobPosition?.PkJobPositionId}
+                />
             </CustomDialogForm>
 
             <ConfirmationDialog
