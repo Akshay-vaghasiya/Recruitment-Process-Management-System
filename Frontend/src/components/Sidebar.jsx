@@ -14,6 +14,9 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import WorkIcon from '@mui/icons-material/Work';
+import { useAuth } from '../contexts/AuthContext';
+import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 const drawerWidth = 240;
 
@@ -46,7 +49,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'isOpen
     boxSizing: 'border-box',
     ...(isOpen && {
       ...openedMixin(theme),
-      '& .MuiDrawer-paper': openedMixin(theme), 
+      '& .MuiDrawer-paper': openedMixin(theme),
     }),
     ...(!isOpen && {
       ...closedMixin(theme),
@@ -57,15 +60,27 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'isOpen
 
 
 const Sidebar = ({ isOpen, onClose, selectedIndex, onItemClick }) => {
-  const theme = useTheme(); 
+  const theme = useTheme();
   const location = useLocation();
+  const { roles } = useAuth();
 
-  const menuItems = [
-    { text: 'Candidate Management', icon: <PersonAdd />, link: '/user/candidate-management' },
-    { text: 'User Management', icon: <PersonAdd />, link: '/user/user-management' },
-    { text: 'Skill Management', icon: <PsychologyIcon />, link: '/user/skill-management' },
-    { text: 'Job Position Management', icon: <WorkIcon />, link: '/user/job-management' },
-  ];
+  let menuItems = [];
+
+  if (roles?.includes("ADMIN")) {
+    menuItems = [
+      { text: 'Candidate Management', icon: <PersonAdd />, link: '/user/candidate-management' },
+      { text: 'User Management', icon: <PersonAdd />, link: '/user/user-management' },
+      { text: 'Skill Management', icon: <PsychologyIcon />, link: '/user/skill-management' },
+      { text: 'Job Position Management', icon: <WorkIcon />, link: '/user/job-management' },
+    ];
+  } else if (roles?.includes("CANDIDATE")) {
+
+    menuItems = [
+      { text: 'Job Position', icon: <WorkIcon />, link: '/candidate/job-positions' },
+      { text: 'Job Applications', icon: <WorkHistoryIcon />, link: '/candidate/job-applications' },
+      { text: 'Profile', icon: <AccountBoxIcon />, link: '/candidate/profile' },
+    ]
+  }
 
   useEffect(() => {
     const index = menuItems.findIndex((item) => item.link === location.pathname);
@@ -84,6 +99,9 @@ const Sidebar = ({ isOpen, onClose, selectedIndex, onItemClick }) => {
       <Divider />
 
       <List>
+
+
+
         {menuItems.map((item, index) => (
           <ListItem
             key={item.text}
@@ -93,8 +111,8 @@ const Sidebar = ({ isOpen, onClose, selectedIndex, onItemClick }) => {
             to={item.link}
           >
             <ListItemButton
-              selected={selectedIndex === index} 
-              onClick={() => onItemClick(index)} 
+              selected={selectedIndex === index}
+              onClick={() => onItemClick(index)}
               sx={{
                 minHeight: 48,
                 px: 2.5,
@@ -110,7 +128,7 @@ const Sidebar = ({ isOpen, onClose, selectedIndex, onItemClick }) => {
                   minWidth: 0,
                   justifyContent: 'center',
                   color: 'black',
-                  mr: isOpen ? 3 : 'auto', 
+                  mr: isOpen ? 3 : 'auto',
                 }}
               >
                 {item.icon}

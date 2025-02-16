@@ -9,6 +9,10 @@ import SkillManagement from './pages/SkillManagement'
 import JobPositionManagement from './pages/JobPositionManagement'
 import JobApplications from './pages/JobApplications'
 import Unauthorized from './pages/Unauthorized'
+import { Dashboard } from '@mui/icons-material'
+import JobPositionCandidate from './pages/JobPositionCandidate'
+import CandidateApplications from './pages/CandidateApplications'
+import CandidateProfile from './pages/CandidateProfile'
 
 function App() {
 
@@ -25,6 +29,14 @@ function App() {
               <Route path='candidate-management' element={<CandidateManagement />} />
               <Route path='skill-management' element={<SkillManagement />} />
               <Route path='job-management' element={<JobPositionManagement />} />
+            </Route>
+          </Route>
+
+          <Route element={<ProtectedRoute allowedRoles={["CANDIDATE"]} />}>
+            <Route path='/candidate' element={<DashboardLayout />} >
+              <Route path='job-positions' element={<JobPositionCandidate />} />
+              <Route path='job-applications' element={<CandidateApplications />} />
+              <Route path='profile' element={<CandidateProfile />} />
             </Route>
           </Route>
         </Routes>

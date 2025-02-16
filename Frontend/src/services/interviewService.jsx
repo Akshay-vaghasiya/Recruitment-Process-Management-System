@@ -20,8 +20,8 @@ const getAllInterviews = async (headers) => {
     return response?.data;
 }
 
-const updateInterviewStatus = async (interviewId, statuId, headers) => {
-    const response = await axios.put(`${API_URL}/updatestatus/${interviewId}/${statuId}`, null, {headers});
+const updateInterview = async (interviewId, data, headers) => {
+    const response = await axios.put(`${API_URL}/${interviewId}`, data, {headers});
     return response?.data;
 }
 
@@ -61,6 +61,6 @@ const updateInterviewFeedback = async (feedbackid, data, headers) => {
 }
 
 export default {getInterviewByCandidateAndPosition, addInterview, getAllInterviews,
-    deleteInterview, updateInterviewStatus, addInterviewPanel, deleteInterviewPanel,
+    deleteInterview, updateInterview, addInterviewPanel, deleteInterviewPanel,
     getInterviewPanelByInterview, getInterviewFeedbackByUserAndInterview,
     addInterviewFeedback, updateInterviewFeedback};

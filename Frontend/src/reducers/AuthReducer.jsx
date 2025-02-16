@@ -26,7 +26,7 @@ const AuthReducer = (state, action) => {
             return {
                 ...state,
                 isLoading: false,
-                user: action.payload.candidate,
+                candidate: action.payload.candidate,
                 token: action.payload.token,
                 roles : ["CANDIDATE"]
             }
@@ -36,7 +36,8 @@ const AuthReducer = (state, action) => {
                 ...state,
                 user : null,
                 token : null,
-                roles : []
+                roles : [],
+                candidate : null,
             }
 
         default:

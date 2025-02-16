@@ -70,6 +70,15 @@ namespace Backend.Services.impl
             return await _repository.GetAllDocumentsAsync();
         }
 
+        public async Task<List<Document>> GetDocumentByCandidate(int candidateId)
+        {
+            Candidate? candidate = await _candidateRepository.GetCandidateById(candidateId);
+            if (candidate == null) throw new Exception("candidate not exist with given id");
+
+            return await _repository.GetDocumentsByCandidateId(candidateId);
+
+        }
+
         public async Task<Document> UpdateDocumentStatus(int documentId, int statusId)
         {
             DocumentStatus? documentStatus = await _documentStatusRepository.GetDocumentStatusByIdAsync(statusId);
@@ -131,8 +140,16 @@ namespace Backend.Services.impl
             Document? document = await _repository.GetDocumentByIdAsync(id);
             if (document == null) throw new Exception("document not exist in system");
 
-            Directory.Delete(Directory.GetCurrentDirectory().Replace("Backend", "Frontend") + "\\public\\Document\\" + document?.FkCandidate?.Email, true);
-
+            List<Document> documents = await _repository.GetDocumentsByCandidateId(document.FkCandidateId);
+            if (documents.Count == 1)
+            {
+                Directory.Delete(Directory.GetCurrentDirectory().Replace("Backend", "Frontend") + "\\public\\Document\\" + document?.FkCandidate?.Email, true);
+            }
+            else
+            {
+                string uploadsFolder = Directory.GetCurrentDirectory().Replace("Backend", "Frontend") + "\\public\\Document\\" + document?.FkCandidate?.Email;
+                File.Delete(uploadsFolder + "\\" + document?.DocumentUrl?.Substring(document.DocumentUrl.LastIndexOf("/") + 1));
+            }
             await _repository.DeleteDocumentAsync(id);
         }
     }

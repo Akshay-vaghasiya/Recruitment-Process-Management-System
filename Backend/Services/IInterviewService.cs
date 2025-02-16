@@ -8,8 +8,7 @@ namespace Backend.Services
         Task<Interview> AddInterview(InterviewDto interviewDto);
         Task<List<Interview>> GetInterviewsAsync();
         Task DeleteInterview(int interviewId);
-
-        Task<Interview> UpdateInterviewStatus(int interviewId, int interviewStatusId);
         Task<List<Interview>> GetInterviewsByCandidateAndPosition(int candidateId, int positionId);
+        Task<Interview> UpdateInterview(int interviewId, InterviewDto interviewDto);
     }
 }

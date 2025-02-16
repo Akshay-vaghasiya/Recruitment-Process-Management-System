@@ -29,6 +29,9 @@ const UserManagement = () => {
 
     }, [users]);
 
+    console.log(formData);
+    
+
     const handleAdd = () => {
         setFormData({
             FullName: "",
@@ -36,6 +39,7 @@ const UserManagement = () => {
             Phone: "",
             Password: "",
             JoiningDate: today,
+            LeavingDate: null,
             Roles: []
         });
         setSelectedUser(null);
@@ -44,6 +48,10 @@ const UserManagement = () => {
 
     const handleEdit = (user) => {
         user.Password = "";
+
+        if(user.LeavingDate == null) {
+            user.LeavingDate = "";
+        }
         setFormData(user);
         setSelectedUser(user);
         setFormData((prev) => ({
@@ -79,8 +87,8 @@ const UserManagement = () => {
     };
 
 
-    const columns = ["ID","FullName", "Email", "Phone", "JoiningDate", "CreatedAt", "Roles"];
-    const datacolumns = ["PkUserId","FullName", "Email", "Phone", "JoiningDate", "CreatedAt", "roles"];
+    const columns = ["ID", "FullName", "Email", "Phone", "JoiningDate", "CreatedAt", "Roles"];
+    const datacolumns = ["PkUserId", "FullName", "Email", "Phone", "JoiningDate", "CreatedAt", "roles"];
 
 
     const formFields = [
@@ -174,6 +182,19 @@ const UserManagement = () => {
                     name="JoiningDate"
                     value={formData.JoiningDate}
                     onChange={(e) => setFormData((prev) => ({ ...prev, JoiningDate: e.target.value }))}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    sx={{ mt: 2 }}
+                    fullWidth
+                />
+
+                <TextField
+                    label="Leaving Date"
+                    type="date"
+                    name="LeavingDate"
+                    value={formData.LeavingDate}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, LeavingDate: e.target.value }))}
                     InputLabelProps={{
                         shrink: true,
                     }}

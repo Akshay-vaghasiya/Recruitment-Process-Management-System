@@ -10,7 +10,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [loginAs, setLoginAs] = useState('USER');
 
-  const { loginUser, isAuthenticated } = useAuth();
+  const { loginUser, isAuthenticated, loginCandidate, roles } = useAuth();
 
   const options = [
     { value: "USER", label: "USER" },
@@ -28,13 +28,18 @@ const LoginPage = () => {
     }
 
     if(loginAs === "CANDIDATE") {
-      fireToast("not implemented", "error");
+      await loginCandidate({Email: email, Password: password}, navigate)
+      navigate('/candidate/job-positions')
     }
   };
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/user');
+      if(roles?.includes("ADMIN")) {
+        navigate('/user');
+      } else if (roles?.includes("CANDIDATE")) {
+        navigate('/candidate/job-positions')
+      }
     }
   }, [isAuthenticated, navigate]);
 

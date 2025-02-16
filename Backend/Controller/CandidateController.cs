@@ -1,4 +1,5 @@
 ﻿using Backend.Dtos;
+using Backend.Models;
 using Backend.Services;
 using Backend.Services.impl;
 using Microsoft.AspNetCore.Authorization;
@@ -58,7 +59,7 @@ namespace Backend.Controller
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,CANDIDATE")]
         public async Task<IActionResult> UpdateCandidate(int id, [FromForm] CandidateDto candidateDto)
         {
             try
@@ -86,9 +87,24 @@ namespace Backend.Controller
             }
         }
 
+        [HttpGet("getCandidateSkill/{candidateId}")]
+        [Authorize(Roles = "CANDIDATE")]
+        public async Task<IActionResult> GetCandidateSkill(int candidateId)
+        {
+            try
+            {
+                var result = await _service.GetCandidateSkillByCandidate(candidateId);
+                return StatusCode(200, result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
 
         [HttpPost("addCandidateSkill/{candidateId}/{skillId}/{yearOfExp}")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,CANDIDATE")]
         public async Task<IActionResult> AddCandidateSkill(int candidateId, int skillId, int yearOfExp)
         {
             try
@@ -103,7 +119,7 @@ namespace Backend.Controller
         }
 
         [HttpDelete("deleteCandidateSkill/{candidateSkillId}")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,CANDIDATE")]
         public async Task<IActionResult> DeleteCandidateSkill(int candidateSkillId)
         {
             try

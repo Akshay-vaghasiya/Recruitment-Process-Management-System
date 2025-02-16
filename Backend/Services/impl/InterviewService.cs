@@ -55,10 +55,8 @@ namespace Backend.Services.impl
 
             if (jobApplication == null) throw new Exception("Job application not exist");
 
-            Console.WriteLine("hello");
-            Console.WriteLine(jobApplication?.FkStatus?.Name);
-            Console.WriteLine();
-            if (jobApplication?.FkStatus?.Name != "SHORTLISTED")
+
+            if (jobApplication?.FkStatus?.Name == "APPLIED" || jobApplication?.FkStatus?.Name == "SCREENED")
             {
                 throw new Exception("This candidate not shortlisted so you can not schedule interview round.");
             }
@@ -78,6 +76,7 @@ namespace Backend.Services.impl
             interview.FkJobPositionId = interviewDto?.FkJobPositionId;
             interview.FkStatusId = interviewDto?.FkStatusId;
             interview.RoundNumber = interviewDto?.RoundNumber;
+            interview.ScheduledTime = interviewDto?.ScheduledTime;
             interview.CreatedAt = DateTime.UtcNow;
 
             return await _repository.AddInterview(interview);
@@ -98,18 +97,28 @@ namespace Backend.Services.impl
             Interview? interview = await _repository.GetInterviewById(interviewId);
             if (interview == null) throw new Exception("Interview not exist in system");
 
+            interview.FkCandidate = null;
+            interview.FkInterviewRound = null;
+            interview.FkJobPosition = null;
+            interview.FkStatus = null;
+
+            await _repository.UpdateInterview(interview);
+
             await _repository.DeleteInterview(interviewId);
         }
 
-        public async Task<Interview> UpdateInterviewStatus(int interviewId, int interviewStatusId) 
+        public async Task<Interview> UpdateInterview(int interviewId, InterviewDto interviewDto)
         {
             Interview? interview = await _repository.GetInterviewById(interviewId);
             if (interview == null) throw new Exception("Interview not exist in system");
 
-            InterviewStatus? interviewStatus = await _interviewStatusRepository.GetInterviewStatusByIdAsync(interviewStatusId);
+            InterviewStatus? interviewStatus = await _interviewStatusRepository.GetInterviewStatusByIdAsync(interviewDto?.FkStatusId);
             if (interviewStatus == null) throw new Exception("Interview status not exist in system");
 
-            interview.FkStatus = interviewStatus;
+
+            interview.RoundNumber = interviewDto?.RoundNumber ?? interview.RoundNumber;
+            interview.ScheduledTime = interviewDto?.ScheduledTime ?? interview.ScheduledTime;
+            interview.FkStatusId = interviewDto?.FkStatusId ?? interviewDto?.FkStatusId;
 
             return await _repository.UpdateInterview(interview);
         }

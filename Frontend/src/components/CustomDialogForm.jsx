@@ -44,14 +44,14 @@ const CustomDialogForm = ({
       <DialogTitle align="center">{title}</DialogTitle>
       <DialogContent>
         
-        {fields.map(({ label, name, type, required = false, options, rows, disabled, isMultiple = false }) => {
+        {fields.map(({ label, name, type, required, options, rows, disabled, isMultiple = false }) => {
           if (type === "select") {
             
             return (
                 <FormControl
                   fullWidth
                   margin="normal"
-                  required={required}
+                  required={required !== false}
                   key={name}
                 >
                   <InputLabel>{label}</InputLabel>
@@ -77,11 +77,11 @@ const CustomDialogForm = ({
                 label={label}
                 fullWidth
                 margin="normal"
-                required={required}
                 multiline
                 rows={rows || 4}
                 value={formData[name] || ""}
                 onChange={handleChange(name)}
+                required={required !== false}
                 disabled={disabled}
               />
             );
@@ -92,10 +92,10 @@ const CustomDialogForm = ({
                 label={label}
                 fullWidth
                 margin="normal"
-                required={required}
                 type={type}
                 value={formData[name] || ""}
                 onChange={handleChange(name)}
+                required={required !== false}
                 disabled={disabled}
               />
             );

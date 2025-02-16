@@ -12,15 +12,18 @@ import PreviewIcon from '@mui/icons-material/Preview';
 import resumeReviewService from "../services/resumeReviewService";
 import InterpreterModeIcon from '@mui/icons-material/InterpreterMode';
 import Interview from "./Interview";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ConfirmationDialog from "../components/ConfirmationDialog";
 
-const JobApplications = ({jobPositionId}) => {
-    
+const JobApplications = ({ jobPositionId }) => {
+
     const { jobPositions, getAllJob } = useJobPositionContext();
     const [applications, setApplications] = useState();
     const navigate = useNavigate();
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [isFormOpen1, setIsFormOpen1] = useState(false);
     const [isFormOpen2, setIsFormOpen2] = useState(false);
+    const [isConfirmOpen, setIsConfirmOpen] = useState(false);
     const [formData, setFormData] = useState({
         FkStatusId: ""
     });
@@ -28,10 +31,10 @@ const JobApplications = ({jobPositionId}) => {
         Comments: ""
     });
     const [isUpdate, setIsUpdate] = useState(false);
-    const { updateApplicationStatus } = jobApplicationService;
+    const { updateApplicationStatus, deleteJobAppliction } = jobApplicationService;
     const headers = AuthHeader();
     const { logout } = useAuth();
-    const {updateReview, addReview} = resumeReviewService;
+    const { updateReview, addReview } = resumeReviewService;
     const user = JSON.parse(localStorage.getItem('user'));
 
     useEffect(() => {
@@ -60,6 +63,11 @@ const JobApplications = ({jobPositionId}) => {
     const handleEdit = (application) => {
         setFormData(application);
         setIsFormOpen(true);
+    }
+
+    const handleDelete = (application) => {
+        setFormData(application);
+        setIsConfirmOpen(true);
     }
 
     const handleSubmit = async () => {
@@ -105,17 +113,17 @@ const JobApplications = ({jobPositionId}) => {
         setFormData(application);
         setIsFormOpen2(true);
     }
-    
+
     const handleSubmit1 = async () => {
 
         try {
             const obj = {
-                FkCandidateId : formData.FkCandidateId,
-                FkJobPositionId : formData.FkJobPositionId,
-                Comments : formData1.Comments
+                FkCandidateId: formData.FkCandidateId,
+                FkJobPositionId: formData.FkJobPositionId,
+                Comments: formData1.Comments
             }
 
-            if(isUpdate) {
+            if (isUpdate) {
                 const response = await updateReview(user?.PkUserId, formData.ResumeReviewId, obj, headers);
                 if (response !== null) {
                     await getAllJob(navigate);
@@ -139,8 +147,24 @@ const JobApplications = ({jobPositionId}) => {
             }
             fireToast(error?.response?.data, "error");
         }
+    }
 
-
+    const handleConfirmDelete = async () => {
+        try {
+            const response = await deleteJobAppliction(formData.PkJobApplicationId, headers);
+            if (response !== null) {
+                await getAllJob(navigate);
+                fireToast("successfully application deleted", "success");
+                setIsConfirmOpen(false);
+            }
+        } catch (error) {
+            if (error?.response?.status === 401 || error?.response?.status === 403) {
+                logout();
+                navigate("/");
+                fireToast("Unauthorized access", "error");
+            }
+            fireToast(error?.response?.data, "error");
+        }
     }
 
     const columns = ["ID", "Candidate name", "Status", "CreatedAt"];
@@ -164,6 +188,12 @@ const JobApplications = ({jobPositionId}) => {
             color: "secondary",
             handler: handleInterview,
             icon: <InterpreterModeIcon />,
+        },
+        {
+            label: "Delete",
+            color: "error",
+            handler: handleDelete,
+            icon: <DeleteIcon />,
         }
     ];
 
@@ -231,10 +261,18 @@ const JobApplications = ({jobPositionId}) => {
                 fields={[]}
                 size="lg"
             >
-                <Interview 
-                    application = {formData}
+                <Interview
+                    application={formData}
                 />
             </CustomDialogForm>
+
+            <ConfirmationDialog
+                open={isConfirmOpen}
+                title="Confirm Delete"
+                message={`Are you sure you want to delete the applicaton of  ${formData?.FkCandidate?.FullName}?`}
+                onConfirm={handleConfirmDelete}
+                onCancel={setIsConfirmOpen}
+            />
 
         </>
     )

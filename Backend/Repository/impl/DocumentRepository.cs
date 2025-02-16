@@ -27,6 +27,15 @@ namespace Backend.Repository.impl
             .FirstOrDefaultAsync(d => d.PkDocumentId == id);
         }
 
+        public async Task<List<Document>> GetDocumentsByCandidateId(int? candidateId)
+        {
+            return await _context.Documents.Include(d => d.FkStatus)
+                .Include(d => d.FkDocumentType)
+                .Include(d => d.FkCandidate)
+                .Where(d => d.FkCandidateId == candidateId)
+                .ToListAsync();
+        }
+
         public async Task<Document?> GetDocumentByCandidateAndType(int candidateId, int documentTypeId)
         {
             return await _context.Documents.FirstOrDefaultAsync(d => d.FkCandidateId == candidateId && d.FkDocumentTypeId == documentTypeId);

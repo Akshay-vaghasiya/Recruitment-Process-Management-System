@@ -11,5 +11,7 @@
         public string? Phone { get; set; }
 
         public DateOnly? JoiningDate { get; set; }
+
+        public DateOnly? LeavingDate { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace Backend.Services.impl
         private readonly IUserRepository _userRepository;
         private readonly ISkillRepository _skillRepository;
         private readonly IJobSkillRepository _jobSkillRepository;
+        private readonly ICandidateRepository _candidateRepository;
 
         public JobPositionService(IJobPositionRepository repository, IJobStatusRepository jobStatusRepository, IUserRepository userRepository, IJobSkillRepository jobSkillRepository, ISkillRepository skillRepository)
         {
@@ -36,6 +37,11 @@ namespace Backend.Services.impl
             JobPosition jobPosition = new JobPosition();
             jobPosition.Description = jobPositionDto.Description;
             jobPosition.Title = jobPositionDto.Title;
+
+            Candidate? candidate = await _candidateRepository.GetCandidateById(jobPositionDto?.FkSelectedCandidateId);
+            if (candidate == null) throw new Exception("selected candidate not exist in system");
+
+            jobPosition.FkSelectedCandidateId = jobPositionDto?.FkSelectedCandidateId;
 
             JobStatus? jobStatus = await _jobStatusRepository.GetJobStatusByNameAsync("OPEN");
             if (jobStatus == null) throw new Exception("job status with "+ jobPositionDto.FkStatusId +" id not exist");

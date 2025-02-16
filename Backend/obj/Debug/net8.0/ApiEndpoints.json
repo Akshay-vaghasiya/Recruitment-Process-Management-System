@@ -314,6 +314,22 @@
   },
   {
     "ContainingType": "Backend.Controller.CandidateController",
+    "Method": "GetCandidateSkill",
+    "RelativePath": "api/Candidate/getCandidateSkill/{candidateId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "candidateId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.CandidateController",
     "Method": "Login",
     "RelativePath": "api/Candidate/login",
     "HttpMethod": "POST",
@@ -415,6 +431,22 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.DocumentController",
+    "Method": "GetDocumentsByCandidate",
+    "RelativePath": "api/Document/{candidateId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "candidateId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -708,8 +740,8 @@
   },
   {
     "ContainingType": "Backend.Controller.InterviewController",
-    "Method": "UpdateStatus",
-    "RelativePath": "api/Interview/updatestatus/{interviewId}/{interviewStatusId}",
+    "Method": "UpdateInterview",
+    "RelativePath": "api/Interview/{interviewId}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -720,8 +752,8 @@
         "IsRequired": true
       },
       {
-        "Name": "interviewStatusId",
-        "Type": "System.Int32",
+        "Name": "interviewDto",
+        "Type": "Backend.Dtos.InterviewDto",
         "IsRequired": true
       }
     ],

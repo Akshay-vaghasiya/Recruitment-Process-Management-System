@@ -57,19 +57,18 @@ namespace Backend.Controller
             }
         }
 
-        [HttpPut("updatestatus/{interviewId}/{interviewStatusId}")]
-        public async Task<IActionResult> UpdateStatus(int interviewId, int interviewStatusId)
+        [HttpPut("{interviewId}")]
+        public async Task<IActionResult> UpdateInterview(int interviewId, [FromBody] InterviewDto interviewDto) 
         {
             try
             {
-                return StatusCode(200, await _service.UpdateInterviewStatus(interviewId, interviewStatusId));
-            } 
+                return StatusCode(200, await _service.UpdateInterview(interviewId, interviewDto));
+            }
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
         }
-
 
 
         [HttpDelete("{id}")]

@@ -54,7 +54,7 @@ const InterviewPanel = ({ interview }) => {
                 if (x.length > 0) return true
             })
             const temp = users1?.map((user) => {
-                return { value: user.PkUserId, label: user.FullName }
+                return { value: user.PkUserId, label: user.FullName+"("+user.Email+")" }
             })
             setInterviewerOption(temp);
         }
@@ -224,7 +224,7 @@ const InterviewPanel = ({ interview }) => {
             icon: <FeedbackIcon />
         },
         {
-            label: "Delete Interview",
+            label: "Delete Interviewer",
             color: "error",
             handler: handleDelete,
             icon: <DeleteIcon />,

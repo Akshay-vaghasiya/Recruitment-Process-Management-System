@@ -3,56 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\services\\impl\\candidateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:services\\impl\\candidateservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\services\\impl\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:services\\impl\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\models\\interviewfeedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:models\\interviewfeedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\controller\\interviewfeedbackcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:controller\\interviewfeedbackcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\services\\iinterviewfeedbackservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:services\\iinterviewfeedbackservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\services\\impl\\interviewfeedbackservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:services\\impl\\interviewfeedbackservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\repository\\iinterviewfeedbackrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:repository\\iinterviewfeedbackrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\repository\\impl\\interviewfeedbackrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:repository\\impl\\interviewfeedbackrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\controller\\interviewpanelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:controller\\interviewpanelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\controller\\interviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:controller\\interviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\services\\impl\\interviewpanelservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:services\\impl\\interviewpanelservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\services\\iinterviewpanelservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:services\\iinterviewpanelservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\repository\\impl\\interviewpanelrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:repository\\impl\\interviewpanelrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\models\\interviewpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:models\\interviewpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|c:\\users\\vaghaaks\\recruitement_process_management\\recruitment-process-management-system\\backend\\models\\recruitmentprocessmanagementsystemcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:models\\recruitmentprocessmanagementsystemcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -67,170 +23,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CandidateService.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\CandidateService.cs",
-              "RelativeDocumentMoniker": "Services\\impl\\CandidateService.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\CandidateService.cs",
-              "RelativeToolTip": "Services\\impl\\CandidateService.cs",
-              "ViewState": "AgIAAHkAAAAAAAAAAAAkwIYAAACRAAAAAAAAAA==",
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\UserService.cs",
+              "RelativeDocumentMoniker": "Services\\impl\\UserService.cs",
+              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\UserService.cs",
+              "RelativeToolTip": "Services\\impl\\UserService.cs",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAkwG0AAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-13T17:49:40.414Z",
+              "WhenOpened": "2025-02-15T18:20:13.439Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "InterviewFeedback.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Models\\InterviewFeedback.cs",
-              "RelativeDocumentMoniker": "Models\\InterviewFeedback.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Models\\InterviewFeedback.cs",
-              "RelativeToolTip": "Models\\InterviewFeedback.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Title": "RecruitmentProcessManagementSystemContext.cs",
+              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Models\\RecruitmentProcessManagementSystemContext.cs",
+              "RelativeDocumentMoniker": "Models\\RecruitmentProcessManagementSystemContext.cs",
+              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Models\\RecruitmentProcessManagementSystemContext.cs",
+              "RelativeToolTip": "Models\\RecruitmentProcessManagementSystemContext.cs",
+              "ViewState": "AgIAABECAAAAAAAAAAAqwCACAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-13T16:27:19.153Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IInterviewFeedbackService.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\IInterviewFeedbackService.cs",
-              "RelativeDocumentMoniker": "Services\\IInterviewFeedbackService.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\IInterviewFeedbackService.cs",
-              "RelativeToolTip": "Services\\IInterviewFeedbackService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-13T15:57:40.967Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IInterviewFeedbackRepository.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Repository\\IInterviewFeedbackRepository.cs",
-              "RelativeDocumentMoniker": "Repository\\IInterviewFeedbackRepository.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Repository\\IInterviewFeedbackRepository.cs",
-              "RelativeToolTip": "Repository\\IInterviewFeedbackRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-13T15:54:19.229Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "InterviewFeedbackController.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\InterviewFeedbackController.cs",
-              "RelativeDocumentMoniker": "Controller\\InterviewFeedbackController.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\InterviewFeedbackController.cs",
-              "RelativeToolTip": "Controller\\InterviewFeedbackController.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAIwDEAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-13T15:51:05.123Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "InterviewFeedbackRepository.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Repository\\impl\\InterviewFeedbackRepository.cs",
-              "RelativeDocumentMoniker": "Repository\\impl\\InterviewFeedbackRepository.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Repository\\impl\\InterviewFeedbackRepository.cs",
-              "RelativeToolTip": "Repository\\impl\\InterviewFeedbackRepository.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBsAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-13T15:51:30.872Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "InterviewFeedbackService.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\InterviewFeedbackService.cs",
-              "RelativeDocumentMoniker": "Services\\impl\\InterviewFeedbackService.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\InterviewFeedbackService.cs",
-              "RelativeToolTip": "Services\\impl\\InterviewFeedbackService.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAYwDwAAABxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-13T15:51:15.118Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "InterviewController.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\InterviewController.cs",
-              "RelativeDocumentMoniker": "Controller\\InterviewController.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\InterviewController.cs",
-              "RelativeToolTip": "Controller\\InterviewController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-13T14:48:51.241Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "InterviewPanelService.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\InterviewPanelService.cs",
-              "RelativeDocumentMoniker": "Services\\impl\\InterviewPanelService.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\impl\\InterviewPanelService.cs",
-              "RelativeToolTip": "Services\\impl\\InterviewPanelService.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAgwFEAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-13T15:27:02.088Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "InterviewPanelRepository.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Repository\\impl\\InterviewPanelRepository.cs",
-              "RelativeDocumentMoniker": "Repository\\impl\\InterviewPanelRepository.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Repository\\impl\\InterviewPanelRepository.cs",
-              "RelativeToolTip": "Repository\\impl\\InterviewPanelRepository.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-13T14:49:12.094Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "InterviewPanelController.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\InterviewPanelController.cs",
-              "RelativeDocumentMoniker": "Controller\\InterviewPanelController.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Controller\\InterviewPanelController.cs",
-              "RelativeToolTip": "Controller\\InterviewPanelController.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAYwCIAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-13T14:48:55.769Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "InterviewPanel.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Models\\InterviewPanel.cs",
-              "RelativeDocumentMoniker": "Models\\InterviewPanel.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Models\\InterviewPanel.cs",
-              "RelativeToolTip": "Models\\InterviewPanel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-13T14:49:04.134Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "IInterviewPanelService.cs",
-              "DocumentMoniker": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\IInterviewPanelService.cs",
-              "RelativeDocumentMoniker": "Services\\IInterviewPanelService.cs",
-              "ToolTip": "C:\\Users\\vaghaaks\\Recruitement_process_management\\Recruitment-Process-Management-System\\Backend\\Services\\IInterviewPanelService.cs",
-              "RelativeToolTip": "Services\\IInterviewPanelService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-13T14:48:33.236Z",
+              "WhenOpened": "2025-02-15T18:19:13.789Z",
               "EditorCaption": ""
             }
           ]

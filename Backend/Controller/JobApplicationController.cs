@@ -6,7 +6,6 @@ namespace Backend.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "ADMIN")]
     public class JobApplicationController : ControllerBase
     {
         private readonly IJobApplicationService _service;
@@ -17,6 +16,7 @@ namespace Backend.Controller
         }
 
         [HttpPost("{candidateId}/{jobPositionId}")]
+        [Authorize(Roles = "CANDIDATE")]
         public async Task<IActionResult> AddJobApplication(int candidateId, int jobPositionId)
         {
             try
@@ -31,6 +31,7 @@ namespace Backend.Controller
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetJobApplications()
         {
             try
@@ -44,6 +45,7 @@ namespace Backend.Controller
         }
 
         [HttpPut("{jobApplicationId}/{applicationStatusId}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> UpdateJobApplicationStatus(int applicationStatusId, int jobApplicationId)
         {
             try
@@ -57,6 +59,7 @@ namespace Backend.Controller
         }
 
         [HttpDelete("{JobApplicationId}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> DeleteJobApplication(int JobApplicationId)
         {
             try

@@ -150,10 +150,10 @@ namespace Backend.Services.impl
 
             if (candidateSkill != null)
             {
-
+    
                 if (candidateSkill.YearsOfExperience != yearOfExp)
                 {
-                    candidate.YearsOfExperience = yearOfExp;
+                    candidateSkill.YearsOfExperience = yearOfExp;
                     return await _candidateskillRepository.UpdateCandidateSkill(candidateSkill);
                 }
                 else
@@ -168,6 +168,14 @@ namespace Backend.Services.impl
             candidateSkill1.YearsOfExperience = yearOfExp;
 
             return await _candidateskillRepository.AddCandidateSkill(candidateSkill1);
+        }
+
+        public async Task<List<CandidateSkill>> GetCandidateSkillByCandidate(int candidateId)
+        {
+            Candidate? candidate = await _repository.GetCandidateById(candidateId);
+            if (candidate == null) throw new Exception("Candidate not exist");
+
+            return await _candidateskillRepository.GetCandidateSkillByCandidate(candidateId);
         }
 
         public async Task DeleteCandidateSkill(int candidateSkillId)

@@ -8,7 +8,6 @@ namespace Backend.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "ADMIN")]
     public class SkillController : ControllerBase
     {
         private readonly ISkillService _service;
@@ -19,6 +18,7 @@ namespace Backend.Controller
         }
 
         [HttpGet]
+        [Authorize(Roles = "ADMIN,CANDIDATE")]
         public async Task<IActionResult> GetAllSkills()
         {
             try
@@ -32,6 +32,7 @@ namespace Backend.Controller
         }
 
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> AddSkill([FromBody] Skill skill)
         {
             try
@@ -52,6 +53,7 @@ namespace Backend.Controller
 
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> UpdateSkill(int id, [FromBody] Skill skill)
         {
             try
@@ -70,6 +72,7 @@ namespace Backend.Controller
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> DeleteSkill(int id)
         {
             try

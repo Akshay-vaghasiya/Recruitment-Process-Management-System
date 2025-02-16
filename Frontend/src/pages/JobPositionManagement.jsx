@@ -11,14 +11,16 @@ import { useJobPositionContext } from "../contexts/JobPositionContext";
 import { useSkillContext } from "../contexts/SkillContext";
 import { useUserContext } from "../contexts/UserContext";
 import JobApplications from "./JobApplications";
+import { FirstPage } from "@mui/icons-material";
+import { fireToast } from "../components/fireToast";
 
 const JobPositionManagement = () => {
 
     const { searchTerm, isLoading, isError, jobPositions, filteredJobPositions, addJob, getAllJob, searchJob, editJob, removeJob } = useJobPositionContext();
 
-    const { skills, getAllSkills} = useSkillContext();
+    const { skills, getAllSkills } = useSkillContext();
 
-    const { users, getAllUsers} = useUserContext();
+    const { users, getAllUsers } = useUserContext();
 
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [isFormOpen1, setIsFormOpen1] = useState(false);
@@ -27,6 +29,7 @@ const JobPositionManagement = () => {
     const [formData, setFormData] = useState({});
     const [skillOption, setSkillOption] = useState([]);
     const [reviewerOption, setReviewerOption] = useState([]);
+    const [candidateOptions, setCandidateOptions] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -36,9 +39,9 @@ const JobPositionManagement = () => {
         }
 
     }, [jobPositions]);
-
+    
     useEffect(() => {
-        if(!skills.length) {
+        if (!skills.length) {
             getAllSkills(navigate);
         } else {
             const temp = skills?.map((skill) => {
@@ -51,22 +54,21 @@ const JobPositionManagement = () => {
 
     useEffect(() => {
 
-        if(!users.length) {
+        if (!users.length) {
             getAllUsers(navigate);
         } else {
             let users1 = users?.filter((user) => {
-                
+
                 let x = user?.UserRoles?.filter((role) => {
-                    if(role.FkRole?.Name === "REVIEWER")
-                    {
+                    if (role.FkRole?.Name === "REVIEWER") {
                         return true;
                     }
                 })
 
-                if(x.length > 0) return true
+                if (x.length > 0) return true
             })
             const temp = users1?.map((user) => {
-                return { value: user.PkUserId, label: user.FullName } 
+                return { value: user.PkUserId, label: user.FullName+"("+user.Email+")" }
             })
             setReviewerOption(temp);
         }
@@ -81,31 +83,43 @@ const JobPositionManagement = () => {
             Skills: "",
             FkStatusId: "",
             ClosureReason: "",
-            FkReviewerId : "",
+            FkReviewerId: "",
+            FkSelectedCandidateId: null
         });
         setSelectedJobPosition(null);
         setIsFormOpen(true);
     };
 
+    console.log(formData);
+    
     const handleEdit = (job) => {
         setFormData(job);
+        setCandidateOptions(
+            job?.JobApplications?.map((application) => {
+
+                let label = application.FkCandidate.FullName+"("+application.FkCandidate.Email+")";
+                let value = application.FkCandidate.PkCandidateId;
+                
+                return {label : label, value : value};
+            })
+        )
         setSelectedJobPosition(job);
         setFormData((prev) => ({
-            ...prev, RequireSkills : job?.requiredSkill==="" ? [] : job?.requiredSkill?.split(',')?.map((skill) => {
+            ...prev, RequireSkills: job?.requiredSkill === "" ? [] : job?.requiredSkill?.split(',')?.map((skill) => {
                 let x = skillOption?.filter((skill1) => {
-                    if(skill1.label === skill) {
+                    if (skill1.label === skill) {
                         return true;
                     }
                 })
-                if(x.length) return x[0].value;
+                if (x.length) return x[0].value;
             }),
-            Skills : job?.preferredSkill==="" ? [] : job?.preferredSkill?.split(',')?.map((skill) => {
+            Skills: job?.preferredSkill === "" ? [] : job?.preferredSkill?.split(',')?.map((skill) => {
                 let x = skillOption?.filter((skill1) => {
-                    if(skill1.label === skill) {
+                    if (skill1.label === skill) {
                         return true;
                     }
                 })
-                if(x.length) return x[0].value;
+                if (x.length) return x[0].value;
             }),
         }));
         setIsFormOpen(true);
@@ -116,7 +130,15 @@ const JobPositionManagement = () => {
         setIsConfirmOpen(true);
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const flag = formData?.RequireSkills?.some(s => formData?.Skills?.includes(s));
+
+        if(flag) {
+            fireToast("Please check require skills and skills both contain atleast one same element", "error");
+            return;
+        }
+
         if (selectedJobPosition) {
             editJob(selectedJobPosition.PkJobPositionId, formData, navigate);
         } else {
@@ -141,7 +163,7 @@ const JobPositionManagement = () => {
 
     const columns = ["ID", "Title", "Description", "requiredSkill", "preferredSkill", "Status", "CreatedAt"];
     const datacolumns = ["PkJobPositionId", "Title", "Description", "requiredSkill", "preferredSkill", "status", "CreatedAt"];
- 
+
 
     const formFields = [
         { label: "Title", name: "Title", type: "text", required: true },
@@ -149,14 +171,14 @@ const JobPositionManagement = () => {
         { label: "ClosureReason", name: "ClosureReason", type: "textarea", required: true },
         {
             label: "Status", name: "FkStatusId", type: "select", options: [
-                {label : "OPEN", value : 2},
-                {label : "ON HOLD", value : 3},
-                {label : "CLOSE", value : 4}
-            ], 
+                { label: "OPEN", value: 2 },
+                { label: "ON HOLD", value: 3 },
+                { label: "CLOSE", value: 4 }
+            ],
             isMultiple: false, required: true
         },
         {
-            label: "RequireSkills", name: "RequireSkills", type: "select", options: skillOption, 
+            label: "RequireSkills", name: "RequireSkills", type: "select", options: skillOption,
             isMultiple: true, required: true
         },
         {
@@ -164,7 +186,11 @@ const JobPositionManagement = () => {
             isMultiple: true, required: true
         },
         {
-            label: "FkReviewerId", name: "FkReviewerId", type: "select", options: reviewerOption,
+            label: "ReviewerId", name: "FkReviewerId", type: "select", options: reviewerOption,
+            isMultiple: false, required: true
+        },
+        {
+            label: "SelectedCandidateId", name: "FkSelectedCandidateId", type: "select", options: candidateOptions,
             isMultiple: false, required: true
         },
     ];
@@ -256,8 +282,8 @@ const JobPositionManagement = () => {
                 fields={[]}
                 size="lg"
             >
-                <JobApplications 
-                jobPositionId = {selectedJobPosition?.PkJobPositionId}
+                <JobApplications
+                    jobPositionId={selectedJobPosition?.PkJobPositionId}
                 />
             </CustomDialogForm>
 

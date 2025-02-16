@@ -7,6 +7,7 @@
         public string? Phone { get; set; }
         public string? Password { get; set; }
         public DateOnly? JoiningDate { get; set; }
+        public DateOnly? LeavingDate { get; set; }
         public List<string>? Roles { get; set; }
     }
 }

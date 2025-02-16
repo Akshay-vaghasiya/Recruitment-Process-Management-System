@@ -10,7 +10,7 @@ namespace Backend.Services
         Task<Document> UpdateDocument(int documentId, IFormFile formFile);
 
         Task<Document> UpdateDocumentStatus(int documentId, int statusId);
-
+        Task<List<Document>> GetDocumentByCandidate(int candidateId);
         Task DeleteDocument(int id);
     }
 }

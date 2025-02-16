@@ -1,4 +1,4 @@
-import { Button, colors } from "@mui/material";
+import { Button, colors, TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useEffect, useState } from "react";
 import CustomDialogForm from "../components/CustomDialogForm";
@@ -12,6 +12,11 @@ import { fireToast } from "../components/fireToast";
 import ConfirmationDialog from "../components/ConfirmationDialog";
 import PeopleIcon from '@mui/icons-material/People';
 import InterviewPanel from "./InterviewPanel";
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import dayjs from 'dayjs';
 
 const Interview = ({ application }) => {
 
@@ -21,10 +26,11 @@ const Interview = ({ application }) => {
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
     const [formData, setFormData] = useState({});
     const [interviews, setInterviews] = useState([]);
-    const {logout} = useAuth();
+    const { logout } = useAuth();
     const headers = AuthHeader();
     const [loading, setLoading] = useState(false);
-    const { getInterviewByCandidateAndPosition, addInterview, deleteInterview, updateInterviewStatus } = interviewService;
+    const { getInterviewByCandidateAndPosition, addInterview, deleteInterview, updateInterview } = interviewService;
+    const [value, setValue] = useState(dayjs(new Date().toISOString()));
 
     useEffect(() => {
 
@@ -33,8 +39,8 @@ const Interview = ({ application }) => {
             try {
 
                 let data = await getInterviewByCandidateAndPosition(application?.FkCandidateId, application?.FkJobPositionId, headers);
-                
-                if(data != null) {
+
+                if (data != null) {
 
                     data = data?.map((interview) => {
                         interview.status = interview.FkStatus.Name;
@@ -68,8 +74,10 @@ const Interview = ({ application }) => {
             FkJobPositionId: application?.FkJobPositionId,
             FkInterviewRoundId: "",
             RoundNumber: 1,
-            FkStatusId: ""
+            FkStatusId: "",
+            ScheduledTime: new Date().toISOString()
         })
+        setValue(dayjs(new Date().toISOString()))
         setIsFormOpen(true);
     }
 
@@ -77,9 +85,8 @@ const Interview = ({ application }) => {
     const handleSubmit = async () => {
 
         try {
-
             const data = await addInterview(formData, headers);
-            if(data != null) {
+            if (data != null) {
                 fireToast("successfully interview added", "success");
                 setIsFormOpen(false);
                 setLoading(!loading);
@@ -98,8 +105,8 @@ const Interview = ({ application }) => {
     const handleSubmit1 = async () => {
         try {
 
-            const data = await updateInterviewStatus(formData.PkInterviewId, formData.FkStatusId, headers);
-            if(data != null) {
+            const data = await updateInterview(formData.PkInterviewId, formData, headers);
+            if (data != null) {
                 fireToast("successfully interview status updated", "success");
                 setIsFormOpen1(false);
                 setLoading(!loading);
@@ -116,6 +123,7 @@ const Interview = ({ application }) => {
 
 
     const handleEdit = (interview) => {
+        setValue(dayjs(interview.ScheduledTime));
         setFormData(interview);
         setIsFormOpen1(true);
     }
@@ -136,7 +144,7 @@ const Interview = ({ application }) => {
         try {
 
             const data = await deleteInterview(formData.PkInterviewId, headers);
-            if(data != null) {
+            if (data != null) {
                 fireToast("successfully interview deleted", "success");
                 setIsConfirmOpen(false);
                 setLoading(!loading);
@@ -152,12 +160,13 @@ const Interview = ({ application }) => {
 
     }
 
-    const columns = ["ID", "Round Name", "Round no.", "Status", "CreatedAt"];
-    const datacolumns = ["PkInterviewId", "round", "RoundNumber", "status", "CreatedAt"];
+
+    const columns = ["ID", "Round Name", "Round no.", "Status", "ScheduledTime", "CreatedAt"];
+    const datacolumns = ["PkInterviewId", "round", "RoundNumber", "status", "ScheduledTime", "CreatedAt"];
 
     const actions = [
         {
-            label: "Update Status",
+            label: "Update",
             color: "primary",
             handler: handleEdit,
             icon: <EditIcon />,
@@ -197,6 +206,7 @@ const Interview = ({ application }) => {
     ];
 
     const formFields1 = [
+        { label: "Round number", name: "RoundNumber", type: "number", required: true },
         {
             label: "Interview Status", name: "FkStatusId", type: "select", options: [
                 { value: 1, label: "SCHEDULED" },
@@ -206,6 +216,13 @@ const Interview = ({ application }) => {
         },
     ]
 
+    const handleDateTimeChange = (newValue) => {
+        setFormData((prev) => ({
+            ...prev, ScheduledTime: newValue.toISOString()
+        }))
+        setValue(newValue);
+    };
+
     return (
         <>
             <Button
@@ -213,7 +230,7 @@ const Interview = ({ application }) => {
                 color="primary"
                 startIcon={<AddIcon />}
                 onClick={handleAdd}
-                sx={{mb : 2}}
+                sx={{ mb: 2 }}
             >
                 Add Interview
             </Button>
@@ -235,6 +252,15 @@ const Interview = ({ application }) => {
                 submitButtonText={"Create"}
                 fields={formFields}
             >
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={['DateTimePicker']}>
+                        <DateTimePicker label="Schedule time" value={value}
+                            onChange={handleDateTimeChange}
+                            renderInput={(params) => <TextField {...params} />}
+                        />
+                    </DemoContainer>
+                </LocalizationProvider>
+
             </CustomDialogForm>
 
             <CustomDialogForm
@@ -243,10 +269,19 @@ const Interview = ({ application }) => {
                 formData={formData}
                 setFormData={setFormData}
                 onSubmit={handleSubmit1}
-                title={"Update Interview status"}
+                title={"Update Interview"}
                 submitButtonText={"Update"}
                 fields={formFields1}
             >
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={['DateTimePicker']}>
+                        <DateTimePicker label="Schedule time" value={value}
+                            onChange={handleDateTimeChange}
+                            renderInput={(params) => <TextField {...params} />}
+                        />
+                    </DemoContainer>
+                </LocalizationProvider>
+
             </CustomDialogForm>
 
             <CustomDialogForm
@@ -261,8 +296,8 @@ const Interview = ({ application }) => {
                 size="md"
             >
 
-                <InterviewPanel 
-                    interview = {formData}
+                <InterviewPanel
+                    interview={formData}
                 />
             </CustomDialogForm>
 

@@ -7,4 +7,14 @@ const updateApplicationStatus = async (applicationId, statusId, headers) => {
     return response?.data;
 }
 
-export default {updateApplicationStatus}
+const createJobApplication = async (candidateId, jobPositionId, headers) => {
+    const response = await axios.post(`${API_URL}/${candidateId}/${jobPositionId}`, null, {headers});
+    return response?.data;
+}
+
+const deleteJobAppliction = async (applicationId, headers) => {
+    const response = await axios.delete(`${API_URL}/${applicationId}`, {headers});
+    return response?.data;
+}
+
+export default {updateApplicationStatus, createJobApplication, deleteJobAppliction}

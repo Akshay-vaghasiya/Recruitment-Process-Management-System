@@ -15,13 +15,27 @@ namespace Backend.Repository.impl
 
         public async Task<Candidate?> GetCandidateByEmail(string? email)
         {
-            var result = await _context.Candidates.Where(c => c.Email == email).FirstOrDefaultAsync();
+            var result = await _context.Candidates.Where(c => c.Email == email)
+                .Include(c => c.CandidateSkills)
+                .ThenInclude(cs => cs.FkSkill)
+                .Include(c => c.Documents)
+                .ThenInclude(d => d.FkStatus)
+                .Include(c => c.Documents)
+                .ThenInclude(d => d.FkDocumentType)
+                .FirstOrDefaultAsync();
             return result;
         }
 
         public async Task<Candidate?> GetCandidateById(int? id)
         {
-            var result = await _context.Candidates.Where(c => c.PkCandidateId == id).FirstOrDefaultAsync();
+            var result = await _context.Candidates.Where(c => c.PkCandidateId == id)
+                .Include(c => c.CandidateSkills)
+                .ThenInclude(cs => cs.FkSkill)
+                .Include(c => c.Documents)
+                .ThenInclude(d => d.FkStatus)
+                .Include(c => c.Documents)
+                .ThenInclude(d => d.FkDocumentType)
+                .FirstOrDefaultAsync();
             return result;
         }
 

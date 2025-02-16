@@ -107,7 +107,8 @@ namespace Backend.Services.impl
                 existingUser.JoiningDate = registerDto.JoiningDate;
             }
 
-    
+            existingUser.LeavingDate = registerDto.LeavingDate;
+ 
             if (registerDto.Roles != null && registerDto.Roles.Any())
             {
                 foreach (var userRole in existingUser.UserRoles)

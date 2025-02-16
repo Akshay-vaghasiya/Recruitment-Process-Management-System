@@ -439,6 +439,29 @@
         }
       }
     },
+    "/api/Candidate/getCandidateSkill/{candidateId}": {
+      "get": {
+        "tags": [
+          "Candidate"
+        ],
+        "parameters": [
+          {
+            "name": "candidateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Candidate/addCandidateSkill/{candidateId}/{skillId}/{yearOfExp}": {
       "post": {
         "tags": [
@@ -830,6 +853,29 @@
         }
       }
     },
+    "/api/Document/{candidateId}": {
+      "get": {
+        "tags": [
+          "Document"
+        ],
+        "parameters": [
+          {
+            "name": "candidateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/DocumentStatus": {
       "get": {
         "tags": [
@@ -1132,7 +1178,7 @@
         }
       }
     },
-    "/api/Interview/updatestatus/{interviewId}/{interviewStatusId}": {
+    "/api/Interview/{interviewId}": {
       "put": {
         "tags": [
           "Interview"
@@ -1146,17 +1192,27 @@
               "type": "integer",
               "format": "int32"
             }
-          },
-          {
-            "name": "interviewStatusId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterviewDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -3386,6 +3442,11 @@
             "nullable": true
           },
           "JoiningDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "LeavingDate": {
             "type": "string",
             "format": "date",
             "nullable": true

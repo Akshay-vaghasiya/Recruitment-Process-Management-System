@@ -31,7 +31,8 @@ const JobPositionReducer = (state, action) => {
                 ...state,
                 isLoading: false,
                 jobPositions: [...state.jobPositions, jobPosition],
-                filteredJobPositions: [...state.jobPositions, jobPosition]
+                filteredJobPositions: [...state.jobPositions, jobPosition],
+                openJobPositions: [...state.openJobPositions, jobPosition]
             };
 
         case "GET_JOB_POSITONS":
@@ -53,11 +54,40 @@ const JobPositionReducer = (state, action) => {
                 let status = jobPosition.FkStatus.Name;
                 return { ...jobPosition, requiredSkill, preferredSkill, status };
             })
+
+            // let openPositions = jobPositions1?.filter((job) => {
+            //     if (job.FkStatus.Name === "OPEN") {
+            //         let temp = 0;
+            //         job?.JobApplications?.map((application) => {
+            //             if (application?.FkCandidateId === candidate.PkCandidateId) {
+            //                 temp = 1;
+            //             }
+            //         })
+
+            //         if (temp === 0) {
+            //             return true;
+            //         }
+            //     }
+            // })
+
+            // let appliedJobs1 = jobPositions1?.filter((job) => {
+
+            //     let temp = 0;
+            //     job?.JobApplications?.map((application) => {
+            //         if (application?.FkCandidateId === candidate.PkCandidateId) {
+            //             temp = 1;
+            //         }
+            //     })
+
+            //     if (temp === 1) {
+            //         return true;
+            //     }
+            // })
             return {
                 ...state,
                 isLoading: false,
                 jobPositions: jobPositions1,
-                filteredJobPositions: jobPositions1
+                filteredJobPositions: jobPositions1,
             };
 
 
@@ -76,8 +106,7 @@ const JobPositionReducer = (state, action) => {
                     } else {
                         return true;
                     }
-
-                })
+                }),
             }
 
         case "SEARCH_JOB_POSITION":

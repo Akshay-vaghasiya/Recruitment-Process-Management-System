@@ -15,5 +15,6 @@ namespace Backend.Repository
         Task DeleteDocumentAsync(int id);
 
         Task<Document?> GetDocumentByCandidateAndType(int candidateId, int documentTypeId);
+        Task<List<Document>> GetDocumentsByCandidateId(int? candidateId);
     }
 }

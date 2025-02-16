@@ -56,6 +56,7 @@ export const UserProvider = ({ children }) => {
                 Phone: data1.Phone,
                 Password: data1.Password,
                 JoiningDate: data1.JoiningDate,
+                LeavingDate: data1.LeavingDate==""? null : data1.LeavingDate,
                 Roles: data1.Roles
             }
 

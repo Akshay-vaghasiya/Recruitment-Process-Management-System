@@ -12,6 +12,7 @@ const ProtectedRoute = ({allowedRoles}) => {
     const hasAccess = auth?.roles?.some(role => allowedRoles.includes(role));
        
     return hasAccess ? <Outlet /> : <Navigate to="/unauthorized" />;
+    // return <Outlet />
   };
   
   export default ProtectedRoute;

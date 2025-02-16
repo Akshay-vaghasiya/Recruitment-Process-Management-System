@@ -31,6 +31,14 @@ namespace Backend.Repository.impl
            return await _context.CandidateSkills.Where(cs => cs.FkSkillId == skillId && cs.FkCandidateId == candidateId).FirstOrDefaultAsync();
         }
 
+        public async Task<List<CandidateSkill>> GetCandidateSkillByCandidate(int? candidateId)
+        {
+            return await _context.CandidateSkills
+                .Include(cs => cs.FkSkill)
+                .Where(cs => cs.FkCandidateId == candidateId)
+                .ToListAsync();
+        }
+
         public async Task DeleteCandidateSkill(CandidateSkill candidateSkill)
         {
             _context.CandidateSkills.Remove(candidateSkill);

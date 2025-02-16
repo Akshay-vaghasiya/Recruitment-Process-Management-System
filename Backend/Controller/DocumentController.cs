@@ -17,7 +17,7 @@ namespace Backend.Controller
         }
 
         [HttpPost("{candidateId}/{documentTypeId}")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,CANDIDATE")]
         public async Task<IActionResult> AddDocument(int candidateId, int documentTypeId, [FromForm] DocumentDto documentDto)
         {
             try
@@ -37,7 +37,7 @@ namespace Backend.Controller
         }
 
         [HttpPut("{documentId}")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,CANDIDATE")]
         public async Task<IActionResult> UpdateDocument(int documentId, [FromForm] DocumentDto documentDto)
         {
             try
@@ -84,8 +84,24 @@ namespace Backend.Controller
             }
         }
 
+        [HttpGet("{candidateId}")]
+        [Authorize(Roles = "ADMIN,CANDIDATE")]
+        public async Task<IActionResult> GetDocumentsByCandidate(int candidateId)
+        {
+            try
+            {
+                return Ok(await _service.GetDocumentByCandidate(candidateId));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
+
         [HttpDelete("{documentId}")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,CANDIDATE")]
         public async Task<IActionResult> DeleteDocument(int documentId)
         {
             try

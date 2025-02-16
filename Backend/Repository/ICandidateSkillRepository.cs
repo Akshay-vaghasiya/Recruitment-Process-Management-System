@@ -13,5 +13,6 @@ namespace Backend.Repository
         Task<CandidateSkill> UpdateCandidateSkill(CandidateSkill candidateSkill);
 
         Task<CandidateSkill?> GetCandidateSkillAsyncById(int candidateSkillId);
+        Task<List<CandidateSkill>> GetCandidateSkillByCandidate(int? candidateId);
     }
 }

@@ -17,7 +17,7 @@ namespace Backend.Controller
         }
 
         [HttpGet]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,CANDIDATE")]
         public async Task<IActionResult> GetDocumentTypes()
         {
             try
