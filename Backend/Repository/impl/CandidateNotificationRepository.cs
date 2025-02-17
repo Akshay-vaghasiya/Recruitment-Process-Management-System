@@ -30,6 +30,11 @@ namespace Backend.Repository.impl
             return await _context.CandidateNotifications.FirstOrDefaultAsync(n => n.PkNotificationId == id);
         }
 
+        public async Task<List<CandidateNotification>> GetCandidateNotificationByCandidate(int candidateId)
+        {
+            return await _context.CandidateNotifications.Where(cn => cn.FkCandidateId == candidateId).ToListAsync();
+        }
+
         public async Task<CandidateNotification> UpdateCandidateNotification(CandidateNotification CandidateNotification)
         {
             _context.CandidateNotifications.Update(CandidateNotification);

@@ -40,7 +40,11 @@ namespace Backend.Repository.impl
 
         public async Task<JobApplication?> GetJobApplicationById(int id)
         {
-            return await _context.JobApplications.FirstOrDefaultAsync(ja => ja.PkJobApplicationId == id);
+            return await _context.JobApplications
+                .Include(ja => ja.FkCandidate)
+                .Include(ja => ja.FkJobPosition)
+                .Include(ja => ja.FkStatus)
+                .FirstOrDefaultAsync(ja => ja.PkJobApplicationId == id);
         }
 
         public async Task<JobApplication> UpdateJobAppliction(JobApplication jobApplication)

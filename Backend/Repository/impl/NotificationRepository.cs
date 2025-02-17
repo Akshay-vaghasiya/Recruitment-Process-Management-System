@@ -29,6 +29,11 @@ namespace Backend.Repository.impl
             return await _context.Notifications.FirstOrDefaultAsync(n => n.PkNotificationId == id);
         }
 
+        public async Task<List<Notification>> GetNotificationByUser(int userId)
+        {
+            return await _context.Notifications.Where(n => n.FkUserId == userId).ToListAsync();
+        }
+
         public async Task<Notification> UpdateNotification(Notification notification)
         {
             _context.Notifications.Update(notification);

@@ -388,6 +388,22 @@
   },
   {
     "ContainingType": "Backend.Controller.CandidateNotificationController",
+    "Method": "GetCandidateNotificationsByCandidate",
+    "RelativePath": "api/CandidateNotification/{candidateId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "candidateId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.CandidateNotificationController",
     "Method": "UpdateCandidateNotification",
     "RelativePath": "api/CandidateNotification/{CandidateNotificationId}",
     "HttpMethod": "PUT",
@@ -1389,6 +1405,22 @@
     "Parameters": [
       {
         "Name": "notificationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Backend.Controller.NotificationController",
+    "Method": "GetNotificationsByUser",
+    "RelativePath": "api/Notification/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
         "Type": "System.Int32",
         "IsRequired": true
       }

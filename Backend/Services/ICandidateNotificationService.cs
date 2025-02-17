@@ -8,5 +8,6 @@ namespace Backend.Services
         Task<List<CandidateNotification>> GetCandidateNotificationsAsync();
         Task<CandidateNotification> UpdateCandidateNotification(int id, CandidateNotification CandidateNotification);
         Task DeleteCandidateNotification(int id);
+        Task<List<CandidateNotification>> GetCandidateNotificationByCandidate(int candidateId);
     }
 }

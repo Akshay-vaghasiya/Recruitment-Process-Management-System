@@ -30,6 +30,14 @@ namespace Backend.Services.impl
             return await _repository.GetCandidateNotificationAsync();
         }
 
+        public async Task<List<CandidateNotification>> GetCandidateNotificationByCandidate(int candidateId)
+        {
+            Candidate? candidate = await _candidateRepository.GetCandidateById(candidateId);
+            if (candidate == null) throw new Exception("candidate not exist with given id");
+
+            return await _repository.GetCandidateNotificationByCandidate(candidateId);
+        }
+
         public async Task<CandidateNotification> UpdateCandidateNotification(int id, CandidateNotification CandidateNotification)
         {
             CandidateNotification? CandidateNotification1 = await _repository.GetCandidateNotificationById(id);

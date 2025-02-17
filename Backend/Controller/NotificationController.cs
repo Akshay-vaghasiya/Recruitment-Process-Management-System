@@ -1,5 +1,6 @@
 ﻿using Backend.Models;
 using Backend.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,7 @@ namespace Backend.Controller
         }
 
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> AddNotification(Notification notification)
         {
             try
@@ -40,6 +42,7 @@ namespace Backend.Controller
         }
 
         [HttpGet]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> GetNotifications()
         {
             try
@@ -52,7 +55,24 @@ namespace Backend.Controller
             }
         }
 
+        [HttpGet("{userId}")]
+        [Authorize(Roles = "ADMIN")]
+        public async Task<IActionResult> GetNotificationsByUser(int userId)
+        {
+            try
+            {
+                return Ok(await _service.GetNotificationByUser(userId));
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpPut("{notificationId}")]
+        [Authorize(Roles = "ADMIN")]
+
         public async Task<IActionResult> UpdateNotification(int notificationId, [FromBody] Notification notification)
         {
             try
@@ -64,7 +84,8 @@ namespace Backend.Controller
             }
         }
 
-        [HttpDelete("{notificationId}")] 
+        [HttpDelete("{notificationId}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> DeleteNotification(int notificationId)
         {
             try

@@ -9,5 +9,6 @@ namespace Backend.Repository
         Task<CandidateNotification?> GetCandidateNotificationById(int? id);
         Task<CandidateNotification> UpdateCandidateNotification(CandidateNotification CandidateNotification);
         Task DeleteCandidateNotification(int id);
+        Task<List<CandidateNotification>> GetCandidateNotificationByCandidate(int candidateId);
     }
 }

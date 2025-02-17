@@ -50,5 +50,13 @@ namespace Backend.Services.impl
 
             await _repository.DeleteNotification(id);
         }
+
+        public async Task<List<Notification>> GetNotificationByUser(int userId)
+        {
+            User? user = await _userRepository.GetUserById(userId);
+            if (user == null) throw new Exception("user not exist with given id");
+
+            return await _repository.GetNotificationByUser(userId);
+        }
     }
 }

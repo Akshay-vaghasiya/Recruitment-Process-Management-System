@@ -9,5 +9,6 @@ namespace Backend.Repository
         Task<Notification?> GetNotificationById(int? id);
         Task<Notification> UpdateNotification(Notification notification);
         Task DeleteNotification(int id);
+        Task<List<Notification>> GetNotificationByUser(int userId);
     }
 }

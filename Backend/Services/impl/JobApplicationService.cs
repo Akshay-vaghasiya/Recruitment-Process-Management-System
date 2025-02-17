@@ -9,13 +9,17 @@ namespace Backend.Services.impl
         private readonly IJobPositionRepository _positionRepository;
         private readonly ICandidateRepository _candidateRepository;
         private readonly IApplicationStatusRepository _applicationStatusRepository;
+        private readonly INotificationRepository _notificationRepository;
+        private readonly ICandidateNotificationRepository _candidateNotificationRepository;
 
-        public JobApplicationService(IJobApplicationRepository repository, IJobPositionRepository positionRepository, ICandidateRepository candidateRepository, IApplicationStatusRepository applicationStatusRepository)
+        public JobApplicationService(IJobApplicationRepository repository, IJobPositionRepository positionRepository, ICandidateRepository candidateRepository, IApplicationStatusRepository applicationStatusRepository, INotificationRepository notificationRepository, ICandidateNotificationRepository candidateNotificationRepository)
         {
             _repository = repository;
             _positionRepository = positionRepository;
             _candidateRepository = candidateRepository;
             _applicationStatusRepository = applicationStatusRepository;
+            _notificationRepository = notificationRepository;
+            _candidateNotificationRepository = candidateNotificationRepository;
         }
 
         public async Task<JobApplication> AddJobApplication(int jobPositionId, int candidateId)
@@ -31,13 +35,31 @@ namespace Backend.Services.impl
 
             ApplicationStatus? applicationStatus = await _applicationStatusRepository.GetApplicationStatusByNameAsync("APPLIED");
 
+
             JobApplication jobApplication = new JobApplication();
             jobApplication.FkStatus = applicationStatus;
             jobApplication.FkCandidate = candidate;
             jobApplication.FkJobPosition = jobPosition;
             jobApplication.CreatedAt = DateTime.UtcNow;
 
-            return await _repository.AddJobApplication(jobApplication);
+            var application =  await _repository.AddJobApplication(jobApplication);
+            if (application != null)
+            {
+                Notification notification = new Notification();
+                notification.FkUserId = jobPosition.FkReviewerId;
+                notification.Message = $"You need to screen resume of ${candidate.Email} candidate.";
+                notification.IsRead = false;
+                await _notificationRepository.AddNotification(notification);
+
+                CandidateNotification candidateNotification = new CandidateNotification();
+                candidateNotification.FkCandidateId = jobApplication.FkCandidateId;
+                candidateNotification.Message = $"Your application for {jobPosition.Title} job position successfully saved so please check it out.";
+                candidateNotification.IsRead = false;
+
+                await _candidateNotificationRepository.AddCandidateNotification(candidateNotification);
+                return application;
+            }
+            return null;
         }
 
         public async Task<List<JobApplication>> GetJobApplicationsAsync()
@@ -55,7 +77,20 @@ namespace Backend.Services.impl
 
             jobApplication.FkStatus = applicationStatus;
 
-            return await _repository.UpdateJobAppliction(jobApplication);
+            var application =  await _repository.UpdateJobAppliction(jobApplication);
+            if (application != null)
+            {
+                CandidateNotification candidateNotification = new CandidateNotification();
+                candidateNotification.FkCandidateId = jobApplication.FkCandidateId;
+                candidateNotification.Message = $"Your application of {jobApplication.FkJobPosition.Title} job position status is going to {applicationStatus.Name}";
+                candidateNotification.IsRead = false;
+
+                await _candidateNotificationRepository.AddCandidateNotification(candidateNotification);
+
+                return application;
+            }
+
+            return null;
         }
 
         public async Task DeleteJobApplication(int jobApplicationId)
@@ -64,6 +99,13 @@ namespace Backend.Services.impl
             if (jobApplication == null) throw new Exception("job appliction not exist with given id");
 
             await _repository.DeleteJobAppliction(jobApplicationId);
+
+            CandidateNotification candidateNotification = new CandidateNotification();
+            candidateNotification.FkCandidateId = jobApplication.FkCandidateId;
+            candidateNotification.Message = $"Your application of {jobApplication.FkJobPosition.Title} job position deleted by admin";
+            candidateNotification.IsRead = false;
+
+            await _candidateNotificationRepository.AddCandidateNotification(candidateNotification);
         }
 
     }

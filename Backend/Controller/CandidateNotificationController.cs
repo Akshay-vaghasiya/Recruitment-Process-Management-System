@@ -8,7 +8,7 @@ namespace Backend.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "ADMIN")]
+
     public class CandidateNotificationController : ControllerBase
     {
         private readonly ICandidateNotificationService _service;
@@ -19,6 +19,7 @@ namespace Backend.Controller
         }
 
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> AddCandidateNotification(CandidateNotification CandidateNotification)
         {
             try
@@ -42,6 +43,7 @@ namespace Backend.Controller
         }
 
         [HttpGet]
+        [Authorize(Roles = "CANDIDATE,ADMIN")]
         public async Task<IActionResult> GetCandidateNotifications()
         {
             try
@@ -55,7 +57,23 @@ namespace Backend.Controller
             }
         }
 
+        [HttpGet("{candidateId}")]
+        [Authorize(Roles = "CANDIDATE,ADMIN")]
+        public async Task<IActionResult> GetCandidateNotificationsByCandidate(int candidateId)
+        {
+            try
+            {
+                return Ok(await _service.GetCandidateNotificationByCandidate(candidateId));
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpPut("{CandidateNotificationId}")]
+        [Authorize(Roles = "CANDIDATE,ADMIN")]
         public async Task<IActionResult> UpdateCandidateNotification(int CandidateNotificationId, [FromBody] CandidateNotification CandidateNotification)
         {
             try
@@ -69,6 +87,7 @@ namespace Backend.Controller
         }
 
         [HttpDelete("{CandidateNotificationId}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<IActionResult> DeleteCandidateNotification(int CandidateNotificationId)
         {
             try

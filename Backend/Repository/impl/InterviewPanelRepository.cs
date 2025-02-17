@@ -38,6 +38,8 @@ namespace Backend.Repository.impl
         {
             return await _context.InterviewPanels
                 .Include(ip => ip.FkInterviewer)
+                .Include(ip => ip.FkInterview)
+                .ThenInclude(i => i.FkInterviewRound)
                 .Where(ip => ip.FkInterviewId == interviewId).ToListAsync();
         }
 

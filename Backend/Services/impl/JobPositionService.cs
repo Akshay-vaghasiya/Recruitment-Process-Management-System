@@ -12,14 +12,16 @@ namespace Backend.Services.impl
         private readonly ISkillRepository _skillRepository;
         private readonly IJobSkillRepository _jobSkillRepository;
         private readonly ICandidateRepository _candidateRepository;
+        private readonly ICandidateNotificationRepository _candidateNotificationRepository;
 
-        public JobPositionService(IJobPositionRepository repository, IJobStatusRepository jobStatusRepository, IUserRepository userRepository, IJobSkillRepository jobSkillRepository, ISkillRepository skillRepository)
+        public JobPositionService(IJobPositionRepository repository, IJobStatusRepository jobStatusRepository, IUserRepository userRepository, IJobSkillRepository jobSkillRepository, ISkillRepository skillRepository, ICandidateNotificationRepository candidateNotificationRepository)
         {
             _repository = repository;
             _jobStatusRepository = jobStatusRepository;
             _userRepository = userRepository;
             _skillRepository = skillRepository;
             _jobSkillRepository = jobSkillRepository;
+            _candidateNotificationRepository = candidateNotificationRepository;
         }
 
         public async Task<List<JobPosition>> GetAllJobPositionsAsync()
@@ -114,6 +116,20 @@ namespace Backend.Services.impl
             jobPosition.FkReviewerId = jobPositionDto?.FkReviewerId ?? jobPosition.FkReviewerId;
             jobPosition.ClosureReason = jobPositionDto?.ClosureReason ?? jobPosition.ClosureReason;
             jobPosition.FkSelectedCandidateId = jobPositionDto?.FkSelectedCandidateId ?? jobPosition.FkSelectedCandidateId;
+
+            foreach(var application in jobPosition.JobApplications)
+            {
+                CandidateNotification candidateNotification = new CandidateNotification();
+                candidateNotification.FkCandidateId = application.FkCandidateId;
+                candidateNotification.Message = $"{jobPosition.Title} job position status is change and it was ${jobPosition.FkStatus.Name}";
+                candidateNotification.IsRead = false;
+
+                await _candidateNotificationRepository.AddCandidateNotification(candidateNotification);
+            }
+
+
+
+
 
             if(jobPositionDto?.RequireSkills != null && jobPositionDto.Skills != null)
             {

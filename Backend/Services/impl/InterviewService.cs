@@ -1,6 +1,7 @@
 ﻿using Backend.Dtos;
 using Backend.Models;
 using Backend.Repository;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Backend.Services.impl
 {
@@ -13,8 +14,10 @@ namespace Backend.Services.impl
         private readonly IInterviewRoundRepository _interviewRoundRepository;
         private readonly IJobApplicationRepository _jobApplicationRepository;
         private readonly IApplicationStatusRepository _applicationStatusRepository;
+        private readonly ICandidateNotificationRepository _candidateNotificationRepository;
+        private readonly INotificationRepository _notificationRepository;
 
-        public InterviewService(IInterviewRepository repository, ICandidateRepository candidateRepository, IJobPositionRepository jobPositionRepository, IInterviewStatusRepository interviewStatusRepository, IInterviewRoundRepository interviewRoundRepository, IJobApplicationRepository jobApplicationRepository, IApplicationStatusRepository applicationStatusRepository)
+        public InterviewService(IInterviewRepository repository, ICandidateRepository candidateRepository, IJobPositionRepository jobPositionRepository, IInterviewStatusRepository interviewStatusRepository, IInterviewRoundRepository interviewRoundRepository, IJobApplicationRepository jobApplicationRepository, IApplicationStatusRepository applicationStatusRepository, ICandidateNotificationRepository candidateNotificationRepository, INotificationRepository notificationRepository)
         {
             _repository = repository;
             _candidateRepository = candidateRepository;
@@ -23,6 +26,8 @@ namespace Backend.Services.impl
             _interviewRoundRepository = interviewRoundRepository;
             _jobApplicationRepository = jobApplicationRepository;
             _applicationStatusRepository = applicationStatusRepository;
+            _candidateNotificationRepository = candidateNotificationRepository;
+            _notificationRepository = notificationRepository;
         }
 
         public async Task<Interview> AddInterview(InterviewDto interviewDto) 
@@ -79,7 +84,16 @@ namespace Backend.Services.impl
             interview.ScheduledTime = interviewDto?.ScheduledTime;
             interview.CreatedAt = DateTime.UtcNow;
 
-            return await _repository.AddInterview(interview);
+            var interview2 = await _repository.AddInterview(interview);
+
+            CandidateNotification candidateNotification = new CandidateNotification();
+            candidateNotification.FkCandidateId = interview2.FkCandidateId;
+            candidateNotification.Message = $"{interviewRound.Name} interview round will be schedule at {interview2.ScheduledTime?.ToString()} for {jobPosition.Title} job position.";
+            candidateNotification.IsRead = false;
+
+            await _candidateNotificationRepository.AddCandidateNotification(candidateNotification);
+
+            return interview2;
         }
 
         public async Task<List<Interview>> GetInterviewsAsync()
@@ -105,6 +119,14 @@ namespace Backend.Services.impl
             await _repository.UpdateInterview(interview);
 
             await _repository.DeleteInterview(interviewId);
+
+            CandidateNotification candidateNotification = new CandidateNotification();
+            candidateNotification.FkCandidateId = interview.FkCandidateId;
+            candidateNotification.Message = $"{interview.FkInterviewRound.Name} interview round was deleted by admin for {interview?.FkJobPosition?.Title} job position";
+            candidateNotification.IsRead = false;
+
+            await _candidateNotificationRepository.AddCandidateNotification(candidateNotification);
+
         }
 
         public async Task<Interview> UpdateInterview(int interviewId, InterviewDto interviewDto)
@@ -115,12 +137,31 @@ namespace Backend.Services.impl
             InterviewStatus? interviewStatus = await _interviewStatusRepository.GetInterviewStatusByIdAsync(interviewDto?.FkStatusId);
             if (interviewStatus == null) throw new Exception("Interview status not exist in system");
 
-
             interview.RoundNumber = interviewDto?.RoundNumber ?? interview.RoundNumber;
             interview.ScheduledTime = interviewDto?.ScheduledTime ?? interview.ScheduledTime;
             interview.FkStatusId = interviewDto?.FkStatusId ?? interviewDto?.FkStatusId;
 
-            return await _repository.UpdateInterview(interview);
+            var interview1 = await _repository.UpdateInterview(interview);
+
+            CandidateNotification candidateNotification = new CandidateNotification();
+            candidateNotification.FkCandidateId = interview1.FkCandidateId;
+            candidateNotification.Message = $"{interview.FkInterviewRound.Name} interview round is updated and schedule at {interview1.ScheduledTime} for {interview1?.FkJobPosition?.Title} job position.";
+            candidateNotification.IsRead = false;
+            await _candidateNotificationRepository.AddCandidateNotification(candidateNotification);
+
+            if (interviewStatus.Name == "CANCELLED")
+            {
+                foreach(var panel in interview.InterviewPanels)
+                {
+                    Notification notification = new Notification();
+                    notification.FkUserId = panel.FkInterviewerId;
+                    notification.Message = $"{interview.FkInterviewRound.Name} interview round of {interview.FkJobPosition.Title} job position for {interview.FkCandidate.Email} is cancelled";
+                    notification.IsRead = false;
+                    await _notificationRepository.AddNotification(notification);
+                }
+            }
+
+            return interview1;
         }
     }
 }
