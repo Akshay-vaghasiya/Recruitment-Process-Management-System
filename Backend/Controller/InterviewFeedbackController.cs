@@ -7,7 +7,7 @@ namespace Backend.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "ADMIN")]
+    [Authorize(Roles = "ADMIN,RECRUITER,HR,INTERVIEWER")]
     public class InterviewFeedbackController : ControllerBase
     {
         private readonly IInterviewFeedbackService _service;
@@ -17,7 +17,7 @@ namespace Backend.Controller
             _service = service;
         }
 
-        [HttpPost] 
+        [HttpPost]
         public async Task<IActionResult> AddInterviewFeedback(InterviewFeedback interviewFeedback)
         {
             try

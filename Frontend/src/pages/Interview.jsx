@@ -107,7 +107,7 @@ const Interview = ({ application }) => {
 
             const data = await updateInterview(formData.PkInterviewId, formData, headers);
             if (data != null) {
-                fireToast("successfully interview status updated", "success");
+                fireToast("successfully interview details updated", "success");
                 setIsFormOpen1(false);
                 setLoading(!loading);
             }

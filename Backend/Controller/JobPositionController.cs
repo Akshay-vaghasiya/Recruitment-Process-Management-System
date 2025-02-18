@@ -18,6 +18,7 @@ namespace Backend.Controller
         }
 
         [HttpGet]
+        [Authorize(Roles = "ADMIN,RECRUITER,HR,CANDIDATE,REVIEWER,INTERVIEWER")]
         public async Task<IActionResult> GetAllJobPositions()
         {
             try
@@ -31,6 +32,7 @@ namespace Backend.Controller
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "ADMIN,RECRUITER,HR,REVIEWER,INTERVIEWER")]
         public async Task<IActionResult> GetJobPositionById(int id)
         {
             try
@@ -47,6 +49,7 @@ namespace Backend.Controller
         }
 
         [HttpPost]
+        [Authorize(Roles = "ADMIN,RECRUITER")]
         public async Task<IActionResult> AddJobPosition([FromBody] JobPositionDto jobPositionDto)
         {
             try
@@ -64,6 +67,7 @@ namespace Backend.Controller
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "ADMIN,RECRUITER")]
         public async Task<IActionResult> UpdateJobPosition(int id, [FromBody] JobPositionDto jobPositionDto)
         {
             try
@@ -81,6 +85,7 @@ namespace Backend.Controller
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN,RECRUITER")]
         public async Task<IActionResult> DeleteJobPosition(int id)
         {
             try
@@ -99,6 +104,7 @@ namespace Backend.Controller
 
 
         [HttpPost("addjobskill/{jobpositionId}/{skillId}/{isRequire}")]
+        [Authorize(Roles = "ADMIN,RECRUITER")]
         public async Task<IActionResult> AddJobSkill(int jobpositionId, int skillId, int isRequire)
         {
             try
@@ -117,6 +123,7 @@ namespace Backend.Controller
         }
 
         [HttpDelete("deletejobskill/{jobskillId}")]
+        [Authorize(Roles = "ADMIN,RECRUITER")]
         public async Task<IActionResult> DeleteJobSkill(int jobskillId)
         {
             try

@@ -56,7 +56,7 @@ namespace Backend.Controller
         }
 
         [HttpGet("{userId}")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,RECRUITER,HR,REVIEWER,INTERVIEWER")]
         public async Task<IActionResult> GetNotificationsByUser(int userId)
         {
             try
@@ -71,7 +71,7 @@ namespace Backend.Controller
         }
 
         [HttpPut("{notificationId}")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,RECRUITER,HR,REVIEWER,INTERVIEWER")]
 
         public async Task<IActionResult> UpdateNotification(int notificationId, [FromBody] Notification notification)
         {

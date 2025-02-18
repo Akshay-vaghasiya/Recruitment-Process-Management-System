@@ -77,7 +77,7 @@ namespace Backend.Controllers
         }
 
         [HttpGet("getAllUsers")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,RECRUITER,HR,REVIEWER,INTERVIEWER")]
         public async Task<IActionResult> getAllUsers()
         {
             try

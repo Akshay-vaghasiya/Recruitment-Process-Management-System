@@ -19,7 +19,7 @@ namespace Backend.Controller
         }
 
         [HttpPost]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,RECRUITER,HR")]
         public async Task<IActionResult> AddCandidate([FromForm] CandidateDto candidateDto)
         {
             try
@@ -45,7 +45,7 @@ namespace Backend.Controller
         }
 
         [HttpGet]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,RECRUITER,HR")]
         public async Task<IActionResult> GetCandidates() {
 
             try
@@ -59,7 +59,7 @@ namespace Backend.Controller
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "ADMIN,CANDIDATE")]
+        [Authorize(Roles = "ADMIN,CANDIDATE,RECRUITER,HR")]
         public async Task<IActionResult> UpdateCandidate(int id, [FromForm] CandidateDto candidateDto)
         {
             try
@@ -74,7 +74,7 @@ namespace Backend.Controller
         }
 
         [HttpDelete("{candidateId}")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,RECRUITER,HR")]
         public async Task<IActionResult> DeleteCandidate(int candidateId)
         {
             try
@@ -150,7 +150,7 @@ namespace Backend.Controller
         }
 
         [HttpPost("upload")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,RECRUITER,HR")]
         public async Task<IActionResult> ExcelUploadCandidates([FromForm] DocumentDto documentDto)
         {
             if (documentDto.document == null || documentDto.document.Length == 0)

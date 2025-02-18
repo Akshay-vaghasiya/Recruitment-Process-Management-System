@@ -48,6 +48,7 @@ namespace Backend.Repository.impl
                 .Include(i => i.FkJobPosition)
                 .Include(i => i.InterviewPanels)
                 .ThenInclude(p => p.FkInterviewer)
+                .Include(i => i.FkCandidate)
                 .FirstOrDefaultAsync(i => i.PkInterviewId == id);
         }
 

@@ -8,7 +8,7 @@ namespace Backend.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "ADMIN")]
+    [Authorize(Roles = "ADMIN,RECRUITER")]
     public class InterviewStatusController : ControllerBase
     {
         private readonly IInterviewStatusService _service;

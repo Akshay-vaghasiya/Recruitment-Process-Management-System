@@ -17,6 +17,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import { useAuth } from '../contexts/AuthContext';
 import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
 const drawerWidth = 240;
 
@@ -69,17 +70,34 @@ const Sidebar = ({ isOpen, onClose, selectedIndex, onItemClick }) => {
   if (roles?.includes("ADMIN")) {
     menuItems = [
       { text: 'Candidate Management', icon: <PersonAdd />, link: '/user/candidate-management' },
-      { text: 'User Management', icon: <PersonAdd />, link: '/user/user-management' },
+      { text: 'User Management', icon: <ManageAccountsIcon />, link: '/user/user-management' },
       { text: 'Skill Management', icon: <PsychologyIcon />, link: '/user/skill-management' },
       { text: 'Job Position Management', icon: <WorkIcon />, link: '/user/job-management' },
     ];
   } else if (roles?.includes("CANDIDATE")) {
-
     menuItems = [
       { text: 'Job Position', icon: <WorkIcon />, link: '/candidate/job-positions' },
       { text: 'Job Applications', icon: <WorkHistoryIcon />, link: '/candidate/job-applications' },
       { text: 'Profile', icon: <AccountBoxIcon />, link: '/candidate/profile' },
     ]
+  } else if (roles?.includes("RECRUITER")) {
+    menuItems = [
+      { text: 'Candidate Management', icon: <PersonAdd />, link: '/recruiter/candidate-management' },
+      { text: 'Job Position Management', icon: <WorkIcon />, link: '/recruiter/job-management' },
+    ];
+  } else if (roles?.includes("HR")) {
+    menuItems = [
+      { text: 'Candidate Management', icon: <PersonAdd />, link: '/hr/candidate-management' },
+      { text: 'Job Position Management', icon: <WorkIcon />, link: '/hr/job-management' },
+    ];
+  } else if (roles?.includes("REVIEWER")) {
+    menuItems = [
+      { text: 'Job Position Management', icon: <WorkIcon />, link: '/reviewer/job-management' },
+    ];
+  } else if (roles?.includes("INTERVIEWER")) {
+    menuItems = [
+      { text: 'Job Position Management', icon: <WorkIcon />, link: '/interviewer/job-management' },
+    ];
   }
 
   useEffect(() => {

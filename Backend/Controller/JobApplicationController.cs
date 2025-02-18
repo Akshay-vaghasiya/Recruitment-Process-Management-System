@@ -45,7 +45,7 @@ namespace Backend.Controller
         }
 
         [HttpPut("{jobApplicationId}/{applicationStatusId}")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,RECRUITER,HR,REVIEWER,INTERVIEWER")]
         public async Task<IActionResult> UpdateJobApplicationStatus(int applicationStatusId, int jobApplicationId)
         {
             try
@@ -59,7 +59,7 @@ namespace Backend.Controller
         }
 
         [HttpDelete("{JobApplicationId}")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,RECRUITER")]
         public async Task<IActionResult> DeleteJobApplication(int JobApplicationId)
         {
             try

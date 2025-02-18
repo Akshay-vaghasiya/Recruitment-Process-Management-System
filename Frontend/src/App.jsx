@@ -7,7 +7,6 @@ import UserManagement from './pages/UserManagement'
 import CandidateManagement from './pages/CandidateManagement'
 import SkillManagement from './pages/SkillManagement'
 import JobPositionManagement from './pages/JobPositionManagement'
-import JobApplications from './pages/JobApplications'
 import Unauthorized from './pages/Unauthorized'
 import { Dashboard } from '@mui/icons-material'
 import JobPositionCandidate from './pages/JobPositionCandidate'
@@ -37,6 +36,32 @@ function App() {
               <Route path='job-positions' element={<JobPositionCandidate />} />
               <Route path='job-applications' element={<CandidateApplications />} />
               <Route path='profile' element={<CandidateProfile />} />
+            </Route>
+          </Route>
+
+          <Route element={<ProtectedRoute allowedRoles={["RECRUITER"]} />}>
+            <Route path='/recruiter' element={<DashboardLayout />} >
+              <Route path='candidate-management' element={<CandidateManagement />} />
+              <Route path='job-management' element={<JobPositionManagement />} />
+            </Route>
+          </Route>
+
+          <Route element={<ProtectedRoute allowedRoles={["HR"]} />}>
+            <Route path='/hr' element={<DashboardLayout />} >
+              <Route path='candidate-management' element={<CandidateManagement />} />
+              <Route path='job-management' element={<JobPositionManagement />} />
+            </Route>
+          </Route>
+
+          <Route element={<ProtectedRoute allowedRoles={["REVIEWER"]} />}>
+            <Route path='/reviewer' element={<DashboardLayout />} >
+              <Route path='job-management' element={<JobPositionManagement />} />
+            </Route>
+          </Route>
+
+          <Route element={<ProtectedRoute allowedRoles={["INTERVIEWER"]} />}>
+            <Route path='/interviewer' element={<DashboardLayout />} >
+              <Route path='job-management' element={<JobPositionManagement />} />
             </Route>
           </Route>
         </Routes>

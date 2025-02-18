@@ -22,20 +22,31 @@ const LoginPage = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
 
-    if(loginAs === "USER") {
+    if (loginAs === "USER") {
       await loginUser({ Email: email, Password: password }, navigate)
-      navigate('/user/candidate-management')
-    }
 
-    if(loginAs === "CANDIDATE") {
-      await loginCandidate({Email: email, Password: password}, navigate)
+      const roles1 = localStorage.getItem("roles")
+      if (roles1.includes("ADMIN")) {
+        navigate('/user/candidate-management')
+      } else if (roles1.includes("RECRUITER")) {
+        navigate('/recruiter/candidate-management')
+      } else if (roles1.includes("HR")) {
+        navigate('/hr/candidate-management')
+      } else if (roles1.includes("REVIEWER")) {
+        navigate("/reviewer/job-management")
+      } else if (roles1.includes("INTERVIEWER")) {
+        navigate("/interviewer/job-management")
+      }
+    }
+    if (loginAs === "CANDIDATE") {
+      await loginCandidate({ Email: email, Password: password }, navigate)
       navigate('/candidate/job-positions')
     }
   };
 
   useEffect(() => {
     if (isAuthenticated) {
-      if(roles?.includes("ADMIN")) {
+      if (roles?.includes("ADMIN")) {
         navigate('/user');
       } else if (roles?.includes("CANDIDATE")) {
         navigate('/candidate/job-positions')
@@ -79,7 +90,7 @@ const LoginPage = () => {
             fullWidth
             margin="normal"
             key="LoginAs"
-            required = {true}
+            required={true}
           >
             <InputLabel>Login As</InputLabel>
             <Select

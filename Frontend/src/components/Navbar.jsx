@@ -196,7 +196,6 @@ const Navbar = ({ isSidebarOpen, handleDrawerToggle }) => {
           </List>
         </Popover>
 
-        {/* Logout Button */}
         <Button
           variant="text"
           sx={{

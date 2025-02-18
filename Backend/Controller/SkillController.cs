@@ -18,7 +18,7 @@ namespace Backend.Controller
         }
 
         [HttpGet]
-        [Authorize(Roles = "ADMIN,CANDIDATE")]
+        [Authorize(Roles = "ADMIN,CANDIDATE,RECRUITER,HR,REVIEWER,INTERVIEWER")]
         public async Task<IActionResult> GetAllSkills()
         {
             try
