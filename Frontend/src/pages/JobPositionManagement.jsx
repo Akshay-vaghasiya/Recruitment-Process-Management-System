@@ -13,6 +13,8 @@ import { useUserContext } from "../contexts/UserContext";
 import JobApplications from "./JobApplications";
 import { FirstPage } from "@mui/icons-material";
 import { fireToast } from "../components/fireToast";
+import jobPositionService from "../services/jobPositionService";
+import { useAuth } from "../contexts/AuthContext";
 
 const JobPositionManagement = () => {
 
@@ -31,6 +33,33 @@ const JobPositionManagement = () => {
     const [reviewerOption, setReviewerOption] = useState([]);
     const [candidateOptions, setCandidateOptions] = useState([]);
     const navigate = useNavigate();
+    const {getJobStatus} = jobPositionService;
+    const [jobStatusOptions, setJobStatusOptions] = useState([]);
+    const {logout} = useAuth();
+
+    const today = new Date().toISOString().split("T")[0]; 
+
+    useEffect(() => {
+        const fetchJobStatus = async () => {
+            try {
+                const data = await getJobStatus();
+                setJobStatusOptions(
+                    data?.map((status) =>{
+                        return {label : status.Name, value : status.PkJobStatusId}
+                    })
+                )       
+            } catch (error) {
+                if (error?.response?.status === 401 || error?.response?.status === 403) {
+                    logout();
+                    navigate("/");
+                    fireToast("Unauthorized access", "error");
+                }
+                fireToast(error?.response?.data, "error");
+            }
+        }
+
+        fetchJobStatus();
+    },[])
 
     useEffect(() => {
 
@@ -39,7 +68,7 @@ const JobPositionManagement = () => {
         }
 
     }, [jobPositions]);
-    
+
     useEffect(() => {
         if (!skills.length) {
             getAllSkills(navigate);
@@ -68,7 +97,7 @@ const JobPositionManagement = () => {
                 if (x.length > 0) return true
             })
             const temp = users1?.map((user) => {
-                return { value: user.PkUserId, label: user.FullName+"("+user.Email+")" }
+                return { value: user.PkUserId, label: user.FullName + "(" + user.Email + ")" }
             })
             setReviewerOption(temp);
         }
@@ -90,17 +119,19 @@ const JobPositionManagement = () => {
         setIsFormOpen(true);
     };
 
-    console.log(formData);
-    
     const handleEdit = (job) => {
+
+        if(job.JoiningDate == null) {
+            job.JoiningDate = "";
+        }
         setFormData(job);
         setCandidateOptions(
             job?.JobApplications?.map((application) => {
 
-                let label = application.FkCandidate.FullName+"("+application.FkCandidate.Email+")";
+                let label = application.FkCandidate.FullName + "(" + application.FkCandidate.Email + ")";
                 let value = application.FkCandidate.PkCandidateId;
-                
-                return {label : label, value : value};
+
+                return { label: label, value: value };
             })
         )
         setSelectedJobPosition(job);
@@ -134,7 +165,7 @@ const JobPositionManagement = () => {
         e.preventDefault();
         const flag = formData?.RequireSkills?.some(s => formData?.Skills?.includes(s));
 
-        if(flag) {
+        if (flag) {
             fireToast("Please check require skills and skills both contain atleast one same element", "error");
             return;
         }
@@ -170,11 +201,7 @@ const JobPositionManagement = () => {
         { label: "Description", name: "Description", type: "textarea", required: true },
         { label: "ClosureReason", name: "ClosureReason", type: "textarea", required: true },
         {
-            label: "Status", name: "FkStatusId", type: "select", options: [
-                { label: "OPEN", value: 2 },
-                { label: "ON HOLD", value: 3 },
-                { label: "CLOSE", value: 4 }
-            ],
+            label: "Status", name: "FkStatusId", type: "select", options: jobStatusOptions,
             isMultiple: false, required: true
         },
         {
@@ -191,7 +218,7 @@ const JobPositionManagement = () => {
         },
         {
             label: "SelectedCandidateId", name: "FkSelectedCandidateId", type: "select", options: candidateOptions,
-            isMultiple: false, required: true
+            isMultiple: false, required: true, disabled : selectedJobPosition ? false : true,
         },
     ];
 
@@ -269,6 +296,22 @@ const JobPositionManagement = () => {
                 submitButtonText={selectedJobPosition ? "Update" : "Create"}
                 fields={formFields}
             >
+               { selectedJobPosition != null ? <TextField
+                    label="Joining Date"
+                    type="date"
+                    name="JoiningDate"
+                    disabled={formData.FkSelectedCandidateId ? false : true}
+                    value={formData.JoiningDate}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, JoiningDate: e.target.value }))}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    inputProps={{
+                        min: today,
+                    }}
+                    sx={{ mt: 2 }}
+                    fullWidth
+                /> : ""}
             </CustomDialogForm>
 
             <CustomDialogForm

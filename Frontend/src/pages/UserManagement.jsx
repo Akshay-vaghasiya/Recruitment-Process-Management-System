@@ -8,16 +8,23 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../contexts/UserContext";
+import authService from "../services/authService";
+import AuthHeader from "../helper/AuthHeader";
+import { fireToast } from "../components/fireToast";
+import { useAuth } from "../contexts/AuthContext";
 
 const UserManagement = () => {
 
     const { searchTerm, isLoading, isError, users, filteredUsers, getAllUsers, addUser, searchUser, editUser, removeUser } = useUserContext();
-
+    const {logout} = useAuth();
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
     const [formData, setFormData] = useState({});
     const navigate = useNavigate();
+    const { getAllRoles } = authService;
+    const headers = AuthHeader();
+    const [roles, setRoles] = useState([]);
 
     const today = new Date().toISOString().split("T")[0];
 
@@ -29,8 +36,27 @@ const UserManagement = () => {
 
     }, [users]);
 
-    console.log(formData);
-    
+    useEffect(() => {
+        const fetchRoles = async () => {
+            try {
+                const data = await getAllRoles(headers);
+                setRoles(
+                    data?.map((role) => {
+                        return { label: role.Name, value: role.Name }
+                    })
+                )
+            } catch (error) {
+                if (error?.response?.status === 401 || error?.response?.status === 403) {
+                    logout();
+                    navigate("/");
+                    fireToast("Unauthorized access", "error");
+                }
+                fireToast(error?.response?.data, "error");
+            }
+        }
+
+        fetchRoles();
+    }, [])
 
     const handleAdd = () => {
         setFormData({
@@ -49,7 +75,7 @@ const UserManagement = () => {
     const handleEdit = (user) => {
         user.Password = "";
 
-        if(user.LeavingDate == null) {
+        if (user.LeavingDate == null) {
             user.LeavingDate = "";
         }
         setFormData(user);
@@ -93,17 +119,12 @@ const UserManagement = () => {
 
     const formFields = [
         { label: "FullName", name: "FullName", type: "text", required: true },
-        { label: "Email", name: "Email", type: "text", required: true },
+        { label: "Email", name: "Email", type: "email", required: true },
         { label: "Phone", name: "Phone", type: "text", required: true },
-        { label: "Password", name: "Password", type: "text", required: true },
+        { label: "Password", name: "Password", type: "password", required: true },
         {
-            label: "Roles", name: "Roles", type: "select", options: [
-                { value: "ADMIN", label: "ADMIN" },
-                { value: "HR", label: "HR" },
-                { value: "INTERVIEWER", label: "INTERVIEWER" },
-                { value: "REVIEWER", label: "REVIEWER" },
-                { value: "RECRUITER", label: "RECRUITER" },
-            ], isMultiple: true, required: true
+            label: "Roles", name: "Roles", type: "select", options: roles,
+            isMultiple: true, required: true
         },
     ];
 

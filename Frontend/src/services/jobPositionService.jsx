@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL + '/JobPosition';
+const API_URL1 = import.meta.env.VITE_API_URL + '/JobStatus';
 
 const addJobPosition = async (data, headers) => {
     const response = await axios.post(`${API_URL}`, data, {headers});
@@ -22,4 +23,9 @@ const deleteJobPosition = async (id, headers) => {
     return response?.data;
 }
 
-export default {addJobPosition, getAllJobPosition,updateJobPosition, deleteJobPosition};
+const getJobStatus = async () => {
+    const response = await axios.get(`${API_URL1}`);
+    return response?.data;
+}
+
+export default {addJobPosition, getAllJobPosition,updateJobPosition, deleteJobPosition, getJobStatus};

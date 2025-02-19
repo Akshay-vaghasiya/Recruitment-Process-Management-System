@@ -18,6 +18,7 @@ namespace Backend.Controller
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllApplicationStatuses()
         {
             try

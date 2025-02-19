@@ -19,6 +19,7 @@ namespace Backend.Controller
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllDocumentStatuses()
         {
             try

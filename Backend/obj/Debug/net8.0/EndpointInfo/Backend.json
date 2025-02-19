@@ -2803,6 +2803,66 @@
         },
         "additionalProperties": false
       },
+      "CampusHiringCandidate": {
+        "type": "object",
+        "properties": {
+          "PkCampusHiringCandidateId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "FkCandidateId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkCampusRecruitmentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkCandidate": {
+            "$ref": "#/components/schemas/Candidate"
+          },
+          "FkCampusRecruitment": {
+            "$ref": "#/components/schemas/CampusRecruitment"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CampusRecruitment": {
+        "type": "object",
+        "properties": {
+          "PkCampusRecruitmentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "EventName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ScheduledDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "FkCollegeId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "FkCollege": {
+            "$ref": "#/components/schemas/College"
+          },
+          "HiringCandidates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CampusHiringCandidate"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Candidate": {
         "type": "object",
         "properties": {
@@ -2886,6 +2946,13 @@
               "$ref": "#/components/schemas/CandidateNotification"
             },
             "nullable": true
+          },
+          "CampusHiringCandidates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CampusHiringCandidate"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2945,6 +3012,35 @@
           },
           "FkSkill": {
             "$ref": "#/components/schemas/Skill"
+          }
+        },
+        "additionalProperties": false
+      },
+      "College": {
+        "type": "object",
+        "properties": {
+          "PkCollegeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "CollegeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "ContactNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "Location": {
+            "type": "string",
+            "nullable": true
+          },
+          "CampusRecruitments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CampusRecruitment"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -3289,6 +3385,11 @@
             "format": "int32",
             "nullable": true
           },
+          "JoiningDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
           "CreatedAt": {
             "type": "string",
             "format": "date-time",
@@ -3377,6 +3478,11 @@
           "FkSelectedCandidateId": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          },
+          "JoiningDate": {
+            "type": "string",
+            "format": "date",
             "nullable": true
           }
         },

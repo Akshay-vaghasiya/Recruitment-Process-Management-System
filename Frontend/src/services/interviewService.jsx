@@ -4,6 +4,8 @@ import axios from 'axios';
 const API_URL = import.meta.env.VITE_API_URL + '/Interview';
 const API_URL1 = import.meta.env.VITE_API_URL + '/InterviewPanel';
 const API_URL2 = import.meta.env.VITE_API_URL + '/InterviewFeedback';
+const API_URL3 = import.meta.env.VITE_API_URL + '/InterviewStatus';
+const API_URL4 = import.meta.env.VITE_API_URL + '/InterviewRound';
 
 const getInterviewByCandidateAndPosition = async (candidateId, jobId, headers) => {
     const response = await axios.get(`${API_URL}/${candidateId}/${jobId}`, {headers});
@@ -60,7 +62,17 @@ const updateInterviewFeedback = async (feedbackid, data, headers) => {
     return response?.data;
 }
 
+const interviewAllStatus = async () => {
+    const response = await axios.get(`${API_URL3}`);
+    return response?.data;
+}
+
+const getAllInteviewRounds = async () => {
+    const response = await axios.get(`${API_URL4}`);
+    return response?.data;
+}
+
 export default {getInterviewByCandidateAndPosition, addInterview, getAllInterviews,
     deleteInterview, updateInterview, addInterviewPanel, deleteInterviewPanel,
     getInterviewPanelByInterview, getInterviewFeedbackByUserAndInterview,
-    addInterviewFeedback, updateInterviewFeedback};
+    addInterviewFeedback, updateInterviewFeedback, interviewAllStatus, getAllInteviewRounds};

@@ -157,7 +157,7 @@ const CandidateManagement = () => {
 
     const formFields = [
         { label: "FullName", name: "FullName", type: "text", required: true },
-        { label: "Email", name: "Email", type: "text", required: true },
+        { label: "Email", name: "Email", type: "email", required: true },
         { label: "Phone", name: "Phone", type: "text", required: true },
         { label: "Password", name: "Password", type: "text", required: true },
         { label: "Year Of Experience", name: "YearsOfExperience", type: "number", required: true },

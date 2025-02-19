@@ -29,8 +29,11 @@ const Interview = ({ application }) => {
     const { logout } = useAuth();
     const headers = AuthHeader();
     const [loading, setLoading] = useState(false);
-    const { getInterviewByCandidateAndPosition, addInterview, deleteInterview, updateInterview } = interviewService;
+    const { getInterviewByCandidateAndPosition, addInterview, deleteInterview, updateInterview, 
+        interviewAllStatus, getAllInteviewRounds } = interviewService;
     const [value, setValue] = useState(dayjs(new Date().toISOString()));
+    const [interviewStatusOptions, setInterviewStatusOptions] = useState([]);
+    const [interviewRoundOptions, setInterviewRoundOptions] = useState([]);
 
     useEffect(() => {
 
@@ -66,6 +69,48 @@ const Interview = ({ application }) => {
         fetchinterview();
 
     }, [loading])
+
+    useEffect(() => {
+        const fetchInterviewStatus = async () => {
+            try {
+                const data = await interviewAllStatus();
+                setInterviewStatusOptions(
+                    data?.map((status) => {
+                        return { label: status.Name, value: status.PkInterviewStatusId }
+                    })
+                )
+            } catch (error) {
+                if (error?.response?.status === 401 || error?.response?.status === 403) {
+                    logout();
+                    navigate("/");
+                    fireToast("Unauthorized access", "error");
+                }
+                fireToast(error?.response?.data, "error");
+            }
+        }
+
+        const fetchInterviewRounds = async () => {
+            try {
+                const data = await getAllInteviewRounds();
+                setInterviewRoundOptions(
+                    data?.map((round) => {
+                        return { label: round.Name, value: round.PkInterviewRoundId }
+                    })
+                )
+            } catch (error) {
+                if (error?.response?.status === 401 || error?.response?.status === 403) {
+                    logout();
+                    navigate("/");
+                    fireToast("Unauthorized access", "error");
+                }
+                fireToast(error?.response?.data, "error");
+            }
+        }
+
+        fetchInterviewStatus();
+        fetchInterviewRounds();
+    }, [])
+
 
     const handleAdd = () => {
 
@@ -189,30 +234,19 @@ const Interview = ({ application }) => {
     const formFields = [
         { label: "Round number", name: "RoundNumber", type: "number", required: true },
         {
-            label: "Interview Round", name: "FkInterviewRoundId", type: "select", options: [
-                { value: 2, label: "HR" },
-                { value: 3, label: "TECHNICAL 1" },
-                { value: 4, label: "TECHNICAL 2" },
-                { value: 5, label: "TECHNICAL 3" },
-            ], isMultiple: false, required: true
+            label: "Interview Round", name: "FkInterviewRoundId", type: "select", options: interviewRoundOptions, isMultiple: false, required: true
         },
         {
-            label: "Interview Status", name: "FkStatusId", type: "select", options: [
-                { value: 1, label: "SCHEDULED" },
-                { value: 2, label: "COMPLETED" },
-                { value: 4, label: "CANCELLED" },
-            ], isMultiple: false, required: true
+            label: "Interview Status", name: "FkStatusId", type: "select", options: interviewStatusOptions,
+            isMultiple: false, required: true
         },
     ];
 
     const formFields1 = [
         { label: "Round number", name: "RoundNumber", type: "number", required: true },
         {
-            label: "Interview Status", name: "FkStatusId", type: "select", options: [
-                { value: 1, label: "SCHEDULED" },
-                { value: 2, label: "COMPLETED" },
-                { value: 4, label: "CANCELLED" },
-            ], isMultiple: false, required: true
+            label: "Interview Status", name: "FkStatusId", type: "select", options: interviewStatusOptions,
+            isMultiple: false, required: true
         },
     ]
 

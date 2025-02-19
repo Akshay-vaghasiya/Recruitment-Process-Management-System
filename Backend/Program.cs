@@ -79,6 +79,7 @@ builder.Services.AddScoped<IReportRepository, ReportRepository>();
 builder.Services.AddScoped<IInterviewFeedbackRepository, InterviewFeedbackRepository>();
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<ICandidateNotificationRepository, CandidateNotificationRepository>();
+builder.Services.AddScoped<ICollegeRepository, CollegeRepository>();
 
 
 

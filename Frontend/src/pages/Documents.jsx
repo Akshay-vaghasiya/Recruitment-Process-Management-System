@@ -18,11 +18,34 @@ const Documents = ({ documents }) => {
         FkStatusId: ""
     });
     const [isFormOpen, setIsFormOpen] = useState(false);
-    const { updateDocumentStatus } = candidateService;
+    const [documentStatusOptions, setDocumentStatusOptions] = useState([]);
+    const { updateDocumentStatus, getDocumentStatus } = candidateService;
     const headers = AuthHeader();
     const {getAllCandidates} = useCandidateContext();
     const {logout} = useAuth();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchDocumentStatus = async () => {
+            try {
+                const data = await getDocumentStatus();
+                setDocumentStatusOptions(
+                    data?.map((status) => {
+                        return { label: status.Name, value: status.PkDocumentStatusId }
+                    })
+                )
+            } catch (error) {
+                if (error?.response?.status === 401 || error?.response?.status === 403) {
+                    logout();
+                    navigate("/");
+                    fireToast("Unauthorized access", "error");
+                }
+                fireToast(error?.response?.data, "error");
+            }
+        }
+
+        fetchDocumentStatus();
+    }, [])
 
     const handleEdit = (document) => {
         setFormData(document);
@@ -95,15 +118,11 @@ const Documents = ({ documents }) => {
 
     const formFields = [
         {
-            label: "Status", name: "FkStatusId", type: "select", options: [
-                { label: "PENDING", value: 2 },
-                { label: "VERIFIED", value: 3 },
-                { label: "REJECTED", value: 4 },
-            ],
+            label: "Status", name: "FkStatusId", type: "select", options: documentStatusOptions,
             isMultiple: false, required: true
         }
     ]
-
+      
 
     return (
         <>

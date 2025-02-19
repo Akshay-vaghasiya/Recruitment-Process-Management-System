@@ -234,7 +234,7 @@ const CandidateDocuments = () => {
                 fields={formFields}
             >
                 <Typography variant="h6" gutterBottom>
-                    Upload Resume
+                    Upload Document
                 </Typography>
                 <Input
                     type="file"

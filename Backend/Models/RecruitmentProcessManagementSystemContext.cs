@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Models;
 
@@ -63,6 +61,12 @@ public partial class RecruitmentProcessManagementSystemContext : DbContext
 
     public virtual DbSet<CandidateNotification> CandidateNotifications { get; set; }
 
+    public virtual DbSet<College> Colleges { get; set; }
+
+    public virtual DbSet<CampusRecruitment> CampusRecruitments { get; set; }
+
+    public virtual DbSet<CampusHiringCandidate> CampusHiringCandidates { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
        => optionsBuilder.UseSqlServer("Data Source=L10-VAGHAAKS-1\\SQLEXPRESS;Initial Catalog=Recruitment_Process_Management_System; Trusted_Connection=True; TrustServerCertificate=True");
 
@@ -79,6 +83,40 @@ public partial class RecruitmentProcessManagementSystemContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("name");
+        });
+
+        modelBuilder.Entity<CampusHiringCandidate>(entity =>
+        {
+            entity.HasKey(e => e.PkCampusHiringCandidateId);
+
+            entity.ToTable("campus_hiring_candidate");
+
+            entity.Property(e => e.PkCampusHiringCandidateId).HasColumnName("pk_campus_hiring_candidate_id");
+            entity.Property(e => e.FkCampusRecruitmentId).HasColumnName("fk_campus_recruitment_id");
+            entity.Property(e => e.FkCandidateId).HasColumnName("fk_candidate_id");
+
+            entity.HasOne(e => e.FkCandidate).WithMany(c => c.CampusHiringCandidates)
+                .HasForeignKey(e => e.FkCandidateId);
+
+            entity.HasOne(e => e.FkCampusRecruitment).WithMany(cr => cr.HiringCandidates)
+               .HasForeignKey(e => e.FkCampusRecruitmentId);
+        });
+
+        modelBuilder.Entity<CampusRecruitment>(entity =>
+        {
+            entity.HasKey(e => e.PkCampusRecruitmentId);
+
+            entity.ToTable("campus_recruitment");
+
+            entity.Property(e => e.PkCampusRecruitmentId).HasColumnName("pk_campus_recruitment_id");
+            entity.Property(e => e.FkCollegeId).HasColumnName("fk_college_id");
+            entity.Property(e => e.EventName).HasColumnName("event_name");
+            entity.Property(e => e.ScheduledDate)
+                .HasColumnType("datetime")
+                .HasColumnName("schedule_date");
+
+            entity.HasOne(c => c.FkCollege).WithMany(cr => cr.CampusRecruitments)
+                .HasForeignKey(c => c.FkCollegeId);
         });
 
         modelBuilder.Entity<Candidate>(entity =>
@@ -160,6 +198,20 @@ public partial class RecruitmentProcessManagementSystemContext : DbContext
             entity.HasOne(d => d.FkSkill).WithMany(p => p.CandidateSkills)
                 .HasForeignKey(d => d.FkSkillId)
                 .HasConstraintName("FK__candidate__fk_sk__403A8C7D");
+        });
+
+        modelBuilder.Entity<College>(entity =>
+        {
+            entity.HasKey(entity => entity.PkCollegeId);
+            entity.ToTable("colleges");
+
+            entity.Property(e => e.PkCollegeId).HasColumnName("pk_college_id");
+            entity.Property(e => e.CollegeName).HasColumnName("name")
+                        .HasMaxLength(255)
+                        .IsUnicode(false);
+            entity.Property(e => e.ContactNo).HasColumnName("contact_no");
+            entity.Property(e => e.Location).HasColumnName("location");
+
         });
 
         modelBuilder.Entity<Document>(entity =>
@@ -366,6 +418,8 @@ public partial class RecruitmentProcessManagementSystemContext : DbContext
             entity.Property(e => e.Description)
                 .HasColumnType("text")
                 .HasColumnName("description");
+            entity.Property(e => e.JoiningDate).HasColumnName("joining_date")
+                .HasColumnType("date");
             entity.Property(e => e.FkReviewerId).HasColumnName("fk_reviewer_id");
             entity.Property(e => e.FkSelectedCandidateId).HasColumnName("fk_selected_candidate_id");
             entity.Property(e => e.FkStatusId).HasColumnName("fk_status_id");

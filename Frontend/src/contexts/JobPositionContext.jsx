@@ -58,7 +58,8 @@ export const JobPositionProvider = ({ children }) => {
                 RequireSkills: data1?.RequireSkills,
                 Skills: data1?.Skills,
                 ClosureReason: data1?.ClosureReason,
-                FkSelectedCandidateId: data1?.FkSelectedCandidateId
+                FkSelectedCandidateId: data1?.FkSelectedCandidateId,
+                JoiningDate : data1?.JoiningDate=="" ? null : data1.JoiningDate,
             }
 
             const data = await updateJobPosition(id, obj, headers);

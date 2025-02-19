@@ -1,6 +1,7 @@
 ﻿using Backend.Dtos;
 using Backend.Models;
 using Backend.Repository;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Backend.Services.impl
 {
@@ -109,27 +110,60 @@ namespace Backend.Services.impl
             JobPosition? jobPosition =  await _repository.GetJobPositionByIdAsync(id);
             if (jobPosition == null) throw new Exception("job position not found!");
 
+            JobStatus? jobStatus = await _jobStatusRepository.GetJobStatusByIdAsync(jobPositionDto?.FkStatusId);
+            if (jobStatus == null) throw new Exception("job status not exist in system");
+
             jobPosition.UpdatedAt = DateTime.UtcNow;
             jobPosition.Title = jobPositionDto.Title ?? jobPosition.Title;
             jobPosition.Description = jobPositionDto?.Description ?? jobPosition.Description;
-            jobPosition.FkStatusId = jobPositionDto?.FkStatusId ?? jobPosition.FkStatusId;
             jobPosition.FkReviewerId = jobPositionDto?.FkReviewerId ?? jobPosition.FkReviewerId;
             jobPosition.ClosureReason = jobPositionDto?.ClosureReason ?? jobPosition.ClosureReason;
-            jobPosition.FkSelectedCandidateId = jobPositionDto?.FkSelectedCandidateId ?? jobPosition.FkSelectedCandidateId;
 
-            foreach(var application in jobPosition.JobApplications)
+
+            if(jobPositionDto?.FkStatusId != null &&  jobPositionDto?.FkStatusId != jobPosition.FkStatusId)
+            {
+                jobPosition.FkStatusId = jobPositionDto?.FkStatusId ?? jobPosition.FkStatusId;
+
+                foreach(var application in jobPosition.JobApplications)
+                {
+                    CandidateNotification candidateNotification = new CandidateNotification();
+                    candidateNotification.FkCandidateId = application.FkCandidateId;
+                    candidateNotification.Message = $"{jobPosition.Title} job position status is change and it was {jobStatus.Name}";
+                    candidateNotification.IsRead = false;
+
+                    await _candidateNotificationRepository.AddCandidateNotification(candidateNotification);
+                }
+            }
+
+            if(jobPositionDto?.FkSelectedCandidateId != null && jobPosition.FkSelectedCandidateId != jobPositionDto.FkSelectedCandidateId)
             {
                 CandidateNotification candidateNotification = new CandidateNotification();
-                candidateNotification.FkCandidateId = application.FkCandidateId;
-                candidateNotification.Message = $"{jobPosition.Title} job position status is change and it was ${jobPosition.FkStatus.Name}";
+                candidateNotification.FkCandidateId = jobPositionDto.FkSelectedCandidateId;
+                candidateNotification.Message = $"Congratulations, You are selected for {jobPosition.Title} job position";
                 candidateNotification.IsRead = false;
 
                 await _candidateNotificationRepository.AddCandidateNotification(candidateNotification);
+
+                CandidateNotification candidateNotification1 = new CandidateNotification();
+                candidateNotification1.FkCandidateId = jobPosition.FkSelectedCandidateId;
+                candidateNotification1.Message = $"Sorry, You are not selected for {jobPosition.Title} job position";
+                candidateNotification1.IsRead = false;
+
+                await _candidateNotificationRepository.AddCandidateNotification(candidateNotification1);
+
+                jobPosition.FkSelectedCandidateId = jobPositionDto?.FkSelectedCandidateId ?? jobPosition.FkSelectedCandidateId;
             }
+            
+            if(jobPositionDto?.JoiningDate != null && jobPositionDto.JoiningDate != jobPosition.JoiningDate)
+            {
+                CandidateNotification candidateNotification = new CandidateNotification();
+                candidateNotification.FkCandidateId = jobPositionDto.FkSelectedCandidateId;
+                candidateNotification.Message = $"You can join us on {jobPositionDto.JoiningDate.ToString()} and offer letter will be send via email";
+                candidateNotification.IsRead = false;
 
-
-
-
+                await _candidateNotificationRepository.AddCandidateNotification(candidateNotification);
+                jobPosition.JoiningDate = jobPositionDto.JoiningDate;
+            }
 
             if(jobPositionDto?.RequireSkills != null && jobPositionDto.Skills != null)
             {

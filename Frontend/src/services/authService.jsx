@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL + '/Authentication';
+const API_URL1 = import.meta.env.VITE_API_URL + '/Role';
 
 const loginUser1 = async (data) => {
   const response = await axios.post(`${API_URL}/login`, data);
@@ -27,4 +28,9 @@ const deleteUser = async (id, headers) => {
   return response?.data;
 }
 
-export default { loginUser1, registerUser, getUsers, updateUser, deleteUser};
+const getAllRoles = async (headers) => {
+  const response = await axios.get(`${API_URL1}`, {headers});
+  return response?.data;
+}
+
+export default { loginUser1, registerUser, getUsers, updateUser, deleteUser, getAllRoles};

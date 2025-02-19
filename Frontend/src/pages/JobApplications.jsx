@@ -31,11 +31,12 @@ const JobApplications = ({ jobPositionId }) => {
         Comments: ""
     });
     const [isUpdate, setIsUpdate] = useState(false);
-    const { updateApplicationStatus, deleteJobAppliction } = jobApplicationService;
+    const { updateApplicationStatus, deleteJobAppliction, getApplicationStatus } = jobApplicationService;
     const headers = AuthHeader();
     const { logout } = useAuth();
     const { updateReview, addReview } = resumeReviewService;
     const user = JSON.parse(localStorage.getItem('user'));
+    const [applicationStatusOptions, setApplicationStatusOptions] = useState([]);
 
     useEffect(() => {
 
@@ -59,6 +60,28 @@ const JobApplications = ({ jobPositionId }) => {
             setApplications(application1);
         }
     }, [jobPositions])
+
+    useEffect(() => {
+        const fetchApplicationStatus = async () => {
+            try {
+                const data = await getApplicationStatus();
+                setApplicationStatusOptions(
+                    data?.map((status) => {
+                        return { label: status.Name, value: status.PkApplicationStatusId }
+                    })
+                )
+            } catch (error) {
+                if (error?.response?.status === 401 || error?.response?.status === 403) {
+                    logout();
+                    navigate("/");
+                    fireToast("Unauthorized access", "error");
+                }
+                fireToast(error?.response?.data, "error");
+            }
+        }
+
+        fetchApplicationStatus();
+    }, [])
 
     const handleEdit = (application) => {
         setFormData(application);
@@ -199,15 +222,7 @@ const JobApplications = ({ jobPositionId }) => {
 
     const formFields = [
         {
-            label: "Status", name: "FkStatusId", type: "select", options: [
-                { label: "APPLIED", value: 2 },
-                { label: "SCREENED", value: 3 },
-                { label: "SHORTLISTED", value: 4 },
-                { label: "INTERVIEW SCHEDULED", value: 5 },
-                { label: "INTERVIEWED", value: 6 },
-                { label: "HIRED", value: 7 },
-                { label: "REJECTED", value: 8 },
-            ],
+            label: "Status", name: "FkStatusId", type: "select", options: applicationStatusOptions,
             isMultiple: false, required: true
         }
     ]

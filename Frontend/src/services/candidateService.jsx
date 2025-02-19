@@ -3,6 +3,7 @@ import axios from 'axios';
 const API_URL = import.meta.env.VITE_API_URL + '/Candidate';
 const API_URL1 = import.meta.env.VITE_API_URL + '/Document';
 const API_URL2 = import.meta.env.VITE_API_URL + '/DocumentType';
+const API_URL3 = import.meta.env.VITE_API_URL + '/DocumentStatus';
 
 const registerCandidate = async (data, headers) => {
     const response = await axios.post(`${API_URL}`, data, {headers});
@@ -79,7 +80,12 @@ const deleteCandidateSkill = async (candidateSkillId, headers) => {
     return response?.data; 
 }
 
+const getDocumentStatus = async () => {
+    const response = await axios.get(`${API_URL3}`);
+    return response?.data;
+}
+
 export default {registerCandidate, getCandidates, updateCandidate, deleteCandidate,
     updateDocumentStatus, bulkCandidateUpload, candidateLogin, getDocumentType,
     addCandidateSkill, deleteCandidateSkill, addDocument, updateDocument, deleteDocument,
-    getCandidateDocument, getCandidateSkills}
+    getCandidateDocument, getCandidateSkills, getDocumentStatus}

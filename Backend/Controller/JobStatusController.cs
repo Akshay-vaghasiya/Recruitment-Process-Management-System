@@ -20,6 +20,7 @@ namespace Backend.Controller
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllJobStatuses()
         {
             try

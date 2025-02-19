@@ -17,5 +17,7 @@
         public string? ClosureReason { get; set; }
 
         public int? FkSelectedCandidateId { get; set; }
+
+        public DateOnly? JoiningDate { get; set; }
     }
 }
