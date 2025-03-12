@@ -24,7 +24,7 @@ namespace Backend.Repository.impl
             .FirstOrDefaultAsync(s => s.PkSkillId == id);
         }
 
-        public async Task<Skill?> GetSkillByNameAsync(string name)
+        public async Task<Skill?> GetSkillByNameAsync(string? name)
         {
             return await _context.Skills.Include(s => s.JobSkills)
             .FirstOrDefaultAsync(s => s.Name == name);

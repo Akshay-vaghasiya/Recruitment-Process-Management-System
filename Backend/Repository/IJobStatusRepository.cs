@@ -8,9 +8,9 @@ namespace Backend.Repository
 
         Task<JobStatus?> GetJobStatusByIdAsync(int? id);
 
-        Task<JobStatus?> GetJobStatusByNameAsync(string name);
+        Task<JobStatus?> GetJobStatusByNameAsync(string? name);
 
-        Task<JobStatus> AddJobStatusAsync(JobStatus jobStatus);
+        Task<JobStatus?> AddJobStatusAsync(JobStatus? jobStatus);
 
         Task<JobStatus> UpdateJobStatusAsync(JobStatus jobStatus);
 

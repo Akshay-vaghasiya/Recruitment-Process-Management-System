@@ -51,7 +51,7 @@ namespace Backend.Repository.impl
 
         public async Task<InterviewPanel?> GetInterviewPanelById(int interviewPanelId)
         {
-            return _context.InterviewPanels.FirstOrDefault(ip => ip.PkInterviewPanelId == interviewPanelId);
+            return await _context.InterviewPanels.FirstOrDefaultAsync(ip => ip.PkInterviewPanelId == interviewPanelId);
         }
     }
 }

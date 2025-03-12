@@ -22,7 +22,7 @@ namespace Backend.Services.impl
             _candidateNotificationRepository = candidateNotificationRepository;
         }
 
-        public async Task<JobApplication> AddJobApplication(int jobPositionId, int candidateId)
+        public async Task<JobApplication?> AddJobApplication(int jobPositionId, int candidateId)
         {
             JobPosition? jobPosition = await _positionRepository.GetJobPositionByIdAsync(jobPositionId);
             if (jobPosition == null) throw new Exception("job position not exist with given id");
@@ -59,7 +59,7 @@ namespace Backend.Services.impl
                 await _candidateNotificationRepository.AddCandidateNotification(candidateNotification);
                 return application;
             }
-            return null;
+            return application;
         }
 
         public async Task<List<JobApplication>> GetJobApplicationsAsync()
@@ -67,7 +67,7 @@ namespace Backend.Services.impl
             return await _repository.GetApplicationsAsync();
         }
 
-        public async Task<JobApplication> UpdateJobApplicationStatus(int jobApplicationId, int  jobApplicationStatusId)
+        public async Task<JobApplication?> UpdateJobApplicationStatus(int jobApplicationId, int  jobApplicationStatusId)
         {
             JobApplication? jobApplication = await _repository.GetJobApplicationById(jobApplicationId);
             if (jobApplication == null) throw new Exception("job application not exist with given id");
@@ -82,7 +82,7 @@ namespace Backend.Services.impl
             {
                 CandidateNotification candidateNotification = new CandidateNotification();
                 candidateNotification.FkCandidateId = jobApplication.FkCandidateId;
-                candidateNotification.Message = $"Your application of {jobApplication.FkJobPosition.Title} job position status is going to {applicationStatus.Name}";
+                candidateNotification.Message = $"Your application of {jobApplication?.FkJobPosition?.Title} job position status is going to {applicationStatus.Name}";
                 candidateNotification.IsRead = false;
 
                 await _candidateNotificationRepository.AddCandidateNotification(candidateNotification);
@@ -98,14 +98,14 @@ namespace Backend.Services.impl
             JobApplication? jobApplication = await _repository.GetJobApplicationById(jobApplicationId);
             if (jobApplication == null) throw new Exception("job appliction not exist with given id");
 
-            await _repository.DeleteJobAppliction(jobApplicationId);
-
             CandidateNotification candidateNotification = new CandidateNotification();
             candidateNotification.FkCandidateId = jobApplication.FkCandidateId;
-            candidateNotification.Message = $"Your application of {jobApplication.FkJobPosition.Title} job position deleted by admin";
+            candidateNotification.Message = $"Your application of {jobApplication?.FkJobPosition?.Title} job position deleted by admin";
             candidateNotification.IsRead = false;
 
             await _candidateNotificationRepository.AddCandidateNotification(candidateNotification);
+
+            await _repository.DeleteJobAppliction(jobApplicationId);
         }
 
     }

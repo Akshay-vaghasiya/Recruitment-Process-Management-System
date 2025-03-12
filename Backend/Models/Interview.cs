@@ -19,6 +19,8 @@ public partial class Interview
 
     public int? FkStatusId { get; set; }
 
+    public int? FkCampusRecruitmentId { get; set; }
+
     public DateTime? CreatedAt { get; set; }
 
     public virtual Candidate? FkCandidate { get; set; }
@@ -29,7 +31,10 @@ public partial class Interview
 
     public virtual InterviewStatus? FkStatus { get; set; }
 
+    public virtual CampusRecruitment? FkCampusRecruitment { get; set; }
+
     public virtual ICollection<InterviewFeedback> InterviewFeedbacks { get; set; } = new List<InterviewFeedback>();
 
     public virtual ICollection<InterviewPanel> InterviewPanels { get; set; } = new List<InterviewPanel>();
+
 }

@@ -32,7 +32,6 @@ const JobPositionReducer = (state, action) => {
                 isLoading: false,
                 jobPositions: [...state.jobPositions, jobPosition],
                 filteredJobPositions: [...state.jobPositions, jobPosition],
-                openJobPositions: [...state.openJobPositions, jobPosition]
             };
 
         case "GET_JOB_POSITONS":

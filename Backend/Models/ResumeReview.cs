@@ -12,6 +12,8 @@ public partial class ResumeReview
 
     public int? FkJobPositionId { get; set; }
 
+    public int? FkCampusRecruitmentId { get; set; }
+
     public string? Comments { get; set; }
 
     public DateTime? CreatedAt { get; set; }
@@ -21,4 +23,6 @@ public partial class ResumeReview
 
     [JsonIgnore]
     public virtual JobPosition? FkJobPosition { get; set; }
+
+    public virtual CampusRecruitment? FkCampusRecruitment { get; set; }
 }

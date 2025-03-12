@@ -10,7 +10,7 @@ namespace Backend.Repository
 
         Task<Skill> AddSkillAsync(Skill skill);
 
-        Task<Skill?> GetSkillByNameAsync(string name);
+        Task<Skill?> GetSkillByNameAsync(string? name);
         Task<Skill> UpdateSkillAsync(Skill skill);
         Task DeleteSkillAsync(int id);
 

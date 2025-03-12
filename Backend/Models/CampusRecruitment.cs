@@ -7,6 +7,7 @@
         public DateTime? ScheduledDate { get; set; }
         public int? FkCollegeId { get; set; }
         public virtual College FkCollege { get; set; }
-        public virtual ICollection<CampusHiringCandidate> HiringCandidates { get; set; } = new HashSet<CampusHiringCandidate>();
+        public virtual ICollection<ResumeReview> ResumeReviews { get; set; } = new HashSet<ResumeReview>();
+        public virtual ICollection<Interview> Interviews { get; set; } = new HashSet<Interview>();
     }
 }

@@ -31,36 +31,41 @@ namespace Backend.Services.impl
             Candidate? candidate1 = await _repository.GetCandidateByEmail(candidateDto?.Email);
             if (candidate1 != null) throw new Exception("candidate already exist");
 
-            string uploadsFolder = Directory.GetCurrentDirectory().Replace("Backend", "Frontend") + "\\public\\Resume\\" + candidateDto?.Email;
-
-            if (!Directory.Exists(uploadsFolder))
-            {
-                Directory.CreateDirectory(uploadsFolder);
-            }
-
-            string fileName = $"{candidateDto?.Resume?.FileName}";
-            string fileExtention = Path.GetExtension(fileName);
-
-            if(fileExtention != ".pdf")
-            {
-                throw new Exception("file extention is not valid.");
-            }
-
-            string filePath = Path.Combine(uploadsFolder, fileName);
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await candidateDto?.Resume?.CopyToAsync(stream);
-            }
-
-            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(candidateDto.Password);
             Candidate candidate = new Candidate();
-            candidate.FullName = candidateDto.FullName;
-            candidate.Phone = candidateDto.Phone;
-            candidate.Email = candidateDto.Email;
+
+            if (candidateDto != null && candidateDto?.Resume != null)
+            {
+
+                string uploadsFolder = Directory.GetCurrentDirectory().Replace("Backend", "Frontend") + "\\public\\Resume\\" + candidateDto?.Email;
+
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                string fileName = $"{candidateDto?.Resume?.FileName}";
+                string fileExtention = Path.GetExtension(fileName);
+
+                if(fileExtention != ".pdf")
+                {
+                    throw new Exception("file extention is not valid.");
+                }
+
+                string filePath = Path.Combine(uploadsFolder, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await candidateDto.Resume.CopyToAsync(stream);
+                }
+                candidate.ResumeUrl = "../../public/Resume/" + candidate?.Email + "/" + fileName;
+            }
+
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(candidateDto?.Password);
+            candidate.FullName = candidateDto?.FullName;
+            candidate.Phone = candidateDto?.Phone;
+            candidate.Email = candidateDto?.Email;
             candidate.Password = hashedPassword;
-            candidate.ResumeUrl = "../../public/Resume/" + candidate?.Email + "/" + fileName;
-            candidate.YearsOfExperience = candidateDto.YearsOfExperience;
+            candidate.YearsOfExperience = candidateDto?.YearsOfExperience;
 
             var result = await _repository.AddCandidate(candidate);
             return result;
@@ -81,7 +86,7 @@ namespace Backend.Services.impl
             candidate.FullName=candidateDto.FullName ?? candidate.FullName;
             candidate.YearsOfExperience = candidateDto.YearsOfExperience ?? candidate.YearsOfExperience;
 
-            if(candidateDto.Resume != null)
+            if(candidateDto?.Resume != null)
             {
                 string uploadsFolder = Directory.GetCurrentDirectory().Replace("Backend", "Frontend") + "\\public\\Resume\\" + candidate?.Email;
 
@@ -107,7 +112,7 @@ namespace Backend.Services.impl
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    await candidateDto?.Resume?.CopyToAsync(stream);
+                    await candidateDto.Resume.CopyToAsync(stream);
                 }
 
                 candidate.ResumeUrl = "../../public/Resume/" + candidate?.Email + "/" + fileName;
@@ -190,18 +195,21 @@ namespace Backend.Services.impl
         {
             var candidate1 = await _repository.GetCandidateByEmail(loginDto.Email);
             if (candidate1 == null || !BCrypt.Net.BCrypt.Verify(loginDto.Password, candidate1.Password))
-                return null;
+                throw new Exception("Please enter valid credential");
 
-            return new { token = await GenerateJwtToken(candidate1), candidate = candidate1 };
+            return new { token = GenerateJwtToken(candidate1), candidate = candidate1 };
         }
 
-        private async Task<string> GenerateJwtToken(Candidate candidate)
+        private string GenerateJwtToken(Candidate candidate)
         {
             var claims = new List<Claim>
             {
-            new Claim(ClaimTypes.Name, candidate.Email),
             new Claim(ClaimTypes.Role, "CANDIDATE")
             };
+
+            if (candidate?.Email != null) {
+                claims.Add(new Claim(ClaimTypes.Name, candidate.Email));        
+            }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

@@ -12,9 +12,9 @@ namespace Backend.Services.impl
             _roleRepository = roleRepository;
         }
 
-        public async Task<Role> addRole(Role role)
+        public async Task<Role?> addRole(Role role)
         {
-            Role role1 = await _roleRepository.getRolerByName(role.Name);
+            var role1 = await _roleRepository.GetRoleByName(role.Name);
             if (role1 != null) throw new Exception("role already exist!!");
 
             return await _roleRepository.addRole(role);
@@ -27,15 +27,14 @@ namespace Backend.Services.impl
 
         public async Task DeleteRole(int id)
         {
-            Role role = await _roleRepository.getRoleById(id);
+            var role = await _roleRepository.getRoleById(id);
 
-            if(role.UserRoles.Count() > 0)
+            if(role?.UserRoles != null && role.UserRoles.Count() > 0)
             {
                 throw new Exception("Existing user have this role so you can not delete it");
+            } else {
+                await _roleRepository.DeleteRole(role);
             }
-
-            await _roleRepository.DeleteRole(role);
-
         }
 
     }

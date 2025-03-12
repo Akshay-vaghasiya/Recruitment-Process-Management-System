@@ -67,6 +67,11 @@ const CandidateManagement = () => {
     };
 
     const handleSubmit = () => {
+
+        if (formData.YearsOfExperience < 0) {
+            fireToast("year of experience can not be nagetive", "error");
+            return;
+        }
         if (selectedCandidate) {
             editCandidate(selectedCandidate.PkCandidateId, formData, file, navigate);
         } else {
@@ -206,7 +211,7 @@ const CandidateManagement = () => {
 
             <Box sx={{ display: "flex", justifyContent: "flex-start", marginBottom: "1rem", gap: "1.5rem", marginTop: "1.5rem" }}>
                 <TextField
-                    label="Search Exams"
+                    label="Search Candidate"
                     variant="outlined"
                     value={searchTerm}
                     onChange={handleSearch}

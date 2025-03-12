@@ -145,11 +145,11 @@ const Navbar = ({ isSidebarOpen, handleDrawerToggle }) => {
           onClose={handleNotificationClose}
           anchorOrigin={{
             vertical: 'bottom',
-            horizontal: 'right',
+            horizontal: 'left',
           }}
           transformOrigin={{
             vertical: 'top',
-            horizontal: 'right',
+            horizontal: 'left',
           }}
           PaperProps={{
             sx: {

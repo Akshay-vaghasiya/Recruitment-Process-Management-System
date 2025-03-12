@@ -52,7 +52,7 @@ namespace Backend.Controller
         {
             try
             {
-                if (ApplicationStatus.Name.Equals("") || ApplicationStatus == null)
+                if (ApplicationStatus.Name == null || ApplicationStatus.Name.Equals(""))
                 {
                     return BadRequest("Application status should not be empty!");
                 }
@@ -70,7 +70,7 @@ namespace Backend.Controller
         {
             try
             {
-                if (ApplicationStatus.Name.Equals("") || ApplicationStatus == null)
+                if (ApplicationStatus.Name == null || ApplicationStatus.Name.Equals("") )
                 {
                     return BadRequest("Application status should not be empty!");
                 }

@@ -23,9 +23,9 @@ namespace Backend.Services.impl
             return await _repository.GetJobStatusByIdAsync(id);
         }
 
-        public async Task<JobStatus> AddJobStatusAsync(JobStatus jobStatus)
+        public async Task<JobStatus?> AddJobStatusAsync(JobStatus? jobStatus)
         {
-            JobStatus? jobStatus1 = await _repository.GetJobStatusByNameAsync(jobStatus.Name);
+            JobStatus? jobStatus1 = await _repository.GetJobStatusByNameAsync(jobStatus?.Name);
             if (jobStatus1 != null) throw new Exception("jobstatus already exist!");
 
             return await _repository.AddJobStatusAsync(jobStatus);

@@ -26,21 +26,21 @@ namespace Backend.Services.impl
             Interview? interview = await _interviewRepository.GetInterviewById(interviewId);
             if (interview == null) throw new Exception("interview not exist with given id");
 
-            string round = interview.FkInterviewRound.Name;
+            var round = interview?.FkInterviewRound?.Name;
 
             int flag = 0;
             foreach (var role in user.UserRoles)
             {
                 if(round == "HR")
                 {
-                    if (role.FkRole.Name == "HR")
+                    if (role?.FkRole?.Name == "HR")
                     {
                         flag = 1;
                         break;
                     }
                 } else
                 {
-                    if (role.FkRole.Name == "INTERVIEWER")
+                    if (role?.FkRole?.Name == "INTERVIEWER")
                     {
                         flag = 1;
                         break;
@@ -64,7 +64,7 @@ namespace Backend.Services.impl
 
             Notification notification = new Notification();
             notification.FkUserId = panel.FkInterviewerId;
-            notification.Message = $"you will be assigned to take {interview.FkInterviewRound.Name} interview round of {interview.FkJobPosition.Title} job position for {interview.FkCandidate.Email} and it will be schedule at {interview.ScheduledTime}";
+            notification.Message = $"you will be assigned to take {interview?.FkInterviewRound?.Name} interview round of {interview?.FkJobPosition?.Title} job position for {interview?.FkCandidate?.Email} and it will be schedule at {interview?.ScheduledTime}";
             notification.IsRead = false;
 
             await _notificationRepository.AddNotification(notification);
@@ -88,7 +88,7 @@ namespace Backend.Services.impl
 
             Notification notification = new Notification();
             notification.FkUserId = interviewPanel.FkInterviewerId;
-            notification.Message = $"you will be free your {interview.FkInterviewRound.Name} interview round of {interview.FkJobPosition.Title} job position for {interview.FkCandidate.Email} was deleted by admin";
+            notification.Message = $"you will be free your {interview?.FkInterviewRound?.Name} interview round of {interview?.FkJobPosition?.Title} job position for {interview?.FkCandidate?.Email} was deleted by admin";
             notification.IsRead = false;
 
             await _notificationRepository.AddNotification(notification);

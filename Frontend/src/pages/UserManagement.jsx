@@ -163,7 +163,7 @@ const UserManagement = () => {
 
             <Box sx={{ display: "flex", justifyContent: "flex-start", marginBottom: "1rem", gap: "1.5rem", marginTop: "1.5rem" }}>
                 <TextField
-                    label="Search Exams"
+                    label="Search User"
                     variant="outlined"
                     value={searchTerm}
                     onChange={handleSearch}

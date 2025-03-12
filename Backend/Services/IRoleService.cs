@@ -4,7 +4,7 @@ namespace Backend.Services
 {
     public interface IRoleService
     {
-        Task<Role> addRole(Role role);
+        Task<Role?> addRole(Role role);
 
         Task<List<Role>> GetRolesAsync();
 

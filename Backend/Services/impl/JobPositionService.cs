@@ -12,7 +12,6 @@ namespace Backend.Services.impl
         private readonly IUserRepository _userRepository;
         private readonly ISkillRepository _skillRepository;
         private readonly IJobSkillRepository _jobSkillRepository;
-        private readonly ICandidateRepository _candidateRepository;
         private readonly ICandidateNotificationRepository _candidateNotificationRepository;
 
         public JobPositionService(IJobPositionRepository repository, IJobStatusRepository jobStatusRepository, IUserRepository userRepository, IJobSkillRepository jobSkillRepository, ISkillRepository skillRepository, ICandidateNotificationRepository candidateNotificationRepository)
@@ -41,11 +40,6 @@ namespace Backend.Services.impl
             jobPosition.Description = jobPositionDto.Description;
             jobPosition.Title = jobPositionDto.Title;
 
-            Candidate? candidate = await _candidateRepository.GetCandidateById(jobPositionDto?.FkSelectedCandidateId);
-            if (candidate == null) throw new Exception("selected candidate not exist in system");
-
-            jobPosition.FkSelectedCandidateId = jobPositionDto?.FkSelectedCandidateId;
-
             JobStatus? jobStatus = await _jobStatusRepository.GetJobStatusByNameAsync("OPEN");
             if (jobStatus == null) throw new Exception("job status with "+ jobPositionDto.FkStatusId +" id not exist");
 
@@ -55,12 +49,15 @@ namespace Backend.Services.impl
             if (user == null) throw new Exception("user not found for reviewer");
 
             int flag = 0;
-            foreach (var userRole in user.UserRoles)
-            {
-                if(userRole.FkRole.Name.Equals("REVIEWER"))
+
+            if (user.UserRoles != null) {
+                foreach (var userRole in user.UserRoles)
                 {
-                    flag = 1;
-                    break;
+                    if(userRole?.FkRole?.Name != null &&  userRole.FkRole.Name.Equals("REVIEWER"))
+                    {
+                        flag = 1;
+                        break;
+                    }
                 }
             }
 
@@ -73,33 +70,39 @@ namespace Backend.Services.impl
 
             JobPosition jobPosition1 = await _repository.AddJobPositionAsync(jobPosition);
 
-            foreach (var skillid in jobPositionDto.Skills) { 
-                
-                Skill? skill = await _skillRepository.GetSkillByIdAsync(skillid);
+            if (jobPositionDto.Skills != null) {
 
-                if (skill == null) throw new Exception("skill id " + skillid + " not exist");
-                
-                JobSkill jobSkill = new JobSkill();
-                jobSkill.FkSkillId = skillid;
-                jobSkill.FkJobPosition = jobPosition1;
-                jobSkill.IsRequired = false;
 
-                await _jobSkillRepository.AddJobSkillAsync(jobSkill);   
+                foreach (var skillid in jobPositionDto.Skills) { 
+                    
+                    Skill? skill = await _skillRepository.GetSkillByIdAsync(skillid);
+
+                    if (skill == null) throw new Exception("skill id " + skillid + " not exist");
+                    
+                    JobSkill jobSkill = new JobSkill();
+                    jobSkill.FkSkillId = skillid;
+                    jobSkill.FkJobPosition = jobPosition1;
+                    jobSkill.IsRequired = false;
+
+                    await _jobSkillRepository.AddJobSkillAsync(jobSkill);   
+                }
             }
 
-            foreach (var skillid in jobPositionDto.RequireSkills)
-            {
+            if (jobPositionDto.RequireSkills != null) {
+                foreach (var skillid in jobPositionDto.RequireSkills)
+                {
 
-                Skill? skill = await _skillRepository.GetSkillByIdAsync(skillid);
+                    Skill? skill = await _skillRepository.GetSkillByIdAsync(skillid);
 
-                if (skill == null) throw new Exception("skill id " + skillid + " not exist");
+                    if (skill == null) throw new Exception("skill id " + skillid + " not exist");
 
-                JobSkill jobSkill = new JobSkill();
-                jobSkill.FkSkillId = skillid;
-                jobSkill.FkJobPosition = jobPosition1;
-                jobSkill.IsRequired = true;
+                    JobSkill jobSkill = new JobSkill();
+                    jobSkill.FkSkillId = skillid;
+                    jobSkill.FkJobPosition = jobPosition1;
+                    jobSkill.IsRequired = true;
 
-                await _jobSkillRepository.AddJobSkillAsync(jobSkill);
+                    await _jobSkillRepository.AddJobSkillAsync(jobSkill);
+                }
             }
 
             return jobPosition1;
@@ -114,7 +117,7 @@ namespace Backend.Services.impl
             if (jobStatus == null) throw new Exception("job status not exist in system");
 
             jobPosition.UpdatedAt = DateTime.UtcNow;
-            jobPosition.Title = jobPositionDto.Title ?? jobPosition.Title;
+            jobPosition.Title = jobPositionDto?.Title ?? jobPosition.Title;
             jobPosition.Description = jobPositionDto?.Description ?? jobPosition.Description;
             jobPosition.FkReviewerId = jobPositionDto?.FkReviewerId ?? jobPosition.FkReviewerId;
             jobPosition.ClosureReason = jobPositionDto?.ClosureReason ?? jobPosition.ClosureReason;

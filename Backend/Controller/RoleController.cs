@@ -21,7 +21,7 @@ namespace Backend.Controllers
         {
             try
             {
-                if(role.Name.Equals("") || role == null)
+                if(role.Name == null || role.Name.Equals(""))
                 {
                     return BadRequest("name should not be empty");
                 }

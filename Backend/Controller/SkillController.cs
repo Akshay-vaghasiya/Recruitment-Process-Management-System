@@ -37,7 +37,7 @@ namespace Backend.Controller
         {
             try
             {
-                if(skill == null || skill.Name.Equals(""))
+                if(skill.Name == null || skill.Name.Equals(""))
                 {
                     return BadRequest("skill should not be empty!");
                 }
@@ -58,7 +58,7 @@ namespace Backend.Controller
         {
             try
             {
-                if (skill == null || skill.Name.Equals(""))
+                if (skill.Name == null || skill.Name.Equals(""))
                 {
                     return BadRequest("skill should not be empty!");
                 }

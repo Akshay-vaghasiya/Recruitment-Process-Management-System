@@ -24,16 +24,18 @@ namespace Backend.Repository.impl
             .FirstOrDefaultAsync(js => js.PkJobStatusId == id);
         }
 
-        public async Task<JobStatus?> GetJobStatusByNameAsync(string name)
+        public async Task<JobStatus?> GetJobStatusByNameAsync(string? name)
         {
             return await _context.JobStatuses.Include(js => js.JobPositions)
             .FirstOrDefaultAsync(js => js.Name == name);
         }
 
-        public async Task<JobStatus> AddJobStatusAsync(JobStatus jobStatus)
+        public async Task<JobStatus?> AddJobStatusAsync(JobStatus? jobStatus)
         {
-            _context.JobStatuses.Add(jobStatus);
-            await _context.SaveChangesAsync();
+            if (jobStatus != null) {
+                _context.JobStatuses.Add(jobStatus);
+                await _context.SaveChangesAsync();
+            }
 
             return jobStatus;
         }

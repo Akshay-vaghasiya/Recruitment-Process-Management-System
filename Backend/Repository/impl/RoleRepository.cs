@@ -13,28 +13,24 @@ namespace Backend.Repository.impl
             _context = context;
         }
 
-        public async Task<Role> GetRoleByName(string name)
+        public async Task<Role?> GetRoleByName(string? name)
         {
             return await _context.Roles.FirstOrDefaultAsync(r => r.Name == name);
         }
 
-        public async Task<Role> addRole(Role role)
+        public async Task<Role?> addRole(Role? role)
         {
-            await _context.Roles.AddAsync(role);
-            await _context.SaveChangesAsync();
+            if (role != null) {
+                await _context.Roles.AddAsync(role);
+                await _context.SaveChangesAsync();
+            }
 
-            return role;
-        }
-
-        public async Task<Role?> getRolerByName(string name)
-        {
-            Role role = await _context.Roles.Where(r => r.Name == name).FirstOrDefaultAsync();
             return role;
         }
 
         public async Task<Role?> getRoleById(int id)
         {
-            Role role = await _context.Roles.Where(r => r.PkRoleId == id).Include(r => r.UserRoles).FirstOrDefaultAsync();
+            var role = await _context.Roles.Where(r => r.PkRoleId == id).Include(r => r.UserRoles).FirstOrDefaultAsync();
             return role;
         }
 

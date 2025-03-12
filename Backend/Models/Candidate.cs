@@ -36,5 +36,4 @@ public partial class Candidate
 
     public virtual ICollection<CandidateNotification> CandidateNotifications { get; set; } = new List<CandidateNotification>();
 
-    public virtual ICollection<CampusHiringCandidate> CampusHiringCandidates { get; set; } = new HashSet<CampusHiringCandidate>();
 }

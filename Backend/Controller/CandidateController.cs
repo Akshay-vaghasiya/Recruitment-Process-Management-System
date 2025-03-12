@@ -29,10 +29,10 @@ namespace Backend.Controller
                     return BadRequest("please fill details");
                 }
 
-                if (candidateDto.Resume == null || candidateDto.Resume.Length == 0)
-                {
-                    return BadRequest("please upload valid resume");
-                }
+                //if (candidateDto.Resume == null || candidateDto.Resume.Length == 0)
+                //{
+                //    return BadRequest("please upload valid resume");
+                //}
 
                 var result = await _service.AddCandidate(candidateDto);
 

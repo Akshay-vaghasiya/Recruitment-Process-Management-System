@@ -32,6 +32,7 @@ namespace Backend.Services.impl
             if (jobPosition == null) throw new Exception("job position not exist in system");
 
             JobApplication? jobApplication = await _applicationRepository.GetJobApplicationByJobAndCandidate(jobPosition.PkJobPositionId, candidate.PkCandidateId);
+            if (jobApplication == null) throw new Exception("application not found in system.");
 
             ApplicationStatus? applicationStatus = await _applicationStatusRepository.GetApplicationStatusByNameAsync("SCREENED");
 

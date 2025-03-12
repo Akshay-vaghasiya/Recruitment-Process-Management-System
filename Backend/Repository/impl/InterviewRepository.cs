@@ -49,6 +49,7 @@ namespace Backend.Repository.impl
                 .Include(i => i.InterviewPanels)
                 .ThenInclude(p => p.FkInterviewer)
                 .Include(i => i.FkCandidate)
+                .Include(i => i.InterviewFeedbacks)
                 .FirstOrDefaultAsync(i => i.PkInterviewId == id);
         }
 
@@ -70,7 +71,7 @@ namespace Backend.Repository.impl
             return interview;
         }
 
-        public async Task DeleteInterview(int id)
+        public async Task DeleteInterview(int? id)
         {
             Interview? interview = await _context.Interviews.FindAsync(id);
             if (interview != null)

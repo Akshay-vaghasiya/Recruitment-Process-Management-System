@@ -12,7 +12,7 @@ namespace Backend.Repository.impl
             _context = context;
         }
 
-        public async Task<User?> GetUserByEmail(string email)
+        public async Task<User?> GetUserByEmail(string? email)
         {
             return await _context.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.FkRole).FirstOrDefaultAsync(u => u.Email == email);
         }

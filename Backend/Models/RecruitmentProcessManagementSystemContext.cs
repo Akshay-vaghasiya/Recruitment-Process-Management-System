@@ -65,8 +65,6 @@ public partial class RecruitmentProcessManagementSystemContext : DbContext
 
     public virtual DbSet<CampusRecruitment> CampusRecruitments { get; set; }
 
-    public virtual DbSet<CampusHiringCandidate> CampusHiringCandidates { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
        => optionsBuilder.UseSqlServer("Data Source=L10-VAGHAAKS-1\\SQLEXPRESS;Initial Catalog=Recruitment_Process_Management_System; Trusted_Connection=True; TrustServerCertificate=True");
 
@@ -83,23 +81,6 @@ public partial class RecruitmentProcessManagementSystemContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("name");
-        });
-
-        modelBuilder.Entity<CampusHiringCandidate>(entity =>
-        {
-            entity.HasKey(e => e.PkCampusHiringCandidateId);
-
-            entity.ToTable("campus_hiring_candidate");
-
-            entity.Property(e => e.PkCampusHiringCandidateId).HasColumnName("pk_campus_hiring_candidate_id");
-            entity.Property(e => e.FkCampusRecruitmentId).HasColumnName("fk_campus_recruitment_id");
-            entity.Property(e => e.FkCandidateId).HasColumnName("fk_candidate_id");
-
-            entity.HasOne(e => e.FkCandidate).WithMany(c => c.CampusHiringCandidates)
-                .HasForeignKey(e => e.FkCandidateId);
-
-            entity.HasOne(e => e.FkCampusRecruitment).WithMany(cr => cr.HiringCandidates)
-               .HasForeignKey(e => e.FkCampusRecruitmentId);
         });
 
         modelBuilder.Entity<CampusRecruitment>(entity =>
@@ -282,6 +263,7 @@ public partial class RecruitmentProcessManagementSystemContext : DbContext
             entity.Property(e => e.FkInterviewRoundId).HasColumnName("fk_interview_round_id");
             entity.Property(e => e.FkJobPositionId).HasColumnName("fk_job_position_id");
             entity.Property(e => e.FkStatusId).HasColumnName("fk_status_id");
+            entity.Property(e => e.FkCampusRecruitmentId).HasColumnName("fk_campus_recruitment_id");
             entity.Property(e => e.RoundNumber).HasColumnName("round_number");
             entity.Property(e => e.ScheduledTime)
                 .HasColumnType("datetime")
@@ -302,6 +284,17 @@ public partial class RecruitmentProcessManagementSystemContext : DbContext
             entity.HasOne(d => d.FkStatus).WithMany(p => p.Interviews)
                 .HasForeignKey(d => d.FkStatusId)
                 .HasConstraintName("FK__interview__fk_st__4E88ABD4");
+
+            entity.HasOne(d => d.FkCampusRecruitment).WithMany(p => p.Interviews)
+                .HasForeignKey(d => d.FkCampusRecruitmentId);
+
+            entity.HasMany(i => i.InterviewPanels).WithOne(f => f.FkInterview)
+                .HasForeignKey(f => f.FkInterviewId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            entity.HasMany(i => i.InterviewFeedbacks).WithOne(f => f.FkInterview)
+                .HasForeignKey(f => f.FkInterviewId)
+                .OnDelete(DeleteBehavior.SetNull);
         });
 
         modelBuilder.Entity<InterviewFeedback>(entity =>
@@ -547,6 +540,7 @@ public partial class RecruitmentProcessManagementSystemContext : DbContext
                 .HasColumnName("created_at");
             entity.Property(e => e.FkCandidateId).HasColumnName("fk_candidate_id");
             entity.Property(e => e.FkJobPositionId).HasColumnName("fk_job_position_id");
+            entity.Property(e => e.FkCampusRecruitmentId).HasColumnName("fk_campus_recruitment_id");
 
             entity.HasOne(d => d.FkCandidate).WithMany(p => p.ResumeReviews)
                 .HasForeignKey(d => d.FkCandidateId)
@@ -555,6 +549,9 @@ public partial class RecruitmentProcessManagementSystemContext : DbContext
             entity.HasOne(d => d.FkJobPosition).WithMany(p => p.ResumeReviews)
                 .HasForeignKey(d => d.FkJobPositionId)
                 .HasConstraintName("FK__resume_re__fk_jo__440B1D61");
+
+            entity.HasOne(d => d.FkCampusRecruitment).WithMany(p => p.ResumeReviews)
+                .HasForeignKey(d => d.FkCampusRecruitmentId);
         });
 
         modelBuilder.Entity<Role>(entity =>

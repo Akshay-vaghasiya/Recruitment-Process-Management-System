@@ -101,7 +101,7 @@ namespace Backend.Services.impl
             {
                 string uploadsFolder = Directory.GetCurrentDirectory().Replace("Backend", "Frontend") + "\\public\\Document\\" + document?.FkCandidate?.Email;
 
-                if (document?.DocumentUrl != null || !document.DocumentUrl.Equals(""))
+                if (document?.DocumentUrl != null && !document.DocumentUrl.Equals(""))
                 {
                     File.Delete(uploadsFolder + "\\" + document?.DocumentUrl?.Substring(document.DocumentUrl.LastIndexOf("/") + 1));
                 }

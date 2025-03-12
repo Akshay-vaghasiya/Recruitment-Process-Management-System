@@ -47,10 +47,12 @@ namespace Backend.Repository.impl
                 .FirstOrDefaultAsync(ja => ja.PkJobApplicationId == id);
         }
 
-        public async Task<JobApplication> UpdateJobAppliction(JobApplication jobApplication)
+        public async Task<JobApplication?> UpdateJobAppliction(JobApplication? jobApplication)
         {
-            _context.JobApplications.Update(jobApplication);
-            await _context.SaveChangesAsync();
+            if (jobApplication != null) {
+                _context.JobApplications.Update(jobApplication);
+                await _context.SaveChangesAsync();
+            }
 
             return jobApplication;
         }

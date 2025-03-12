@@ -2803,32 +2803,6 @@
         },
         "additionalProperties": false
       },
-      "CampusHiringCandidate": {
-        "type": "object",
-        "properties": {
-          "PkCampusHiringCandidateId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "FkCandidateId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "FkCampusRecruitmentId": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "FkCandidate": {
-            "$ref": "#/components/schemas/Candidate"
-          },
-          "FkCampusRecruitment": {
-            "$ref": "#/components/schemas/CampusRecruitment"
-          }
-        },
-        "additionalProperties": false
-      },
       "CampusRecruitment": {
         "type": "object",
         "properties": {
@@ -2853,10 +2827,17 @@
           "FkCollege": {
             "$ref": "#/components/schemas/College"
           },
-          "HiringCandidates": {
+          "ResumeReviews": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CampusHiringCandidate"
+              "$ref": "#/components/schemas/ResumeReview"
+            },
+            "nullable": true
+          },
+          "Interviews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Interview"
             },
             "nullable": true
           }
@@ -2944,13 +2925,6 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CandidateNotification"
-            },
-            "nullable": true
-          },
-          "CampusHiringCandidates": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CampusHiringCandidate"
             },
             "nullable": true
           }
@@ -3148,6 +3122,11 @@
             "format": "int32",
             "nullable": true
           },
+          "FkCampusRecruitmentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "CreatedAt": {
             "type": "string",
             "format": "date-time",
@@ -3164,6 +3143,9 @@
           },
           "FkStatus": {
             "$ref": "#/components/schemas/InterviewStatus"
+          },
+          "FkCampusRecruitment": {
+            "$ref": "#/components/schemas/CampusRecruitment"
           },
           "InterviewFeedbacks": {
             "type": "array",
@@ -3673,6 +3655,11 @@
             "format": "int32",
             "nullable": true
           },
+          "FkCampusRecruitmentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "Comments": {
             "type": "string",
             "nullable": true
@@ -3681,6 +3668,9 @@
             "type": "string",
             "format": "date-time",
             "nullable": true
+          },
+          "FkCampusRecruitment": {
+            "$ref": "#/components/schemas/CampusRecruitment"
           }
         },
         "additionalProperties": false

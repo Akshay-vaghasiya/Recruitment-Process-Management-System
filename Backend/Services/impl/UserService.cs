@@ -44,21 +44,25 @@ namespace Backend.Services.impl
 
             var user1 = await _userRepository.AddUser(user);
 
-            foreach (string role in registerDto.Roles)
-            {
-                Role role1 = await _roleRepository.GetRoleByName(role);
+            if (registerDto.Roles != null) {
 
-                if (role1 == null) {
-                    throw new Exception("role not registerd");
+                foreach (string role in registerDto.Roles)
+                {
+                    var role1 = await _roleRepository.GetRoleByName(role);
+
+                    if (role1 == null) {
+                        throw new Exception("role not registerd");
+                    }
+
+                    UserRole role2 = new UserRole();
+
+                    role2.FkUser = user1;
+                    role2.FkRole = role1;
+
+                    await _userRoleRepository.AddUserRole(role2);
                 }
-
-                UserRole role2 = new UserRole();
-
-                role2.FkUser = user1;
-                role2.FkRole = role1;
-
-                await _userRoleRepository.AddUserRole(role2);
             }
+
 
             return user1;
         }
@@ -68,8 +72,8 @@ namespace Backend.Services.impl
             var user1 = await _userRepository.GetUserByEmail(loginDto.Email);
             if (user1 == null || !BCrypt.Net.BCrypt.Verify(loginDto.Password, user1.Password))
                 throw new Exception("Please enter valid credential");
-            Console.Write(user1.UserRoles.Count());
-            return new { token = await GenerateJwtToken(user1), user = user1 };
+
+            return new { token = GenerateJwtToken(user1), user = user1 };
         }
 
         public async Task<User> UpdateUser(int id, RegisterDto registerDto)
@@ -173,16 +177,21 @@ namespace Backend.Services.impl
         }
 
 
-        private async Task<string> GenerateJwtToken(User user)
+        private string GenerateJwtToken(User user)
         {
-            var claims = new List<Claim>
-            {
-            new Claim(ClaimTypes.Name, user.Email),
-            };
+            var claims = new List<Claim>();
+            if (user.Email != null) { 
 
-            foreach (var userRole in user.UserRoles)
-            {
-                claims.Add(new Claim(ClaimTypes.Role, userRole.FkRole.Name));    
+                claims.Add(new Claim(ClaimTypes.Name, user.Email));
+            }
+
+            if (user.UserRoles != null) {
+                foreach (var userRole in user.UserRoles)
+                {
+                    if (userRole?.FkRole?.Name != null) {
+                        claims.Add(new Claim(type: ClaimTypes.Role, userRole.FkRole.Name));    
+                    }
+                }
             }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));

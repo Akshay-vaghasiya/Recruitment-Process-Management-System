@@ -6,7 +6,7 @@ namespace Backend.Services
     {
         Task<List<JobStatus>> GetAllJobStatusesAsync();
         Task<JobStatus?> GetJobStatusByIdAsync(int id);
-        Task<JobStatus> AddJobStatusAsync(JobStatus jobStatus);
+        Task<JobStatus?> AddJobStatusAsync(JobStatus jobStatus);
         Task<JobStatus> UpdateJobStatusAsync(int id,JobStatus jobStatus);
         Task DeleteJobStatusAsync(int id);
     }
